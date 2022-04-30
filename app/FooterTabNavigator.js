@@ -14,12 +14,21 @@ function Profile(){
     return (<View></View>);
 }
 
+function MyHeader({title, style}){
+    return (<View style={style}><Text style={{color: "white", fontSize: 27}}>{title}</Text></View>);
+}
+
 function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Feed"
       screenOptions={{
         tabBarActiveTintColor: '#91298D',
+        header: ({ navigation, route, options }) => {
+          const title = route.name;
+
+          return <MyHeader title={title} style={{ padding: 20, backgroundColor: '#91298D', color: "white", height: 70 }} />;
+        }
       }}
     >
       <Tab.Screen
