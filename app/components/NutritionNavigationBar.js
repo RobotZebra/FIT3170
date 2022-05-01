@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Button, Text } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
 function NavigationBar(props) {
   return (

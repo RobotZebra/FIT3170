@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import NavigationBar from "./NutritionNavigationBar";
+import NavigationBar from "../components/NutritionNavigationBar";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
 import BodyTopBarNavigator from "./BodyTopBarNavigation";
 import HealthTopBarNavigator from "./HealthTopBarNavigation";

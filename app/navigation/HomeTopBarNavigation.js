@@ -3,30 +3,16 @@ import { Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { MyPregnancyPage } from "../pages/MyPregnancyPage";
+import { AppointmentsPage } from "../pages/AppointmentsPage";
 
 const TopTab = createMaterialTopTabNavigator();
-
-function Facilities() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Facilities tab</Text>
-    </View>
-  );
-}
-
-function Practitioners() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Appointments tab</Text>
-    </View>
-  );
-}
 
 function MyTopTabs() {
   //const insets = useSafeAreaInsets();
   return (
     <TopTab.Navigator
-      initialRouteName="Facilities"
+      initialRouteName="MyPregnancy"
       tabBarOptions={{
         activeTintColor: "#91298D",
         labelStyle: { fontSize: 12 },
@@ -36,20 +22,20 @@ function MyTopTabs() {
       }}
     >
       <TopTab.Screen
-        name="Facilities"
-        component={Facilities}
-        options={{ tabBarLabel: "Facilities" }}
+        name="MyPregnancy"
+        component={MyPregnancyPage}
+        options={{ tabBarLabel: "My Pregnancy" }}
       />
 
       <TopTab.Screen
-        name="Practitioners"
-        component={Practitioners}
-        options={{ tabBarLabel: "Practitioners" }}
+        name="Appointments"
+        component={AppointmentsPage}
+        options={{ tabBarLabel: "Appointments" }}
       />
     </TopTab.Navigator>
   );
 }
 
-export default function HealthTopBarNavigator() {
+export default function HomeTopBarNavigator() {
   return <MyTopTabs />;
 }
