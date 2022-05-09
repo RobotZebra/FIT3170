@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Carousel from 'react-native-snap-carousel';
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
 
 // Reference: https://github.com/meliorence/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md
 
@@ -15,8 +15,8 @@ export function StageCarousel() {
     <Carousel
       data={stages}
       renderItem={RenderItem}
-      itemWidth={300}
-      sliderWidth={500}
+      itemWidth={250}
+      sliderWidth={400}
     />
   )
 }
@@ -26,13 +26,33 @@ function RenderItem({ item }) {
     <View style={{
       borderRadius: 10,
       borderWidth: 2,
+      overflow: 'hidden',
     }}>
       <Text style={{
         backgroundColor: '#91298D',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
         fontSize: 24,
-        borderRadius: 10,
-      }}>Month {item.month}</Text>
-      <Text>{item.description}</Text>
+        paddingVertical: 10,
+        textAlign: 'center',
+        color: 'white',
+      }}>
+        Month {item.month}
+      </Text>
+
+      <Text style={{
+        backgroundColor: 'white',
+        borderBottomLeftRadius: 10,
+        padding: 10,
+        textAlign: 'center',
+      }}>
+        {item.description}
+      </Text>
+      <Button
+        title="Learn More"
+        color="#91298D"
+        accessibilityLabel={`Learn more about the pregnancy stage at ${item.month}`}
+      />
       {/* TODO: Button Learn More */}
     </View>
   )
