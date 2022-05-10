@@ -36,6 +36,6 @@ function MyTopTabs() {
   );
 }
 
-export default function HealthTopBarNavigator() {
+export default function HospitalTopBarNavigator() {
   return <MyTopTabs />;
 }

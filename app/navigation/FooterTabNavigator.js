@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import NavigationBar from "../components/NutritionNavigationBar";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
 import BodyTopBarNavigator from "./BodyTopBarNavigation";
-import HealthTopBarNavigator from "./HealthTopBarNavigation";
+import HospitalTopBarNavigator from "./HospitalTopBarNavigation";
 import { NavigationContainer } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
@@ -15,7 +15,7 @@ function Home() {
 function Body() {
   return <View>{/* <NavigationBar></NavigationBar> */}</View>;
 }
-function Health() {
+function Hospital() {
   return <View></View>;
 }
 
@@ -81,15 +81,20 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Health"
-        component={HealthTopBarNavigator}
+        name="Hospital"
+        component={HospitalTopBarNavigator}
         options={{
-          tabBarLabel: "Health",
+          tabBarLabel: "Hospital",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="hospital-box"
-              color={color}
-              size={30}
+            
+            <Image
+            source={require('../../assets/MH-logo-grey.png')} 
+            style={{
+              width: size,
+              height: size,
+              alignContent: "center"
+            }}
+            
             />
           ),
         }}
