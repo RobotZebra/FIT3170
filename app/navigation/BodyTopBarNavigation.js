@@ -16,6 +16,7 @@ function MyTopTabs() {
       initialRouteName="Nutrition"
       screenOptions={{
         activeTintColor: "#91298D",
+        tabBarIndicatorStyle: {backgroundColor: "#91298D"},
         labelStyle: { fontSize: 12 },
         // style: { backgroundColor: "white", marginTop: insets.top },
         style: { backgroundColor: "white" },

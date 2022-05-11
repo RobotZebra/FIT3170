@@ -38,7 +38,8 @@ function MyTabs() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: "#91298D",
+        activeTintColor: "#91298D",
+        tabBarIndicatorStyle: {backgroundColor: "#91298D"},
         header: ({ navigation, route, options }) => {
           const title = route.name;
 
