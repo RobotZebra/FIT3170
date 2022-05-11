@@ -40,6 +40,7 @@ function MyTabs() {
       screenOptions={{
         activeTintColor: "#91298D",
         tabBarIndicatorStyle: {backgroundColor: "#91298D"},
+        tabBarActiveTintColor: "#91298D",
         header: ({ navigation, route, options }) => {
           const title = route.name;
 
