@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 
@@ -13,19 +13,25 @@ function ContactCard({props}) {
       <View style={[{
             flexDirection: "row"
         }]}>
-        <View paddingRight={60}>
+            
+        <View paddingRight={40}>
             <Text style={styles.contactCardText}>{subtitle}</Text>
-         </View>
-        <View paddingLeft={30}>
-            <MaterialCommunityIcons name="phone-outline" color="white" size={30}/>
         </View>
-        <View paddingLeft={30}>
-            <MaterialCommunityIcons name="email-outline" color="white" size={30} padding={40}/>
+        <View paddingLeft={35}>
+            <TouchableOpacity activeOpacity={0.5}>
+                <MaterialCommunityIcons name="phone" color="white" size={40}/>
+            </TouchableOpacity>
         </View>
-        <View paddingLeft={30}>
-            <MaterialCommunityIcons name="heart-outline" color="white" size={30} padding={40}/>
+        <View paddingLeft={35}>
+            <TouchableOpacity activeOpacity={0.5}>
+                <MaterialCommunityIcons name="email" color="white" size={40}/>
+            </TouchableOpacity>
         </View>
-        
+        <View paddingLeft={35}>
+            <TouchableOpacity  activeOpacity={0.5}>
+                <MaterialCommunityIcons name="heart" color="white" size={40}/>
+            </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
