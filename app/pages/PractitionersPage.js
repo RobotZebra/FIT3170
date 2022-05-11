@@ -14,7 +14,7 @@ export function PractitionersPage() {
     subtitle: "Clayton",
     favourite: false
   };
-  const MATERNITY_KEY_CONTACTS = "Maternity Servies Key Contacts"
+  const MATERNITY_KEY_CONTACTS = "Maternity Services Key Contacts"
   const SPECIALIST_OBSTETRICIAN_CONTACTS = "Specialist Obstetrician Contacts"
   return (
     <SafeAreaView style={styles.container}>
