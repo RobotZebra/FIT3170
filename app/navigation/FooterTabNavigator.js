@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import NavigationBar from "../components/NutritionNavigationBar";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
 import BodyTopBarNavigator from "./BodyTopBarNavigation";
-import HealthTopBarNavigator from "./HealthTopBarNavigation";
+import HospitalTopBarNavigator from "./HospitalTopBarNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
@@ -26,7 +26,7 @@ function Settings() {
 function MyHeader({ title, style }) {
   return (
     <View style={style}>
-      <Text style={{ color: "white", fontSize: 25, textAlign: "center" }}>
+      <Text style={footerTabStyles.title}>
         {title}
       </Text>
     </View>
@@ -49,7 +49,7 @@ function MyTabs() {
                 padding: 20,
                 backgroundColor: "#91298D",
                 color: "white",
-                height: 70,
+                height: 100,
               }}
             />
           );
@@ -81,15 +81,18 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Health"
-        component={HealthTopBarNavigator}
+        name="Hospital"
+        component={HospitalTopBarNavigator}
         options={{
-          tabBarLabel: "Health",
+          tabBarLabel: "Hospital",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="hospital-box"
-              color={color}
-              size={30}
+            <Image
+            source={require('../../assets/MH-logo-grey.png')} 
+            style={{
+              width: size,
+              height: size,
+              alignContent: "center"
+            }}
             />
           ),
         }}
@@ -116,3 +119,20 @@ export default function BottomTabNavigator() {
     </NavigationContainer>
   );
 }
+
+const footerTabStyles = StyleSheet.create({
+  heading: {
+    alignItems: "center",
+    flex: 1,
+    height: 200
+  },
+  title: {
+    color: "white",
+    fontSize: 25,
+    textAlign: "center",
+    fontFamily: "Roboto",
+    fontWeight: '500',
+    fontSize: 25,
+    paddingTop: 30
+  },
+});

@@ -14,7 +14,7 @@ function MyTopTabs() {
   return (
     <TopTab.Navigator
       initialRouteName="Nutrition"
-      tabBarOptions={{
+      screenOptions={{
         activeTintColor: "#91298D",
         labelStyle: { fontSize: 12 },
         // style: { backgroundColor: "white", marginTop: insets.top },

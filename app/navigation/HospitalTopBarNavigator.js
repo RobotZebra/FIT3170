@@ -13,7 +13,7 @@ function MyTopTabs() {
   return (
     <TopTab.Navigator
       initialRouteName="Facilities"
-      tabBarOptions={{
+      screenOptions={{
         activeTintColor: "#91298D",
         labelStyle: { fontSize: 12 },
         // style: { backgroundColor: "white", marginTop: insets.top },
@@ -36,6 +36,6 @@ function MyTopTabs() {
   );
 }
 
-export default function HealthTopBarNavigator() {
+export default function HospitalTopBarNavigator() {
   return <MyTopTabs />;
 }
