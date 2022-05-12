@@ -6,7 +6,9 @@ export function MyPregnancyPage() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>My pregnancy tab</Text>
-      <SwiperComponent/>
+      <View style={{ height: 355 }}>
+        <SwiperComponent />
+      </View>
     </View>
   );
 }

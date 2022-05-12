@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
-import Swiper from 'react-native-swiper'
+import Swiper from 'react-native-swiper/src'
 
 const stages = [
   { month: 1, description: "You're in your first month of pregnancy!" },
@@ -8,12 +8,19 @@ const stages = [
 ]
 
 const styles = StyleSheet.create({
-  wrapper: {},
+  wrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   slide: {
+    height: '85%',
+    width: '75%',
     borderRadius: 10,
     borderWidth: 2,
+    borderColor: '#91298D',
     overflow: 'hidden',
     shadowColor: 'darkgrey',
+    backgroundColor: 'white',
   },
   title: {
     backgroundColor: '#91298D',
@@ -25,16 +32,15 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   text: {
+    flex: 1,
     padding: 10,
     textAlign: 'center',
-  }
+  },
 })
 
 function SwiperItem({ month, description }) {
   return (
     <View
-      width={250}
-      height={500}
       loop={false}
       style={styles.slide}
     >
@@ -55,7 +61,12 @@ export default function SwiperComponent() {
   })
 
   return (
-    <Swiper style={styles.wrapper} showsButtons={true}>
+    <Swiper
+      style={styles.wrapper}
+      showsButtons={true}
+      activeDotColor='#91298D'
+      loop={false}
+    >
       {slides}
     </Swiper>
   )
