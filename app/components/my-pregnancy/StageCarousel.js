@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Carousel from 'react-native-snap-carousel';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Text, View, Button } from "react-native";
 
 // Reference: https://github.com/meliorence/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md
@@ -10,15 +10,24 @@ export function StageCarousel() {
     { month: 3, description: "You’re now in month 3 of your pregnancy, and your baby has officially graduated from an embryo to a fetus. You may just be starting to show at 10 weeks pregnant (though if there are no signs of a bump yet, that’s normal too), and you might also notice visible veins and vaginal discharge" },
     { month: 5, description: "Month 5!!" },
   ])
+  const startingIndex = 0
+  const [index, setIndex] = useState(startingIndex)
 
-  return (
+  return <>
     <Carousel
       data={stages}
       renderItem={RenderItem}
       itemWidth={250}
+      itemHeight={355}
       sliderWidth={400}
+      firstItem={startingIndex}
+      onSnapToItem={(slideIndex) => setIndex(slideIndex)}
     />
-  )
+    <Pagination
+      activeDotIndex={index}
+      dotsLength={stages.length}
+    />
+  </>
 }
 
 function RenderItem({ item }) {
@@ -26,12 +35,15 @@ function RenderItem({ item }) {
     <View style={{
       borderRadius: 10,
       borderWidth: 2,
+      height: '100%',
+      borderColor: '#91298D',
       overflow: 'hidden',
     }}>
       <Text style={{
         backgroundColor: '#91298D',
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
+        // borderBottomLeftRadius: 10,
+        // borderBottomRightRadius: 10,
+        borderRadius: 5,
         fontSize: 24,
         paddingVertical: 10,
         textAlign: 'center',
@@ -43,6 +55,9 @@ function RenderItem({ item }) {
       <Text style={{
         backgroundColor: 'white',
         borderBottomLeftRadius: 10,
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'center',
         padding: 10,
         textAlign: 'center',
       }}>
