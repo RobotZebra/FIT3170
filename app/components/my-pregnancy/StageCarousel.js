@@ -1,8 +1,11 @@
+// Reference: https://github.com/meliorence/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md
 import React, { useState } from "react";
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Text, View, Button } from "react-native";
 
-// Reference: https://github.com/meliorence/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md
+const styles = StyleSheet.create({
+  
+})
 
 export function StageCarousel() {
   const [stages, setStages] = useState([
@@ -36,6 +39,7 @@ function RenderItem({ item }) {
       borderRadius: 10,
       borderWidth: 2,
       height: '100%',
+      backgroundColor: 'white',
       borderColor: '#91298D',
       overflow: 'hidden',
     }}>
@@ -52,17 +56,18 @@ function RenderItem({ item }) {
         Month {item.month}
       </Text>
 
-      <Text style={{
-        backgroundColor: 'white',
-        borderBottomLeftRadius: 10,
-        flexDirection: 'row',
+      <View style={{
         flex: 1,
         justifyContent: 'center',
-        padding: 10,
-        textAlign: 'center',
-      }}>
-        {item.description}
-      </Text>
+      }} >
+
+        <Text style={{
+          textAlign: 'center',
+          padding: 10,
+        }}>
+          {item.description}
+        </Text>
+      </View>
       <Button
         title="Learn More"
         color="#91298D"
