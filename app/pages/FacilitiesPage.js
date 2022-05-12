@@ -17,7 +17,7 @@ export function FacilitiesPage() {
             category_name: 'Item 1',
             subcategory: [
                 {id: 1, val: 'sub1'},
-                {id: 2, val: 'sub2'}
+                {id: 2, val: 'sub2'},
             ]
         },
         {
@@ -25,7 +25,7 @@ export function FacilitiesPage() {
             category_name: 'Item 2',
             subcategory: [
                 {id: 3, val: 'sub3'},
-                {id: 4, val: 'sub4'}
+                {id: 4, val: 'sub4'},
             ]
         }
 
@@ -95,36 +95,36 @@ export function FacilitiesPage() {
     }
 
     return (
-    <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.titleText}>expandable list view</Text>
-                <TouchableOpacity onPress={() => setMultiSelect(!multiSelect)}>
-                    <Text style={styles.headerButton}>
-                        {
-                            multiSelect
-                            ? 'Enable Single \n Expand'
-                            : 'Enable multiple \n Expand'
-                        }
-                    </Text>
-                </TouchableOpacity>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <Text style={styles.titleText}>expandable list view</Text>
+                    <TouchableOpacity onPress={() => setMultiSelect(!multiSelect)}>
+                        <Text style={styles.headerButton}>
+                            {
+                                multiSelect
+                                ? 'Enable Single \n Expand'
+                                : 'Enable multiple \n Expand'
+                            }
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <ScrollView>
+                    {
+                        listDataSource.map((item,key) =>(
+                            <ExpandableComponent
+                                key={item.category_name}
+                                item={item}
+                                onClickFunction={() => {
+                                    updateLayout(key)
+                                }}
+                            />
+                        ))
+                    }
+                </ScrollView>
             </View>
-            <ScrollView>
-                {
-                    listDataSource.map((item,key) =>(
-                        <ExpandableComponent
-                            key={item.category_name}
-                            item={item}
-                            onClickFunction={() => {
-                                updateLayout(key)
-                            }}
-                        />
-                    ))
-                }
-            </ScrollView>
-        </View>
-    </SafeAreaView>
-  );
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
