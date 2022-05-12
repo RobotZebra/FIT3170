@@ -1,11 +1,7 @@
 // Reference: https://github.com/meliorence/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md
 import React, { useState } from "react";
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { Text, View, Button } from "react-native";
-
-const styles = StyleSheet.create({
-  
-})
+import { Text, View, Button, StyleSheet } from "react-native";
 
 export function StageCarousel() {
   const [stages, setStages] = useState([
@@ -35,36 +31,13 @@ export function StageCarousel() {
 
 function RenderItem({ item }) {
   return (
-    <View style={{
-      borderRadius: 10,
-      borderWidth: 2,
-      height: '100%',
-      backgroundColor: 'white',
-      borderColor: '#91298D',
-      overflow: 'hidden',
-    }}>
-      <Text style={{
-        backgroundColor: '#91298D',
-        // borderBottomLeftRadius: 10,
-        // borderBottomRightRadius: 10,
-        borderRadius: 5,
-        fontSize: 24,
-        paddingVertical: 10,
-        textAlign: 'center',
-        color: 'white',
-      }}>
+    <View style={itemStyle.container}>
+      <Text style={itemStyle.title}>
         Month {item.month}
       </Text>
 
-      <View style={{
-        flex: 1,
-        justifyContent: 'center',
-      }} >
-
-        <Text style={{
-          textAlign: 'center',
-          padding: 10,
-        }}>
+      <View style={{ flex: 1, justifyContent: 'center', }} >
+        <Text style={{ textAlign: 'center', padding: 10, }}>
           {item.description}
         </Text>
       </View>
@@ -77,3 +50,22 @@ function RenderItem({ item }) {
     </View>
   )
 }
+
+const itemStyle = StyleSheet.create({
+  container: {
+    borderRadius: 10,
+    borderWidth: 2,
+    height: '100%',
+    backgroundColor: 'white',
+    borderColor: '#91298D',
+    overflow: 'hidden',
+  },
+  title: {
+    backgroundColor: '#91298D',
+    borderRadius: 5,
+    fontSize: 24,
+    paddingVertical: 10,
+    textAlign: 'center',
+    color: 'white',
+  }
+})
