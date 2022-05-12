@@ -11,7 +11,6 @@ import {
 } from "react-native";
 
 export function FacilitiesPage() {
-    //dummy content for now
     const CONTENT = [
         {
             isExpanded: false,
@@ -81,14 +80,12 @@ export function FacilitiesPage() {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         const array = [...listDataSource];
         if(multiSelect){
-            //if multi select is enabled
             array[index]['isExpanded'] = !array[index]['isExpanded'];
         } else {
-            //if single select is enabled
-            array.map((value, placeindex) =>
-                placeindex === index
-                ? (array[placeindex]['isExpanded']) = !array[placeindex]['isExpanded']
-                : (array[placeindex]['isExpanded']) = false
+            array.map((value, placeIndex) =>
+                placeIndex === index
+                ? (array[placeIndex]['isExpanded']) = !array[placeIndex]['isExpanded']
+                : (array[placeIndex]['isExpanded']) = false
             );
         }
         setListDataSource(array)
