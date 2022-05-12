@@ -92,7 +92,6 @@ export function FacilitiesPage() {
     }
     if (Platform.OS === 'android'){
         UIManager.setLayoutAnimationEnabledExperimental(true);
-
     }
 
     return (
