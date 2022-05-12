@@ -30,7 +30,7 @@ export function FacilitiesPage() {
         }
 
     ];
-    const ExpandableComponent = (item, onClickFunction) => {
+    const ExpandableComponent = ({item, onClickFunction}) => {
         const [layoutHeight, setLayoutHeight] = useState(0);
 
         useEffect(() => {
