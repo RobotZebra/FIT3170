@@ -47,9 +47,9 @@ export function FacilitiesPage() {
                     style={styles.item}
                     onPress={onClickFunction}
                 >
-                    <text style={styles.itemText}>
+                    <Text style={styles.itemText}>
                         {item.category_name}
-                    </text>
+                    </Text>
                 </TouchableOpacity>
                 <View
                     style={{
@@ -97,18 +97,18 @@ export function FacilitiesPage() {
     return (
     <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.container}>
-            <view style={styles.header}>
-                <text style={styles.titleText}>expandable list view</text>
+            <View style={styles.header}>
+                <Text style={styles.titleText}>expandable list view</Text>
                 <TouchableOpacity onPress={() => setMultiSelect(!multiSelect)}>
-                    <text style={styles.headerButton}>
+                    <Text style={styles.headerButton}>
                         {
                             multiSelect
                             ? 'Enable Single \n Expand'
                             : 'Enable multiple \n Expand'
                         }
-                    </text>
+                    </Text>
                 </TouchableOpacity>
-            </view>
+            </View>
             <ScrollView>
                 {
                     listDataSource.map((item,key) =>(
