@@ -1,7 +1,7 @@
 import * as firebase from '@firebase/app';
 // import '@firebase/auth';
 // import '@firebase/firestore';
-// TODO: check https://firebase.google.com/docs/web/setup for using different
+// TODO: check https://firebase.google.com/docs/web/setup for using different firebase features.
 
 ////////////////
 // TODO: Add SDKs for Firebase products that you want to use
