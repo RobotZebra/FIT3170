@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect,Component} from "react";
+
 import {
     Text,
     View,
@@ -7,7 +8,7 @@ import {
     ScrollView,
     TouchableOpacity,
     LayoutAnimation,
-    UIManager, Platform
+    UIManager, Platform, Button, Linking
 } from "react-native";
 
 export function FacilitiesPage() {
@@ -16,16 +17,20 @@ export function FacilitiesPage() {
             isExpanded: false,
             category_name: 'Item 1',
             subcategory: [
-                {id: 1, val: 'sub1'},
-                {id: 2, val: 'sub2'},
+                {id: 1, val: 'Description'},
+                {id: 2, val: 'Maps', lat: "-37.91428962054958", long: "145.1319808081597", label: "Monash" },
+                {id: 3, val: 'Phone'},
             ]
+
+
         },
         {
             isExpanded: false,
             category_name: 'Item 2',
             subcategory: [
-                {id: 3, val: 'sub3'},
-                {id: 4, val: 'sub4'},
+                {id: 1, val: 'Description'},
+                {id: 2, val: 'Maps'},
+                {id: 3, val: 'Phone'},
             ]
         }
 
@@ -42,36 +47,38 @@ export function FacilitiesPage() {
         }, [item.isExpanded])
 
         return (
-            <View>
-                <TouchableOpacity
-                    style={styles.item}
-                    onPress={onClickFunction}
-                >
-                    <Text style={styles.itemText}>
-                        {item.category_name}
-                    </Text>
-                </TouchableOpacity>
-                <View
-                    style={{
-                    height: layoutHeight,
-                    overflow: 'hidden'
-                    }}
-                >
-                    {
-                        item.subcategory.map((item, key) => (
-                            <TouchableOpacity
-                                key = {key}
-                                style = {styles.content}
-                            >
-                                <Text style={styles.text}>
-                                    {key}. {item.val}
-                                </Text>
-                                <View style={styles.separator }/>
-                            </TouchableOpacity>
-                        ))
-                    }
-                </View>
-            </View>
+          <View>
+              <TouchableOpacity
+                  style={styles.item}
+                  onPress={onClickFunction}
+              >
+                  <Text style={styles.itemText}>
+                      {item.category_name}
+                  </Text>
+              </TouchableOpacity>
+              <View
+                  style={{
+                  height: layoutHeight,
+                  overflow: 'hidden'
+                  }}
+              >
+                  {
+                      item.subcategory.map((object, key) => (
+                          <TouchableOpacity
+                              key = {key}
+                              style = {styles.content}
+                          >
+                              <Text style={styles.text}>
+                                  {key}. {object.val}
+                              </Text>
+                              <MyButton props =  {object}/>
+
+                              <View style={styles.separator }/>
+                          </TouchableOpacity>
+                      ))
+                  }
+              </View>
+          </View>
         )
     }
     const [multiSelect, setMultiSelect] = useState(false);
@@ -93,6 +100,65 @@ export function FacilitiesPage() {
     if (Platform.OS === 'android'){
         UIManager.setLayoutAnimationEnabledExperimental(true);
     }
+
+    //__________________________________________________Maps,Phone,email redirecting
+    let props={
+        lat: "-37.91428962054958",
+        long: "145.1319808081597",
+        label: "Monash"
+      };
+
+    const showInMapClicked = (props) => {
+
+        const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+        const latLng = `${props.lat},${props.long}`;
+        const label = props.label;
+        const url = Platform.select({
+            ios: `${scheme}${label}@${latLng}`,
+            android: `${scheme}${latLng}(${label})`
+        });
+
+        Linking.openURL(url)
+
+      };
+
+    const openGmail = () => {
+       Linking.openURL('mailto:support@example.com')
+        };
+
+    const openPhone = (phoneNumber) => {
+        Linking.openURL(`tel:${phoneNumber}`)
+    }
+
+    const MyButton = ({props}) => {
+        if (props.val == "Maps") {
+            let valuesMaps={
+               lat: props.lat,
+               long: props.long,
+               label: props.label
+             }
+
+            return (
+                <Button  style={{fontSize: 20, color: 'green'}}
+                   styleDisabled={{color: 'red'}}
+
+                   onPress={() => showInMapClicked(valuesMaps)}
+                    title="Maps">
+                </Button> )
+        }
+        if (props.val == "Phone"){
+            return (
+                        <Button  style={{fontSize: 20, color: 'green'}}
+                           styleDisabled={{color: 'red'}}
+                           onPress={() => openPhone(props)}
+                            title="Phone">
+                        </Button> )
+        }
+        else {
+            return null
+
+        };
+    };
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
