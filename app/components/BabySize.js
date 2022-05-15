@@ -5,14 +5,15 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 
 export default function BabySize() {
        const [value, setValue] = useState(0);
-
-
-
+        // Not sure how we are handling this yet:
+        const pregnancyDayValue = 60;
+        const averagePregnancyDuration = 280;
+        const pregnancyProportion = (pregnancyDayValue / averagePregnancyDuration) * 100;
     return (
         <View style = {styles.container}>
             <CircularProgress
                 radius = {90}
-                value = {85}                    // the value we need
+                value = {pregnancyProportion}                    // the value we need
                 textColor = '#222'
                 fontsize = {20}
                 valueSuffix = {'%'}
