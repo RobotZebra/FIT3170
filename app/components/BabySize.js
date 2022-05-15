@@ -17,8 +17,9 @@ export function BabySize() {
                 radius = {120}
                 value = {pregnancyProportion}                    // the value we need
                 textColor = '#222'
-                title = {pregnancyRemainingTime + ' days left'}
-                subtitle = {"Month " + monthValue}
+                subtitle = {pregnancyRemainingTime + ' days left'}
+                title = {"Month " + monthValue}
+                titleStyle = {{fontWeight: 'bold', fontSize: '100'}}
                 showProgressValue = {false}
                 activeStrokeColor = {'purple'}
                 inActiveStrokeColor = {'lightgray'}
