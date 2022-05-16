@@ -1,4 +1,5 @@
 import React, {useState, useEffect,Component} from "react";
+import { Searchbar } from 'react-native-paper';
 
 import {
     Text,
@@ -15,9 +16,9 @@ export function FacilitiesPage() {
     const CONTENT = [
         {
             isExpanded: false,
-            category_name: 'Item 1',
+            category_name: 'Monash Medical Center',
             subcategory: [
-                {id: 1, val: 'Description'},
+                {id: 1, val: 'Description', descriptionVal: "Monash Medical Centre is a 640-bed teaching and research hospital of international standing providing a comprehensive range of specialist surgical, medical, allied health and mental health services to our community."},
                 {id: 2, val: 'Maps', lat: "-37.91428962054958", long: "145.1319808081597", label: "Monash" },
                 {id: 3, val: 'Phone'},
             ]
@@ -26,9 +27,9 @@ export function FacilitiesPage() {
         },
         {
             isExpanded: false,
-            category_name: 'Item 2',
+            category_name: 'Monash Dandenong',
             subcategory: [
-                {id: 1, val: 'Description'},
+                {id: 1, val: 'Description',descriptionVal: "Dandenong Hospital is a 520 bed acute hospital providing a wide range of health services to the people living and working in Dandenong and surrounding areas. "},
                 {id: 2, val: 'Maps'},
                 {id: 3, val: 'Phone'},
             ]
@@ -52,6 +53,7 @@ export function FacilitiesPage() {
                   style={styles.item}
                   onPress={onClickFunction}
               >
+
                   <Text style={styles.itemText}>
                       {item.category_name}
                   </Text>
@@ -67,13 +69,11 @@ export function FacilitiesPage() {
                           <TouchableOpacity
                               key = {key}
                               style = {styles.content}
-                          >
-                              <Text style={styles.text}>
-                                  {key}. {object.val}
-                              </Text>
-                              <MyButton props =  {object}/>
+                              >
 
+                              <FacilityComponents props =  {object}/>
                               <View style={styles.separator }/>
+
                           </TouchableOpacity>
                       ))
                   }
@@ -102,11 +102,6 @@ export function FacilitiesPage() {
     }
 
     //__________________________________________________Maps,Phone,email redirecting
-    let props={
-        lat: "-37.91428962054958",
-        long: "145.1319808081597",
-        label: "Monash"
-      };
 
     const showInMapClicked = (props) => {
 
@@ -130,7 +125,15 @@ export function FacilitiesPage() {
         Linking.openURL(`tel:${phoneNumber}`)
     }
 
-    const MyButton = ({props}) => {
+    const FacilityComponents = ({props}) => {
+        if (props.val == "Description"){
+           var description = props.descriptionVal;
+           return(
+
+               <Text style={styles.Text}>{description}</Text>
+           )
+
+        }
         if (props.val == "Maps") {
             let valuesMaps={
                lat: props.lat,
@@ -159,12 +162,25 @@ export function FacilitiesPage() {
 
         };
     };
+    const SearchBar = () => {
+      const [searchQuery, setSearchQuery] = React.useState('');
+      const onChangeSearch = query => setSearchQuery(query);
 
+      return (
+        <Searchbar
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+        />
+      );
+};
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
+             <SearchBar/>
                 <View style={styles.header}>
-                    <Text style={styles.titleText}>expandable list view</Text>
+
+                    <Text style={styles.titleText}>Tap on a facility to learn more</Text>
                     <TouchableOpacity onPress={() => setMultiSelect(!multiSelect)}>
                         <Text style={styles.headerButton}>
                             {
@@ -175,6 +191,7 @@ export function FacilitiesPage() {
                         </Text>
                     </TouchableOpacity>
                 </View>
+
                 <ScrollView>
                     {
                         listDataSource.map((item,key) =>(
@@ -203,13 +220,15 @@ const styles = StyleSheet.create({
     },
     titleText: {
         flex: 1,
-        fontSize: 22,
-        fontWeight: 'bold'
+        fontSize: 20,
+        fontWeight: 'bold',
+
     },
     headerButton: {
         textAlign: 'center',
         justifyContent: 'center',
         fontSize: 18
+
     },
     item: {
         backgroundColor: 'purple',
@@ -217,7 +236,8 @@ const styles = StyleSheet.create({
     },
     itemText: {
         fontSize: 16,
-        fontWeight: '500'
+        fontWeight: '500',
+        color:'white'
     },
     content: {
         paddingLeft: 10,
@@ -225,8 +245,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     text: {
-        fontSize: 16,
-        padding: 10
+        fontSize: 13,
+        padding: 20,
+        color: 'black',
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        textAlignVertical: "center"
     },
     separator:{
         height: 0.5,
