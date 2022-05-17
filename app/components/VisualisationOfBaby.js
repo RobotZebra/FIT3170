@@ -1,8 +1,6 @@
 import React from "react";
-import {Image, Pressable, StyleSheet, Text, View} from "react-native";
-import {SafeAreaView, ScrollView} from "react-native";
-import pic from "../../assets/lime.jpg"
-import {ReactComponent as Logo} from '../../assets/lime.jpg'
+import {Image, StyleSheet, Text, View} from "react-native";
+
 
 export function VisualisationOfBaby() {
     // Hard-coded for now
