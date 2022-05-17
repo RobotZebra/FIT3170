@@ -6,15 +6,19 @@ import { vw, vh } from 'react-native-expo-viewport-units';
 
 const LoginScreen = ({ navigation }) =>  {
         return (
+            // dismiss keyboard when clicked outside any input field
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.pageStyling}>
                 <View style={styles.upperPortion}>
                 </View>
+
+                {/* render the floating modal window containing the form for logging in */}
                 <View style={styles.modalWindow}>
                     <View style={styles.imageArea}>
                         <Image style={{width: '100%'}} source={require('../../assets/monashlogo.png')} resizeMode='contain' />
                     </View>
 
+                    {/*  render text fields for login pass with support for using saved passwords on the device */}
                     <TextInput placeholder='Email' placeholderTextColor="grey" style={[styles.modalField, styles.emailField]} keyboardType='email-address' autoCapitalize='none' textContentType='emailAddress' autoComplete='email' />
                     <TextInput placeholder='Password' placeholderTextColor="grey" style={[styles.modalField, styles.passwordField]} autoCapitalize='none' textContentType='password' secureTextEntry autoComplete='password' />
 
@@ -27,6 +31,7 @@ const LoginScreen = ({ navigation }) =>  {
                         <Text style={styles.buttonText}>Continue as Guest</Text>
                     </TouchableOpacity>
                 </View>
+
                 <View>
                     <Text style={styles.newUserInfo}>
                         Don't have an account?
@@ -39,13 +44,12 @@ const LoginScreen = ({ navigation }) =>  {
                 </View>
             </View>
         </TouchableWithoutFeedback>
-            
         )
-    
 }
 
 export default LoginScreen;
 
+// stylesheet for the page
 const styles = StyleSheet.create({
     pageStyling: {
         alignItems: 'center',

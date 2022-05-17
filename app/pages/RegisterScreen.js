@@ -28,21 +28,25 @@ const RegisterScreen = ({ navigation }) => {
     }
 
     return (
+        // dismiss keyboard when clicked outside any input field
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.pageStyling}>
                 <View style={styles.upperPortion}>
                 </View>
 
+                {/* render the floating modal window containing the form for registering */}
                 <View style={styles.modalWindow}>
                     <View style={styles.imageArea}>
                         <Image style={{width: '100%'}} source={require('../../assets/monashlogo.png')} resizeMode='contain' />
                     </View>
 
+                    {/* render text fields for registering a user */}
                     <TextInput placeholder='First Name' placeholderTextColor="grey" style={[styles.modalField, styles.firstNameField]} textContentType="givenName" />
                     <TextInput placeholder='Last Name' placeholderTextColor="grey" style={[styles.modalField, styles.lastNameField]} textContentType="familyName" />
                     <TextInput placeholder='Email' placeholderTextColor="grey" style={[styles.modalField, styles.emailField]} keyboardType='email-address' autoCapitalize='none' textContentType='emailAddress' />
                     <TextInput placeholder='Password' placeholderTextColor="grey" style={[styles.modalField, styles.passwordField]} autoCapitalize='none' textContentType='newPassword' secureTextEntry />
 
+                    {/* add a custom dropdown for choosing pregnancy status */}
                     <DropDownPicker
                         placeholder="Pregnancy Status"
                         onPress={Keyboard.dismiss}
@@ -60,14 +64,15 @@ const RegisterScreen = ({ navigation }) => {
                         listItemLabelStyle={{ color: 'grey' }}
                         selectedItemLabelStyle={{ fontWeight: 'bold' }}
                         placeholderStyle={{ color: 'grey' }}
-                        >
-                    </DropDownPicker>
+                    />
 
+                    {/* render native date picker only for a specific pregnancy status */}
                     <TouchableOpacity 
                         style={ valuePreg == 'am' ? [styles.modalField, styles.dueDateField, { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }] : { display: 'none' }} 
                         onPress={() => { setOpenDate(true); }}
                         activeOpacity='0.8'
-                    >
+                    >   
+                        {/* display date chosen in the field */}
                         { typeof(date) == "string" ? <Text style={{ color: "grey", flex:.8, marginLeft: -vw(1) }}> {date} </Text> : <Text style={{ color: 'black', flex:.8 }}>{date.toDateString()}</Text>}
 
                         <Image 
@@ -76,6 +81,7 @@ const RegisterScreen = ({ navigation }) => {
                             resizeMode='contain'
                         />
 
+                        {/* native date picker */}
                         <DateTimePickerModal 
                             isVisible={openDate}
                             onConfirm={handleConfirm}
@@ -84,7 +90,6 @@ const RegisterScreen = ({ navigation }) => {
                             minimumDate={new Date()}
                         />
                     </TouchableOpacity>
-                    
 
                     <TouchableOpacity style={[styles.modalButton, styles.registerButton]} activeOpacity='0.5'>
                         <Text style={styles.buttonText}>Register</Text>
@@ -108,6 +113,7 @@ const RegisterScreen = ({ navigation }) => {
 
 export default RegisterScreen;
 
+// style sheet for the page
 const styles = StyleSheet.create({
     pageStyling: {
         alignItems: 'center',
