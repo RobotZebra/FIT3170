@@ -111,8 +111,8 @@ function MyTabs() {
 
 export default function BottomTabNavigator() {
   return (
-    <NavigationContainer>
+    // <NavigationContainer>
       <MyTabs />
-    </NavigationContainer>
+    // </NavigationContainer>
   );
 }
