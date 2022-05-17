@@ -1,50 +1,91 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableWithoutFeedback, Keyboard, TouchableOpacity, StyleSheet, Text, TextInput, View, Image } from 'react-native';
 import { colors } from "../styling/appTheme";
 import { vw, vh } from 'react-native-expo-viewport-units'; 
 
 
 const LoginScreen = ({ navigation }) =>  {
-        return (
-            // dismiss keyboard when clicked outside any input field
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.pageStyling}>
-                <View style={styles.upperPortion}>
-                </View>
 
-                {/* render the floating modal window containing the form for logging in */}
-                <View style={styles.modalWindow}>
-                    <View style={styles.imageArea}>
-                        <Image style={{width: '100%'}} source={require('../../assets/monashlogo.png')} resizeMode='contain' />
-                    </View>
+    const [inputs, setInput] = useState({
+        email: '',
+        password: '', 
+    });
 
-                    {/*  render text fields for login pass with support for using saved passwords on the device */}
-                    <TextInput placeholder='Email' placeholderTextColor="grey" style={[styles.modalField, styles.emailField]} keyboardType='email-address' autoCapitalize='none' textContentType='emailAddress' autoComplete='email' />
-                    <TextInput placeholder='Password' placeholderTextColor="grey" style={[styles.modalField, styles.passwordField]} autoCapitalize='none' textContentType='password' secureTextEntry autoComplete='password' />
+    // function to update user inputs
+    const getUserInput = (text, inputField) => {
+        setInput(prevState =>  ({...prevState, [inputField]: text }))
+    }
 
-                    <TouchableOpacity style={[styles.modalButton, styles.loginButton]} activeOpacity='0.5'>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.modalButton, styles.guestButton]} onPress={() => {
-                        navigation.navigate('Dashboard')
-                    }} activeOpacity='0.5'>
-                        <Text style={styles.buttonText}>Continue as Guest</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View>
-                    <Text style={styles.newUserInfo}>
-                        Don't have an account?
-                    </Text>
-                    <TouchableOpacity style={[styles.modalButton, styles.registerButton]} onPress={() => {
-                        navigation.navigate('Register');
-                    }} activeOpacity='0.5'>
-                        <Text style={styles.buttonText}> Register Now</Text> 
-                    </TouchableOpacity>
-                </View>
+    return (
+        // dismiss keyboard when clicked outside any input field
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.pageStyling}>
+            <View style={styles.upperPortion}>
             </View>
-        </TouchableWithoutFeedback>
-        )
+
+            {/* render the floating modal window containing the form for logging in */}
+            <View style={styles.modalWindow}>
+                <View style={styles.imageArea}>
+                    <Image 
+                        style={{width: '100%'}} 
+                        source={require('../../assets/monashlogo.png')} 
+                        resizeMode='contain' 
+                    />
+                </View>
+
+                {/*  render text fields for login pass with support for using saved passwords on the device */}
+                <TextInput 
+                    placeholder='Email' 
+                    placeholderTextColor="grey" 
+                    style={[styles.modalField, styles.emailField]} 
+                    keyboardType='email-address' 
+                    autoCapitalize='none' 
+                    textContentType='emailAddress' 
+                    autoComplete='email'
+                    onChangeText={ (text) => { getUserInput(text, 'email'); }}
+                />
+                <TextInput 
+                    placeholder='Password' 
+                    placeholderTextColor="grey" 
+                    style={[styles.modalField, styles.passwordField]} 
+                    autoCapitalize='none' 
+                    textContentType='password' 
+                    secureTextEntry 
+                    autoComplete='password'
+                    onChangeText={ (text) => { getUserInput(text, 'password'); }}
+                />
+
+                <TouchableOpacity 
+                    style={[styles.modalButton, styles.loginButton]} 
+                    activeOpacity='0.5'
+                >
+                    <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    style={[styles.modalButton, styles.guestButton]} 
+                    onPress={() => { navigation.navigate('Dashboard'); }} 
+                    activeOpacity='0.5'
+                >
+                    <Text style={styles.buttonText}>Continue as Guest</Text>
+                </TouchableOpacity>
+            </View>
+
+            <View>
+                <Text style={styles.newUserInfo}>
+                    Don't have an account?
+                </Text>
+                <TouchableOpacity 
+                    style={[styles.modalButton, styles.registerButton]} 
+                    onPress={() => {  navigation.navigate('Register'); }} 
+                    activeOpacity='0.5'
+                >
+                    <Text style={styles.buttonText}> Register Now</Text> 
+                </TouchableOpacity>
+            </View>
+        </View>
+    </TouchableWithoutFeedback>
+    )
 }
 
 export default LoginScreen;

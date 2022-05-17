@@ -5,6 +5,9 @@ import { vw, vh } from 'react-native-expo-viewport-units';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+
 const RegisterScreen = ({ navigation }) => {
 
     const [openPreg, setOpenPreg] = useState(false);
@@ -21,10 +24,64 @@ const RegisterScreen = ({ navigation }) => {
     const handleConfirm = (date) => {
         setDate(date);
         hideDateModal();
+        getUserInput(date, 'dueDate'); // update user input object
     }
 
     const hideDateModal = () => {
         setOpenDate(false);
+    }
+
+    const [inputs, setInputs] = useState({
+        firstName: '',
+        familyName: '',
+        email: '',
+        password: '',
+        pregnancyStatus: '',
+        dueDate: '',
+    });
+
+    // function to update user inputs
+    const getUserInput = (text, inputField) => {
+        setInputs( prevState => ({...prevState, [inputField]: text}));
+    }
+
+    const [errorCheck, setErrorCheck] = useState({
+        firstName: false,
+        familyName: false,
+        email: false,
+        password: false,
+        pregnancyStatus: false,
+        dueDate: false,
+    });
+
+    const onSubmit = () => {
+        for (const field in inputs) {
+            if (inputs[field] == '') {
+                setErrorCheck(prevState => ({ ...prevState, [field]: true}))
+            } else {
+                // check if names contain numbers
+                if (field == 'firstName' || field == 'familyName') {
+                    setErrorCheck(prevState => ({ ...prevState, [field]: !/^[a-zA-Z]+$/.test(inputs[field]) }));
+                } 
+                // check if password is greater than 5 characters
+                else if (field == 'password') {
+                    setErrorCheck(prevState => ({ ...prevState, [field]: inputs[field].length < 5 }));
+                } 
+                // check if email is correct 
+                else if (field == 'email') {
+                    setErrorCheck(prevState => ({ ...prevState, [field]: !emailRegex.test(inputs[field]) }));
+                }
+                // all other cases
+                else {
+                    setErrorCheck(prevState => ({ ...prevState, [field]: false}));
+                }
+            }
+
+            // remove error from due date field if it is not visible
+            if (inputs['pregnancyStatus'] != 'am') {
+                setErrorCheck(prevState => ({ ...prevState, ['dueDate']: false}))
+            }
+        }
     }
 
     return (
@@ -37,14 +94,46 @@ const RegisterScreen = ({ navigation }) => {
                 {/* render the floating modal window containing the form for registering */}
                 <View style={styles.modalWindow}>
                     <View style={styles.imageArea}>
-                        <Image style={{width: '100%'}} source={require('../../assets/monashlogo.png')} resizeMode='contain' />
+                        <Image 
+                            style={{width: '100%'}} 
+                            source={require('../../assets/monashlogo.png')} 
+                            resizeMode='contain' 
+                        />
                     </View>
-
+                    
                     {/* render text fields for registering a user */}
-                    <TextInput placeholder='First Name' placeholderTextColor="grey" style={[styles.modalField, styles.firstNameField]} textContentType="givenName" />
-                    <TextInput placeholder='Last Name' placeholderTextColor="grey" style={[styles.modalField, styles.lastNameField]} textContentType="familyName" />
-                    <TextInput placeholder='Email' placeholderTextColor="grey" style={[styles.modalField, styles.emailField]} keyboardType='email-address' autoCapitalize='none' textContentType='emailAddress' />
-                    <TextInput placeholder='Password' placeholderTextColor="grey" style={[styles.modalField, styles.passwordField]} autoCapitalize='none' textContentType='newPassword' secureTextEntry />
+                    <TextInput 
+                        placeholder='First Name' 
+                        placeholderTextColor="grey" 
+                        style={errorCheck.firstName ? [styles.modalField, styles.firstNameField, styles.errorField] : [styles.modalField, styles.firstNameField]} 
+                        textContentType="givenName" 
+                        onChangeText={(text) => { getUserInput(text, 'firstName'); }}
+                    />
+                    <TextInput 
+                        placeholder='Last Name' 
+                        placeholderTextColor="grey" 
+                        style={errorCheck.familyName ? [styles.modalField, styles.lastNameField, styles.errorField] : [styles.modalField, styles.lastNameField]} 
+                        textContentType="familyName"
+                        onChangeText={(text) => { getUserInput(text, 'familyName'); }}
+                    />
+                    <TextInput 
+                        placeholder='Email' 
+                        placeholderTextColor="grey" 
+                        style={errorCheck.email ? [styles.modalField, styles.emailField, styles.errorField] : [styles.modalField, styles.emailField]} 
+                        keyboardType='email-address' 
+                        autoCapitalize='none' 
+                        textContentType='emailAddress'
+                        onChangeText={(text) => { getUserInput(text, 'email'); }}
+                    />
+                    <TextInput 
+                        placeholder='Password'
+                        placeholderTextColor="grey" 
+                        style={errorCheck.password ? [styles.modalField, styles.passwordField, styles.errorField] : [styles.modalField, styles.passwordField]} 
+                        autoCapitalize='none' 
+                        textContentType='newPassword' 
+                        secureTextEntry 
+                        onChangeText={(text) => { getUserInput(text, 'password'); }}
+                    />
 
                     {/* add a custom dropdown for choosing pregnancy status */}
                     <DropDownPicker
@@ -58,12 +147,14 @@ const RegisterScreen = ({ navigation }) => {
                         setValue={setValuePreg}
                         setItems={setPregnancyStatus}
                         
-                        style={[styles.modalField, styles.modalPregDropdown]}
+                        style={errorCheck.pregnancyStatus ? [styles.modalField, styles.modalPregDropdown, styles.errorField] : [styles.modalField, styles.modalPregDropdown]}
                         dropDownContainerStyle={styles.modalPregDropdownBox}
                         listItemContainerStyle={styles.dropdownItem}
                         listItemLabelStyle={{ color: 'grey' }}
                         selectedItemLabelStyle={{ fontWeight: 'bold' }}
                         placeholderStyle={{ color: 'grey' }}
+
+                        onChangeValue={(item) => { getUserInput(item, 'pregnancyStatus'); }}
                     />
 
                     {/* render native date picker only for a specific pregnancy status */}
@@ -91,7 +182,11 @@ const RegisterScreen = ({ navigation }) => {
                         />
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.modalButton, styles.registerButton]} activeOpacity='0.5'>
+                    <TouchableOpacity 
+                        style={[styles.modalButton, styles.registerButton]} 
+                        activeOpacity='0.5'
+                        onPress={() => { onSubmit(); }}
+                    >
                         <Text style={styles.buttonText}>Register</Text>
                     </TouchableOpacity>
                 </View>
@@ -100,9 +195,11 @@ const RegisterScreen = ({ navigation }) => {
                     <Text style={styles.oldUserInfo}>
                         Already have an account?
                     </Text>
-                    <TouchableOpacity style={[styles.modalButton, styles.loginButton]} onPress={() => {
-                        navigation.navigate('Login');
-                    }} activeOpacity='0.5'>
+                    <TouchableOpacity 
+                        style={[styles.modalButton, styles.loginButton]} 
+                        onPress={() => { navigation.navigate('Login'); }} 
+                        activeOpacity='0.5'
+                    >
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 </View>
@@ -230,4 +327,9 @@ const styles = StyleSheet.create({
 
         paddingHorizontal: vw(10),
     },
+    errorField: {
+        borderColor: 'red',
+        borderWidth: 0.75,
+        borderRadius: 2,
+    }
 })
