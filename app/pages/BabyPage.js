@@ -1,6 +1,14 @@
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, Animated, View, Text } from "react-native";
 import { DropDown } from "../components/DropDown";
 import { AntDesign } from "@expo/vector-icons";
+
+function PlaceholderInformation() {
+  return (
+    <Animated.View>
+      <Text>Put some information here!</Text>
+    </Animated.View>
+  );
+}
 
 export default function BabyPage() {
   return (
@@ -14,7 +22,7 @@ export default function BabyPage() {
       <DropDown
         header={"Growth"}
         subHeader={"What are the stages of my baby's development?"}
-        information={<Text>put information component here!!!</Text>}
+        information={<PlaceholderInformation />}
         icon={
           // change the icons here
           <AntDesign

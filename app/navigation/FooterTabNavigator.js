@@ -1,11 +1,12 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import NavigationBar from "../components/NutritionNavigationBar";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
-import BodyTopBarNavigator from "./BodyTopBarNavigation";
 import HealthTopBarNavigator from "./HealthTopBarNavigation";
 import { NavigationContainer } from "@react-navigation/native";
+import WikiTopBarNavigator from "./WikiTopBarNavigator";
+
+import { Entypo } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -67,16 +68,12 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Wiki"
-        component={BodyTopBarNavigator}
+        name="Body"
+        component={WikiTopBarNavigator}
         options={{
           tabBarLabel: "Wiki",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="web"
-              color={color}
-              size={30}
-            />
+            <Entypo name="open-book" size={size} color={color} />
           ),
         }}
       />

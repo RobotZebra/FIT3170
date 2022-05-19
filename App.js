@@ -1,8 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-//import MyTabs from "./app/FooterTabNavigator.js";
-import { NavigationContainer } from "@react-navigation/native";
-import BodyTopBarNavigator from "./app/navigation/BodyTopBarNavigation.js";
+import { StyleSheet } from "react-native";
 import BottomTabNavigator from "./app/navigation/FooterTabNavigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 

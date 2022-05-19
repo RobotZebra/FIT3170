@@ -1,19 +1,12 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { NutritionPage } from "../pages/NutritionPage";
 import BabyPage from "../pages/BabyPage";
 import MotherPage from "../pages/MotherPage";
 import HealthcarePage from "../pages/HealthcarePage";
-import { ComplicationsPage } from "../pages/ComplicationsPage";
-import { TestsPage } from "../pages/TestsPage";
 
 const TopTab = createMaterialTopTabNavigator();
 
-function MyTopTabs() {
-  //const insets = useSafeAreaInsets();
+export default function WikiTopBarNavigator() {
   return (
     <TopTab.Navigator
       initialRouteName="Baby"
@@ -44,8 +37,4 @@ function MyTopTabs() {
       />
     </TopTab.Navigator>
   );
-}
-
-export default function BodyTopBarNavigator() {
-  return <MyTopTabs />;
 }
