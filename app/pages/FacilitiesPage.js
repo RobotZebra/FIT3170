@@ -215,7 +215,7 @@ function ContactFaciltyMap({number}) {
 
                             <View>
                                 <TouchableOpacity activeOpacity={0.5}>
-                                    <MaterialCommunityIcons name="sign-direction" color="white" size={39}style={styles.iconStyles}/>
+                                    <MaterialCommunityIcons name="map" color="white" size={39}style={styles.iconStyles}/>
                                 </TouchableOpacity>
                             </View>
                           </View>
