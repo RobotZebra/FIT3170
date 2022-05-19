@@ -1,6 +1,11 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { ScrollView, View, Text, StyleSheet, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
+
+export function DropDownView(props) {
+  const { children } = props;
+  return <ScrollView>{children}</ScrollView>;
+}
 
 export function DropDown(props) {
   const { header, subHeader, information, icon } = props;
@@ -13,7 +18,7 @@ export function DropDown(props) {
         onPress={() => console.log("pressed drop down")}
       >
         {icon}
-        <View style={{ flexDirection: "column", margin: 15 }}>
+        <View style={{ flexDirection: "column", margin: 15, flex: 1 }}>
           <Text style={styles.headerText}>{header}</Text>
           <Text style={styles.subHeaderText}>{subHeader}</Text>
         </View>
