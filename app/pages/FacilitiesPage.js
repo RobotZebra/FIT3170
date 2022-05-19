@@ -1,5 +1,6 @@
 import React, {useState, useEffect,Component} from "react";
 import { Searchbar } from 'react-native-paper';
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import {
     Text,
@@ -19,8 +20,10 @@ export function FacilitiesPage() {
             category_name: 'Monash Medical Center',
             subcategory: [
                 {id: 1, val: 'Description', descriptionVal: "Monash Medical Centre is a 640-bed teaching and research hospital of international standing providing a comprehensive range of specialist surgical, medical, allied health and mental health services to our community."},
-                {id: 2, val: 'Maps', lat: "-37.91428962054958", long: "145.1319808081597", label: "Monash" },
-                {id: 3, val: 'Phone'},
+                {id: 2, val: 'Directions', lat: "-37.91428962054958", long: "145.1319808081597", label: "Monash" },
+                {id: 3, val: 'Facility Map'},
+                {id: 4, val: 'Call Hospital',number:"(03)95946666"},
+                {id: 5, val: 'Feedback'},
             ]
 
 
@@ -30,8 +33,10 @@ export function FacilitiesPage() {
             category_name: 'Monash Dandenong',
             subcategory: [
                 {id: 1, val: 'Description',descriptionVal: "Dandenong Hospital is a 520 bed acute hospital providing a wide range of health services to the people living and working in Dandenong and surrounding areas. "},
-                {id: 2, val: 'Maps'},
-                {id: 3, val: 'Phone'},
+                {id: 2, val: 'Directions'},
+                {id: 3, val: 'Facility Map'},
+                {id: 4, val: 'Call Hospital', number:"(03)95541000"},
+                {id: 5, val: 'Feedback'},
             ]
         }
 
@@ -55,7 +60,7 @@ export function FacilitiesPage() {
               >
 
                   <Text style={styles.itemText}>
-                      {item.category_name}
+                     {item.category_name}
                   </Text>
               </TouchableOpacity>
               <View
@@ -66,15 +71,17 @@ export function FacilitiesPage() {
               >
                   {
                       item.subcategory.map((object, key) => (
-                          <TouchableOpacity
+                          <View
                               key = {key}
                               style = {styles.content}
                               >
+                               <View style={{ paddingTop: 20, alignItems: "center"}}>
+                                       <FacilityComponents props =  {object}/>
+                               </View>
 
-                              <FacilityComponents props =  {object}/>
                               <View style={styles.separator }/>
 
-                          </TouchableOpacity>
+                          </View>
                       ))
                   }
               </View>
@@ -134,34 +141,107 @@ export function FacilitiesPage() {
            )
 
         }
-        if (props.val == "Maps") {
+        if (props.val == "Directions") {
             let valuesMaps={
                lat: props.lat,
                long: props.long,
                label: props.label
              }
+            return (
+                  <ContactCardDirections mapVals = {valuesMaps} ></ContactCardDirections>)
+        }
+        if (props.val == "Call Hospital"){
 
             return (
-                <Button  style={{fontSize: 20, color: 'green'}}
-                   styleDisabled={{color: 'red'}}
-
-                   onPress={() => showInMapClicked(valuesMaps)}
-                    title="Maps">
-                </Button> )
+                        <ContactCardPhone number = {props.number} ></ContactCardPhone>)
         }
-        if (props.val == "Phone"){
-            return (
-                        <Button  style={{fontSize: 20, color: 'green'}}
-                           styleDisabled={{color: 'red'}}
-                           onPress={() => openPhone(props)}
-                            title="Phone">
-                        </Button> )
-        }
-        else {
-            return null
 
-        };
+        if (props.val == "Facility Map"){
+            return (<ContactFaciltyMap number = {props.number} ></ContactFaciltyMap>)
+
+        }
+        if (props.val == "Feedback"){
+                    return (<ContactFeedback/>)
+
+        }
+        else
+        { return null
+        }
     };
+function ContactCardDirections({mapVals}) {
+           return (
+             <TouchableOpacity  style={styles.contactCardLight} activeOpacity={0.5} onPress={()=>{showInMapClicked(mapVals)}}>
+                 <View style={[{flexDirection: "row"}]}>
+
+                   <Text style={styles.contactCardText}>Directions</Text>
+
+                   <View>
+                           <MaterialCommunityIcons name="google-maps" color="white" size={39} style={styles.iconStyles} />
+                   </View>
+                 </View>
+
+              </TouchableOpacity>
+             );
+
+        }
+function ContactCardPhone({number}) {
+                    return (
+                     <TouchableOpacity activeOpacity={0.5} onPress={()=>{openPhone(number)}}>
+                        <View style={styles.contactCardLight}>
+                        <View style={[{
+                                    flexDirection: "row"
+                                }]}>
+
+                          <Text style={styles.contactCardText}>Phone</Text>
+
+                            <View>
+                                    <MaterialCommunityIcons name="phone" color="white" size={39} style={styles.iconStyles}/>
+                            </View>
+
+                          </View>
+                        </View>
+                      </TouchableOpacity>
+                      );
+
+      }
+
+function ContactFaciltyMap({number}) {
+                    return (
+                        <View style={styles.contactCardLight}>
+                        <View style={[{
+                                    flexDirection: "row"
+                                }]}>
+                          <Text style={styles.contactCardText} >Facility Map</Text>
+
+                            <View>
+                                <TouchableOpacity activeOpacity={0.5}>
+                                    <MaterialCommunityIcons name="sign-direction" color="white" size={39}style={styles.iconStyles}/>
+                                </TouchableOpacity>
+                            </View>
+                          </View>
+                        </View>
+                      );
+
+      }
+function ContactFeedback() {
+     return (
+              <View style={styles.contactCardLight}>
+              <View style={[{
+                          flexDirection: "row"
+                      }]}>
+                <Text style={styles.contactCardText} >Give Feedback</Text>
+
+                  <View>
+                      <TouchableOpacity activeOpacity={0.5}>
+                          <MaterialCommunityIcons name="chat" color="white" size={39}style={styles.iconStyles}/>
+                      </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            );
+
+      }
+
     const SearchBar = () => {
       const [searchQuery, setSearchQuery] = React.useState('');
       const onChangeSearch = query => setSearchQuery(query);
@@ -181,15 +261,7 @@ export function FacilitiesPage() {
                 <View style={styles.header}>
 
                     <Text style={styles.titleText}>Tap on a facility to learn more</Text>
-                    <TouchableOpacity onPress={() => setMultiSelect(!multiSelect)}>
-                        <Text style={styles.headerButton}>
-                            {
-                                multiSelect
-                                ? 'Enable Single \n Expand'
-                                : 'Enable multiple \n Expand'
-                            }
-                        </Text>
-                    </TouchableOpacity>
+
                 </View>
 
                 <ScrollView>
@@ -254,8 +326,38 @@ const styles = StyleSheet.create({
     },
     separator:{
         height: 0.5,
-        backgroundColor: '#a089ad',
+        backgroundColor: 'white',
         width: '100%'
 
-    }
+    },
+     contactCardLight: {
+          width: 350,
+          height: 60,
+          backgroundColor: "#91298D",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          textAlign: "center",
+          textAlignVertical: "center",
+          borderRadius: 25,
+        },
+
+        contactCardTextHeader: {
+            color: "white",
+            alignItems: "center",
+            justifyContent: "space-around",
+            fontSize: 18,
+            fontWeight: "bold"
+          },
+
+        contactCardText: {
+          color: "white",
+          paddingTop:8,
+          paddingLeft: 51,
+          flex: 1,
+          textAlign:"center",
+          fontSize: 16
+        },
+     iconStyles: {
+        paddingRight: 12,
+     }
 })
