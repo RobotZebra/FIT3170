@@ -68,7 +68,7 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Body"
+        name="Wiki"
         component={WikiTopBarNavigator}
         options={{
           tabBarLabel: "Wiki",
