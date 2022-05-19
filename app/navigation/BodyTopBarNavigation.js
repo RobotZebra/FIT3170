@@ -4,6 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NutritionPage } from "../pages/NutritionPage";
+import BabyPage from "../pages/BabyPage";
+import MotherPage from "../pages/MotherPage";
+import HealthcarePage from "../pages/HealthcarePage";
 import { ComplicationsPage } from "../pages/ComplicationsPage";
 import { TestsPage } from "../pages/TestsPage";
 
@@ -13,7 +16,7 @@ function MyTopTabs() {
   //const insets = useSafeAreaInsets();
   return (
     <TopTab.Navigator
-      initialRouteName="Nutrition"
+      initialRouteName="Baby"
       tabBarOptions={{
         activeTintColor: "#91298D",
         labelStyle: { fontSize: 12 },
@@ -23,21 +26,21 @@ function MyTopTabs() {
       }}
     >
       <TopTab.Screen
-        name="Nutrition"
-        component={NutritionPage}
-        options={{ tabBarLabel: "Nutrition" }}
+        name="Baby"
+        component={BabyPage}
+        options={{ tabBarLabel: "Baby" }}
       />
 
       <TopTab.Screen
-        name="Complications"
-        component={ComplicationsPage}
-        options={{ tabBarLabel: "Complications" }}
+        name="Mother"
+        component={MotherPage}
+        options={{ tabBarLabel: "Mother" }}
       />
 
       <TopTab.Screen
-        name="Tests"
-        component={TestsPage}
-        options={{ tabBarLabel: "Tests" }}
+        name="Healthcare"
+        component={HealthcarePage}
+        options={{ tabBarLabel: "Healthcare" }}
       />
     </TopTab.Navigator>
   );
