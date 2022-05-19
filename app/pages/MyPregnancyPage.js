@@ -7,8 +7,8 @@ import BabyPage from "./BabyPage";
 export function MyPregnancyPage() {
   // just throwing the baby page in here to test, feel free to remove it
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <BabyPage />
-    </View>
+    <View
+      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+    ></View>
   );
 }
