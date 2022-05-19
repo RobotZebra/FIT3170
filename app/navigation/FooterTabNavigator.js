@@ -48,6 +48,7 @@ function MyTabs() {
             <MyHeader
               title={title}
               style={{
+                fontFamily: "Roboto_400Regular",
                 padding: 20,
                 backgroundColor: "#91298D",
                 color: "white",
@@ -62,6 +63,7 @@ function MyTabs() {
         name="Home"
         component={HomeTopBarNavigator}
         options={{
+          fontFamily: "Roboto_400Regular",
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={30} />
@@ -72,6 +74,7 @@ function MyTabs() {
         name="Body"
         component={BodyTopBarNavigator}
         options={{
+          fontFamily: "Roboto_400Regular",
           tabBarLabel: "Body",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
@@ -86,6 +89,7 @@ function MyTabs() {
         name="Hospital"
         component={HospitalTopBarNavigator}
         options={{
+          fontFamily: "Roboto_400Regular",
           tabBarLabel: "Hospital",
           tabBarIcon: ({ color, size }) => (
             <Image
@@ -103,6 +107,7 @@ function MyTabs() {
         name="Settings"
         component={Settings}
         options={{
+          fontFamily: "Roboto_400Regular",
           tabBarLabel: "Settings",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
@@ -132,7 +137,7 @@ const footerTabStyles = StyleSheet.create({
     color: "white",
     fontSize: 25,
     textAlign: "center",
-    fontFamily: "Roboto",
+    fontFamily: "Roboto_500Medium",
     fontWeight: '500',
     fontSize: 25,
     paddingTop: 30
