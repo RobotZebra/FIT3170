@@ -13,7 +13,6 @@ export default function WikiTopBarNavigator() {
       tabBarOptions={{
         activeTintColor: "#91298D",
         labelStyle: { fontSize: 12 },
-        // style: { backgroundColor: "white", marginTop: insets.top },
         style: { backgroundColor: "white" },
         indicatorStyle: { backgroundColor: "#91298D" },
       }}
