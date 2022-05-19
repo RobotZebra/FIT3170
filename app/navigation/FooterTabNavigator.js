@@ -67,13 +67,13 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Body"
+        name="Wiki"
         component={BodyTopBarNavigator}
         options={{
-          tabBarLabel: "Body",
+          tabBarLabel: "Wiki",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
-              name="weight-lifter"
+              name="web"
               color={color}
               size={30}
             />
