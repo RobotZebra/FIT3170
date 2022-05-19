@@ -8,7 +8,7 @@ export function DropDownView(props) {
 }
 
 export function DropDown(props) {
-  const { header, subHeader, information, icon } = props;
+  const { title, subtitle, information, icon } = props;
   const [isDroppedDown, setDroppedDown] = useState(false);
 
   return (
@@ -19,7 +19,7 @@ export function DropDown(props) {
       >
         {icon}
         <View style={{ flexDirection: "column", margin: 15, flex: 1 }}>
-          <Text style={styles.headerText}>{header}</Text>
+          <Text style={styles.headerText}>{title}</Text>
           <Text style={styles.subHeaderText}>{subHeader}</Text>
         </View>
         <Pressable
