@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { DropDown } from "../components/DropDown";
+import { AntDesign } from "@expo/vector-icons";
 
 export function MyPregnancyPage() {
   return (
@@ -10,6 +11,14 @@ export function MyPregnancyPage() {
         header={"Growth"}
         subHeader={"What are the stages of my baby's development?"}
         information={<Text>Some info</Text>}
+        icon={
+          <AntDesign
+            name="picture"
+            size={24}
+            color="white"
+            style={{ margin: 5 }}
+          />
+        }
       />
     </View>
   );

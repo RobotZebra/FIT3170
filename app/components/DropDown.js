@@ -1,10 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
 export function DropDown(props) {
-  const { header, subHeader, information } = props;
+  const { header, subHeader, information, icon } = props;
   const [isDroppedDown, setDroppedDown] = useState(false);
 
   return (
@@ -13,12 +12,7 @@ export function DropDown(props) {
         style={styles.container}
         onPress={() => console.log("pressed drop down")}
       >
-        <AntDesign
-          name="picture"
-          size={24}
-          color="white"
-          style={{ margin: 5 }}
-        />
+        {icon}
         <View style={{ flexDirection: "column", margin: 15 }}>
           <Text style={styles.headerText}>{header}</Text>
           <Text style={styles.subHeaderText}>{subHeader}</Text>
