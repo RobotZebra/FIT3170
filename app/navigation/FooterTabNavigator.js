@@ -1,29 +1,14 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import NavigationBar from "../components/NutritionNavigationBar";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
 import BodyTopBarNavigator from "./BodyTopBarNavigation";
 import HealthTopBarNavigator from "./HealthTopBarNavigation";
-import { NavigationContainer } from "@react-navigation/native";
+import SettingsStackNavigation from "./SettingsStackNavigation";
 
 const Tab = createBottomTabNavigator();
 
-function Home() {
-  return <View></View>;
-}
-function Body() {
-  return <View>{/* <NavigationBar></NavigationBar> */}</View>;
-}
-function Health() {
-  return <View></View>;
-}
-
-function Settings() {
-  return <View></View>;
-}
-
-function MyHeader({ title, style }) {
+function DefaultHeader({ title, style }) {
   return (
     <View style={style}>
       <Text style={{ color: "white", fontSize: 25, textAlign: "center" }}>
@@ -33,7 +18,7 @@ function MyHeader({ title, style }) {
   );
 }
 
-function MyTabs() {
+export default function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -41,9 +26,9 @@ function MyTabs() {
         tabBarActiveTintColor: "#91298D",
         header: ({ navigation, route, options }) => {
           const title = route.name;
-
+          
           return (
-            <MyHeader
+            <DefaultHeader
               title={title}
               style={{
                 padding: 20,
@@ -96,8 +81,9 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsStackNavigation}
         options={{
+          headerShown: false,
           tabBarLabel: "Settings",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
@@ -107,12 +93,5 @@ function MyTabs() {
     </Tab.Navigator>
   );
 }
-//export default MyTabs;
 
-export default function BottomTabNavigator() {
-  return (
-    // <NavigationContainer>
-      <MyTabs />
-    // </NavigationContainer>
-  );
-}
+
