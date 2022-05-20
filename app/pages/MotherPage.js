@@ -45,10 +45,10 @@ export default function MotherPage() {
         information={<Text>Some info</Text>}
         icon={
           <FontAwesome5
-            name="baby"
+            name="brain"
             size={30}
             color="white"
-            style={{ margin: 10 }}
+            style={{ margin: 5 }}
           />
         }
       />
