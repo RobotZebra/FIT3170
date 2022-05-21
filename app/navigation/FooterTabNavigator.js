@@ -93,12 +93,13 @@ function MyTabs() {
           tabBarLabel: "Hospital",
           tabBarIcon: ({ color, size }) => (
             <Image
-            source={require('../../assets/MH-logo-grey.png')} 
-            style={{
-              width: size,
-              height: size,
-              alignContent: "center"
-            }}
+              source={require('../../assets/MH-logo-grey.png')}
+              style={{
+                width: size,
+                height: size,
+                alignContent: "center",
+                tintColor: color
+              }}
             />
           ),
         }}
