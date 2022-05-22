@@ -4,6 +4,7 @@ import { colors } from "../styling/appTheme";
 import { vw, vh } from 'react-native-expo-viewport-units';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import firebaseApp from '../../src/firebase/config';
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -54,6 +55,27 @@ const RegisterScreen = ({ navigation }) => {
         dueDate: false,
     });
 
+    const handleUserSignUp  = () => {
+        if(inputs.email === '' && inputs.password === '') {
+          Alert.alert('Enter correct details.')
+        } else {
+          firebaseApp
+          .auth()
+          .createUserWithEmailAndPassword(inputs.email, inputs.password)
+          .then((res) => {
+            res.user.updateProfile({
+              firstName : inputs.firstName,
+              familyName : inputs.familyName,
+              pregnancyStatus : inputs.pregnancyStatus,
+              dueDate : inputs.dueDate,
+            })
+            console.log('User account created.')
+            navigation.navigate('Login')
+          })
+          .catch(error => this.setState({ errorMessage: error.message }))
+        }
+      }
+
     const onSubmit = () => {
         for (const field in inputs) {
             if (inputs[field] == '') {
@@ -82,6 +104,7 @@ const RegisterScreen = ({ navigation }) => {
                 setErrorCheck(prevState => ({ ...prevState, ['dueDate']: false}))
             }
         }
+        this.handleUserSignUp();
     }
 
     return (
