@@ -15,7 +15,7 @@ export function VisualisationOfBaby() {
             </View>
             <Image
                 style={styles.logo}
-                source={require('../../assets/lime.jpg')}
+                source={require('../../../assets/lime.jpg')}
             />
             <View style={styles.visualisationContainer}>
                 <View style={styles.information}>
