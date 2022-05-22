@@ -1,7 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 // import CircularProgress from 'react-native-circular-progress-indicator';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
+
 
 export function BabySize() {
   const [value, setValue] = useState(0);
@@ -29,11 +30,34 @@ export function BabySize() {
         onAnimationComplete={() => setValue(50)}
       /> */}
 
-      <StatusBar style="auto" />
+      <AnimatedCircularProgress
+        size={360}
+        width={15}
+        backgroundWidth={5}
+        fill={pregnancyProportion}
+        tintColor="#91298D"
+        lineCap="round"
+        // tintTransparency={false}
+        onAnimationComplete={() => console.log('onAnimationComplete')}
+        backgroundColor="#563c5c"
+        // style={{ borderColor: '#91298D', borderRadius: 500, backgroundColor: '#91298D' }}
+        rotation={0}
+      >
+        {(fill) => (
+          <View style={styles.innerCircle}>
+            <Text style={{ color: "#91298D", fontSize: 16 }}>
+              Month {monthValue}
+            </Text>
+
+            <Text style={{ color: "#91298D", fontSize: 48, fontWeight: "bold"}}>
+              {Math.round(fill / pregnancyProportion * pregnancyRemainingTime)} Days Left
+            </Text>
+          </View>
+        )}
+
+      </AnimatedCircularProgress>
     </View>
   );
-
-
 }
 
 const styles = StyleSheet.create({
@@ -42,5 +66,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: 30,
   },
+  innerCircle: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  }
 });
