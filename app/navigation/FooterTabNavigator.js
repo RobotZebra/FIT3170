@@ -24,6 +24,7 @@ export default function MyTabs() {
       initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: "#91298D",
+        tabBarHideOnKeyboard: true,
         header: ({ navigation, route, options }) => {
           const title = route.name;
           
@@ -85,6 +86,7 @@ export default function MyTabs() {
         options={{
           headerShown: false,
           tabBarLabel: "Settings",
+          tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
           ),

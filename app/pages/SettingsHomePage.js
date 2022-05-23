@@ -3,11 +3,12 @@ import { TouchableWithoutFeedback, Keyboard, TouchableOpacity, StyleSheet, Text,
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { borderBottomColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import { colors } from "../styling/appTheme";
+import { vh } from "react-native-expo-viewport-units";
 
 export function SettingsHomePage({ navigation }) {
   return (
     <View style={{ position: "relative", display: "flex", alignItems: "center", width: "100%", height: "100%", paddingTop: 30 }}>
-      <View style={{ position: "absolute", top: 0, left: 0, display: "flex", width: "100%", height: "45%", backgroundColor: colors.secondary, paddingTop: 50,
+      <View style={{ position: "absolute", top: 0, left: 0, display: "flex", width: "100%", height: vh(35), backgroundColor: colors.secondary, paddingTop: 50,
         borderBottomLeftRadius: 10, borderBottomRightRadius: 10
       }} />
       <View style={{ display: "flex", alignItems: "center", width: "90%", minHeight: "60%", backgroundColor: "white", borderWidth: 0, borderRadius: 20, paddingVertical: 20, 
