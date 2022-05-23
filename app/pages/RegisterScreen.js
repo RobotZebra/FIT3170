@@ -58,26 +58,20 @@ const RegisterScreen = ({ navigation }) => {
         dueDate: false,
     });
 
+    // Getting the database and the authentication function
     const auth = getAuth();
     const db = getFirestore(firebaseApp);
+
+    // Handling the registration 
     const handleUserSignUp  =  () => {
         if(errorCheck.email || errorCheck.dueDate || errorCheck.firstName || errorCheck.familyName || errorCheck.password || errorCheck.pregnancyStatus) {
           Alert.alert('Enter correct details.')
         } else {
           createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
           .then((res) => {
-            sendEmailVerification(auth.currentUser)
-             async () => {
-                console.log("Hello")
-                    await db.collection("user-collection").doc(auth.currentUser.uid).set({
-                    firstName : inputs.firstName,
-                    familyName : inputs.familyName,
-                    dueDate : inputs.dueDate,
-                    pregnancyStatus : inputs.pregnancyStatus, 
-                    email : inputs.email,
-                }) } 
-            // console.log(auth.currentUser)
+            console.log(auth.currentUser)
             navigation.navigate('Login')
+            addToDb()
           })
           .catch(error => {
             if (error.code === 'auth/email-already-in-use') {
@@ -86,6 +80,18 @@ const RegisterScreen = ({ navigation }) => {
           })
         }
       }
+
+      // Adding the user details to the firestore database.  
+      const addToDb = async () => {
+          const userData  = {
+                firstName : inputs.firstName,
+                familyName : inputs.familyName,
+                dueDate : inputs.dueDate,
+                pregnancyStatus : inputs.pregnancyStatus, 
+                email : inputs.email,
+                }
+            await setDoc(doc(db, "user-collection", auth.currentUser.uid), userData)
+    }
 
     const onSubmit = () => {
         for (const field in inputs) {

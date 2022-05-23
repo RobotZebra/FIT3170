@@ -17,8 +17,10 @@ const LoginScreen = ({ navigation }) =>  {
         setInput(prevState =>  ({...prevState, [inputField]: text }))
     }
 
+    // Getting the authentication function
     const auth = getAuth(); 
 
+    // Handling the login of the user
     const handleSignIn = () => {
         if(inputs.email === '' && inputs.password === '') {
           Alert.alert('Enter correct details.')
