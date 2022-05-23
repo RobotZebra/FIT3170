@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import NavigationBar from "../components/NutritionNavigationBar";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
 import BodyTopBarNavigator from "./BodyTopBarNavigation";
-import HealthTopBarNavigator from "./HealthTopBarNavigation";
+import HospitalTopBarNavigator from "./HospitalTopBarNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
@@ -26,7 +26,7 @@ function Settings() {
 function MyHeader({ title, style }) {
   return (
     <View style={style}>
-      <Text style={{ color: "white", fontSize: 25, textAlign: "center" }}>
+      <Text style={footerTabStyles.title}>
         {title}
       </Text>
     </View>
@@ -38,6 +38,8 @@ function MyTabs() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
+        activeTintColor: "#91298D",
+        tabBarIndicatorStyle: {backgroundColor: "#91298D"},
         tabBarActiveTintColor: "#91298D",
         header: ({ navigation, route, options }) => {
           const title = route.name;
@@ -46,10 +48,11 @@ function MyTabs() {
             <MyHeader
               title={title}
               style={{
+                fontFamily: "Roboto_400Regular",
                 padding: 20,
                 backgroundColor: "#91298D",
                 color: "white",
-                height: 70,
+                height: 100,
               }}
             />
           );
@@ -60,6 +63,7 @@ function MyTabs() {
         name="Home"
         component={HomeTopBarNavigator}
         options={{
+          fontFamily: "Roboto_400Regular",
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={30} />
@@ -70,6 +74,7 @@ function MyTabs() {
         name="Body"
         component={BodyTopBarNavigator}
         options={{
+          fontFamily: "Roboto_400Regular",
           tabBarLabel: "Body",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
@@ -81,15 +86,20 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Health"
-        component={HealthTopBarNavigator}
+        name="Hospital"
+        component={HospitalTopBarNavigator}
         options={{
-          tabBarLabel: "Health",
+          fontFamily: "Roboto_400Regular",
+          tabBarLabel: "Hospital",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="hospital-box"
-              color={color}
-              size={30}
+            <Image
+              source={require('../../assets/MH-logo-grey.png')}
+              style={{
+                width: size,
+                height: size,
+                alignContent: "center",
+                tintColor: color
+              }}
             />
           ),
         }}
@@ -98,6 +108,7 @@ function MyTabs() {
         name="Settings"
         component={Settings}
         options={{
+          fontFamily: "Roboto_400Regular",
           tabBarLabel: "Settings",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
@@ -116,3 +127,20 @@ export default function BottomTabNavigator() {
     </NavigationContainer>
   );
 }
+
+const footerTabStyles = StyleSheet.create({
+  heading: {
+    alignItems: "center",
+    flex: 1,
+    height: 200
+  },
+  title: {
+    color: "white",
+    fontSize: 25,
+    textAlign: "center",
+    fontFamily: "Roboto_500Medium",
+    fontWeight: '500',
+    fontSize: 25,
+    paddingTop: 30
+  },
+});
