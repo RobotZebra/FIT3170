@@ -1,5 +1,8 @@
-import { ScrollView, Animated, View, Text } from "react-native";
+import React from "react";
 import { DropDown } from "../components/DropDown";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { ScrollView, Animated, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 function PlaceholderInformation() {
@@ -12,21 +15,29 @@ function PlaceholderInformation() {
 
 export default function BabyPage() {
   return (
-    <ScrollView style={{ width: "100%" }}>
-      <View
-        style={{
-          // just some empty space for the scroll view here
-          height: 40,
-        }}
-      ></View>
+    <View
+      style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}
+    >
       <DropDown
         header={"Growth"}
         subHeader={"What are the stages of my baby's development?"}
         information={<PlaceholderInformation />}
         icon={
-          // change the icons here
-          <AntDesign
-            name="picture"
+          <MaterialCommunityIcons
+            name="human-male-height"
+            size={30}
+            color="white"
+            style={{ margin: 5 }}
+          />
+        }
+      />
+      <DropDown
+        header={"Movements"}
+        subHeader={"What should I feel as my baby moves about?     "}
+        information={<PlaceholderInformation />}
+        icon={
+          <FontAwesome5
+            name="shoe-prints"
             size={24}
             color="white"
             style={{ margin: 5 }}
@@ -34,18 +45,18 @@ export default function BabyPage() {
         }
       />
       <DropDown
-        header={"Topic Title"}
-        subHeader={"topic subtitle"}
-        information={<Text>place holder!!!</Text>}
+        header={"Infancy"}
+        subHeader={"How can I help my newborn baby thrive?           "}
+        information={<PlaceholderInformation />}
         icon={
-          <AntDesign
-            name="picture"
-            size={24}
+          <FontAwesome5
+            name="baby"
+            size={30}
             color="white"
-            style={{ margin: 5 }}
+            style={{ margin: 10 }}
           />
         }
       />
-    </ScrollView>
+    </View>
   );
 }
