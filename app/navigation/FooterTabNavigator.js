@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
-import HealthTopBarNavigator from "./HealthTopBarNavigation";
+import HospitalTopBarNavigator from "./HospitalTopBarNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import WikiTopBarNavigator from "./WikiTopBarNavigator";
 
