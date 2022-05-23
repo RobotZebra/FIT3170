@@ -223,13 +223,28 @@ function ContactFaciltyMap({number}) {
                       );
 
       }
+
+      // Function redirects user to the feedback form pf Monash Womens health 
+async function openFeedbackURL() {
+    const feedbackURL = "https://forms.office.com/Pages/ResponsePage.aspx?id=Zs9y_YqG3U6PhI6Rphirf5jQsf3HpdFApCWZr5USPO1UMFJTVVExWFdMMk5NMVBZUEVCMUdHVzg2SS4u";
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(feedbackURL);
+        if (supported) {
+            // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+            // by some browser in the mobile
+            await Linking.openURL(feedbackURL);
+        } else {
+            Alert.alert(`Don't know how to open this URL: ${feedbackURL}`);
+    }
+}
+
 function ContactFeedback() {
      return (
               <View style={styles.contactCardLight}>
               <View style={[{
                           flexDirection: "row"
                       }]}>
-                <Text style={styles.contactCardText} >Give Feedback</Text>
+                <Text style={styles.contactCardText} onPress={() => openFeedbackURL()}>Give Feedback</Text>
 
                   <View>
                       <TouchableOpacity activeOpacity={0.5}>
