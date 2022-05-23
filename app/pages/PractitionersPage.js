@@ -91,9 +91,15 @@ export function PractitionersPage() {
                     style={styles.item}
                     onPress={onClickFunction}
                 >
-                    <Text style={styles.itemText}>
-                        {item.category_name}
-                    </Text>
+                    <View style={[{
+                            flexDirection: "row"
+                        }]}>
+                        <Text style={styles.itemText}>
+                            {item.category_name}
+                        
+                        </Text>
+                        <FavouriteButton></FavouriteButton>
+                    </View>
                 </TouchableOpacity>
                 <View
                     style={{
@@ -147,6 +153,18 @@ export function PractitionersPage() {
         );
     };
 
+    function FavouriteButton() {
+        return (
+            <TouchableOpacity activeOpacity={0.5} onPress={()=>{}}>
+                <View style={[{
+                            flexDirection: "row"
+                        }]}>
+                    <MaterialCommunityIcons name="heart" color="white" size={39} style={styles.headerIcon}/>
+                </View>
+            </TouchableOpacity>
+        );
+    }
+
     function PhoneButton({number}) {
         return (
             <TouchableOpacity activeOpacity={0.5} onPress={()=>{openPhone(number)}}>
@@ -157,7 +175,7 @@ export function PractitionersPage() {
 
                     <Text style={styles.contactCardText}>Phone</Text>
                         <View>
-                                <MaterialCommunityIcons name="phone" color="white" size={39} style={styles.iconStyles}/>
+                                <MaterialCommunityIcons name="phone" color="white" size={39} style={styles.buttonIcon}/>
                         </View>
                     </View>
                 </View>
@@ -176,7 +194,7 @@ export function PractitionersPage() {
                     <Text style={styles.contactCardText}>Email</Text>
 
 
-                        <MaterialCommunityIcons style={styles.buttonIcon} name="email" color="white" size={39} style={styles.iconStyles}/>
+                        <MaterialCommunityIcons style={styles.buttonIcon} name="email" color="white" size={39}/>
 
                             
                     </View>
@@ -237,7 +255,9 @@ const styles = StyleSheet.create({
     itemText: {
         fontSize: 16,
         fontWeight: '500',
-        color:'white'
+        color:'white',
+        textAlignVertical: "center",
+        paddingTop: 9   
     },
     content: {
         paddingLeft: 10,
@@ -261,6 +281,9 @@ const styles = StyleSheet.create({
     },
     buttonIcon: {
         alignItems: "center"
+    },
+    headerIcon: {
+        paddingLeft: 90
     },
     button: {
         width: 350,
@@ -287,9 +310,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         padding: 7,
         paddingLeft: 50
-    },
-    iconStyles: {
-        paddingRight: 12,
     },
     center: {
         alignItems: "center",
