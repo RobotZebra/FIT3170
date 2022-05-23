@@ -28,8 +28,8 @@ export default function MotherPage() {
         subHeader={"What should and shouldn't I eat during pregnancy?"}
         information={<Text>Some info</Text>}
         icon={
-          <FontAwesome5
-            name="silverware-fork-knife"
+          <MaterialCommunityIcons
+            name="food-fork-drink"
             size={30}
             color="white"
             style={{ margin: 5 }}
