@@ -1,21 +1,21 @@
-import React from "react";
 import { Text, View } from "react-native";
 import { DropDown } from "../components/DropDown";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-export function NutritionPage() {
+export default function MotherPage() {
   return (
     <View
       style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}
     >
       <DropDown
-        header={"Growth"}
-        subHeader={"What are the stages of my baby's development?"}
+        //symptoms
+        header={"Signs and Symptoms"}
+        subHeader={"What will I experience during pregnancy?"}
         information={<Text>Some info</Text>}
         icon={
           <MaterialCommunityIcons
-            name="human-male-height"
+            name="heart"
             size={30}
             color="white"
             style={{ margin: 5 }}
@@ -23,28 +23,31 @@ export function NutritionPage() {
         }
       />
       <DropDown
-        header={"Movements"}
-        subHeader={"What should I feel as my baby moves about?     "}
+        //nutrition
+        header={"Nutrition"}
+        subHeader={"What should and shouldn't I eat during pregnancy?"}
         information={<Text>Some info</Text>}
         icon={
-          <FontAwesome5
-            name="shoe-prints"
-            size={24}
+          <MaterialCommunityIcons
+            name="food-fork-drink"
+            size={30}
             color="white"
             style={{ margin: 5 }}
           />
         }
       />
       <DropDown
-        header={"Infancy"}
-        subHeader={"How can I help my newborn baby thrive?           "}
+        //mood
+        header={"Mood"}
+        // maybe it should be behavioural instead of psychological?
+        subHeader={"What psychological changes might I expererience?"}
         information={<Text>Some info</Text>}
         icon={
           <FontAwesome5
-            name="baby"
+            name="brain"
             size={30}
             color="white"
-            style={{ margin: 10 }}
+            style={{ margin: 5 }}
           />
         }
       />

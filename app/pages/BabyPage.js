@@ -1,10 +1,19 @@
 import React from "react";
-import { Text, View } from "react-native";
 import { DropDown } from "../components/DropDown";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { ScrollView, Animated, View, Text } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
-export function NutritionPage() {
+function PlaceholderInformation() {
+  return (
+    <Animated.View>
+      <Text>Put some information here!</Text>
+    </Animated.View>
+  );
+}
+
+export default function BabyPage() {
   return (
     <View
       style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}
@@ -12,7 +21,7 @@ export function NutritionPage() {
       <DropDown
         header={"Growth"}
         subHeader={"What are the stages of my baby's development?"}
-        information={<Text>Some info</Text>}
+        information={<PlaceholderInformation />}
         icon={
           <MaterialCommunityIcons
             name="human-male-height"
@@ -25,7 +34,7 @@ export function NutritionPage() {
       <DropDown
         header={"Movements"}
         subHeader={"What should I feel as my baby moves about?     "}
-        information={<Text>Some info</Text>}
+        information={<PlaceholderInformation />}
         icon={
           <FontAwesome5
             name="shoe-prints"
@@ -38,7 +47,7 @@ export function NutritionPage() {
       <DropDown
         header={"Infancy"}
         subHeader={"How can I help my newborn baby thrive?           "}
-        information={<Text>Some info</Text>}
+        information={<PlaceholderInformation />}
         icon={
           <FontAwesome5
             name="baby"
