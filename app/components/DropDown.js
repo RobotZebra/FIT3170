@@ -25,10 +25,15 @@ export function DropDown(props) {
         <Pressable
           onPress={() => setDroppedDown(!isDroppedDown)}
           style={{
-            margin: 5,
+            margin: -5,
           }}
         >
-          <Ionicons name="chevron-forward" size={24} color="white" />
+          <Ionicons
+            name="chevron-forward"
+            size={24}
+            color="white"
+            margin={-10}
+          />
         </Pressable>
       </View>
       {isDroppedDown ? information : <></>}
@@ -46,6 +51,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  headerText: { color: "white" },
-  subHeaderText: { color: "white" },
+  headerText: { color: "white", fontWeight: "bold", fontSize: 20 },
+  subHeaderText: { color: "white", fontWeight: "normal" },
 });
