@@ -19,24 +19,13 @@ export function PractitionersPage() {
     };
 
     const MATERNITY_KEY_CONTACTS = "Maternity Services Key Contacts"
-    const MATERNITY_KEY_CONTACTS_TEXT = "Ski-bi dibby dib yo da dub dub\
-    Yo da dub dub\
-    Ski-bi dibby dib yo da dub dub\
-    Yo da dub dub\
-    (I'm the Scatman)\
-    Ski-bi dibby dib yo da dub dub\
-    Yo da dub dub\
-    Ski-bi dibby dib yo da dub dub\
-    Yo da dub dub"
+    const MATERNITY_KEY_CONTACTS_TEXT = "Please fax initial referrals. For all subsequent queries about hospital\
+    site allocation, please contact our maternity shared care coordinator\
+    (for shared care patients) or midwife manager of clinic."
     const SPECIALIST_OBSTETRICIAN_CONTACTS = "Specialist Obstetrician Contacts"
-    const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Ba-da-ba-da-ba-be bop bop bodda bope\
-    Bop ba bodda bope\
-    Be bop ba bodda bope\
-    Bop ba bodda\
-    Ba-da-ba-da-ba-be bop ba bodda bope\
-    Bop ba bodda bope\
-    Be bop ba bodda bope\
-    Bop ba bodda bope"
+    const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Please fax initial referrals. For all subsequent queries about hospital\
+    site allocation, please contact our maternity shared care coordinator\
+    (for shared care patients) or midwife manager of clinic."
 
     const CONTENT = [
         {
