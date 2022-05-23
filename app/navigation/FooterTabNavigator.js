@@ -1,7 +1,6 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import NavigationBar from "../components/NutritionNavigationBar";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
 import BodyTopBarNavigator from "./BodyTopBarNavigation";
 import HealthTopBarNavigator from "./HealthTopBarNavigation";
@@ -9,6 +8,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import firebaseApp from '../../src/firebase/config.js';
 import {useState, useEffect} from "react";
 import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import SettingsStackNavigation from "./SettingsStackNavigation";
+
 const Tab = createBottomTabNavigator();
 
 function Settings() {
@@ -40,7 +41,7 @@ function Settings() {
   </View>);
 }
 
-function MyHeader({ title, style }) {
+function DefaultHeader({ title, style }) {
   return (
     <View style={style}>
       <Text style={{ color: "white", fontSize: 25, textAlign: "center" }}>
@@ -50,17 +51,18 @@ function MyHeader({ title, style }) {
   );
 }
 
-function MyTabs() {
+export default function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: "#91298D",
-        header: ({ route }) => {
+        tabBarHideOnKeyboard: true,
+        header: ({ navigation, route, options }) => {
           const title = route.name;
-
+          
           return (
-            <MyHeader
+            <DefaultHeader
               title={title}
               style={{
                 padding: 20,
@@ -113,10 +115,12 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsStackNavigation}
         options={{
+          headerShown: false,
           tabBarLabel: "Settings",
-          tabBarIcon: ({ color }) => (
+          tabBarHideOnKeyboard: true,
+          tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
           ),
         }}
@@ -124,12 +128,5 @@ function MyTabs() {
     </Tab.Navigator>
   );
 }
-//export default MyTabs;
 
-export default function BottomTabNavigator() {
-  return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
-  );
-}
+
