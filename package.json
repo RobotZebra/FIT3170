@@ -10,7 +10,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "4.0.0",
+    "@firebase/app": "^0.7.24",
+    "@firebase/auth": "^0.20.1",
+    "@firebase/firestore": "^3.4.9",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/material-top-tabs": "^6.2.1",
     "@react-navigation/native": "^6.0.10",
@@ -33,7 +35,8 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-viewport-units": "^0.0.5",
     "react-native-web": "0.17.1",
-    "react-navigation": "^4.4.4"
+    "react-navigation": "^4.4.4",
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

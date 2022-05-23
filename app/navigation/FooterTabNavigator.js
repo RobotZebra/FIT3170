@@ -6,21 +6,38 @@ import HomeTopBarNavigator from "./HomeTopBarNavigation";
 import BodyTopBarNavigator from "./BodyTopBarNavigation";
 import HealthTopBarNavigator from "./HealthTopBarNavigation";
 import { NavigationContainer } from "@react-navigation/native";
-
+import firebaseApp from '../../src/firebase/config.js';
+import {useState, useEffect} from "react";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 const Tab = createBottomTabNavigator();
 
-function Home() {
-  return <View></View>;
-}
-function Body() {
-  return <View>{/* <NavigationBar></NavigationBar> */}</View>;
-}
-function Health() {
-  return <View></View>;
-}
-
 function Settings() {
-  return <View></View>;
+  const [shopminders, setShopminders] = useState([]);
+  
+  useEffect(async () => {
+    const db = getFirestore(firebaseApp);
+    const q = query(collection(db, "test-collection"));
+
+    const querySnapshot = await getDocs(q);
+    const objs = [];
+    querySnapshot.forEach((doc) => {
+      objs.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    setShopminders(objs);
+    console.log(objs);
+  }, [])
+  return (<View>
+    {
+      shopminders.map((obj) => (
+        <View key={obj.id}>
+          <Text>{obj.name}</Text>
+        </View>
+      ))
+    }
+  </View>);
 }
 
 function MyHeader({ title, style }) {
@@ -39,7 +56,7 @@ function MyTabs() {
       initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: "#91298D",
-        header: ({ navigation, route, options }) => {
+        header: ({ route }) => {
           const title = route.name;
 
           return (
@@ -61,7 +78,7 @@ function MyTabs() {
         component={HomeTopBarNavigator}
         options={{
           tabBarLabel: "Home",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={30} />
           ),
         }}
@@ -71,7 +88,7 @@ function MyTabs() {
         component={BodyTopBarNavigator}
         options={{
           tabBarLabel: "Body",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="weight-lifter"
               color={color}
@@ -85,7 +102,7 @@ function MyTabs() {
         component={HealthTopBarNavigator}
         options={{
           tabBarLabel: "Health",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="hospital-box"
               color={color}
@@ -99,7 +116,7 @@ function MyTabs() {
         component={Settings}
         options={{
           tabBarLabel: "Settings",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
           ),
         }}
