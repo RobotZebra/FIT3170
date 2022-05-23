@@ -2,14 +2,13 @@ import { ScrollView, View, Text } from "react-native";
 import { DropDown } from "../components/DropDown";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-
 export default function BabyPage() {
   return (
     <ScrollView style={{ width: "100%" }}>
       <View
         style={{
           // just some empty space for the scroll view here
-          height: 40,
+          height: 0,
         }}
       ></View>
       <DropDown
@@ -39,19 +38,19 @@ export default function BabyPage() {
           />
         }
       />
-        <DropDown
-            header={"Labour"}
-            subHeader={"What are my options for giving birth?"}
-            information={<Text>place holder!!!</Text>}
-            icon={
-                <MaterialCommunityIcons
-                    name="human-pregnant"
-                    size={24}
-                    color="white"
-                    style={{ margin: 5 }}
-                />
-            }
-        />
+      <DropDown
+        header={"Labour"}
+        subHeader={"What are my options for giving birth?"}
+        information={<Text>place holder!!!</Text>}
+        icon={
+          <MaterialCommunityIcons
+            name="human-pregnant"
+            size={24}
+            color="white"
+            style={{ margin: 5 }}
+          />
+        }
+      />
     </ScrollView>
   );
 }
