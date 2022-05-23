@@ -17,6 +17,11 @@ import {
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
 import AppLoading from "expo-app-loading";
+import LoginScreen from "./app/pages/LoginScreen";
+import RegisterScreen from "./app/pages/RegisterScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -40,9 +45,16 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <BottomTabNavigator />
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Dashboard" component={BottomTabNavigator} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
+  
 }
 
 const styles = StyleSheet.create({
