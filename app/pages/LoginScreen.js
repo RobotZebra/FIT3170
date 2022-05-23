@@ -27,7 +27,6 @@ const LoginScreen = ({ navigation }) =>  {
         } else {
           signInWithEmailAndPassword(auth, inputs.email, inputs.password)
           .then((user) => {
-            console.log(user.user)
             navigation.navigate('Dashboard')
           })
           .catch(error => this.setState({ errorMessage: error.message }))

@@ -67,9 +67,11 @@ const RegisterScreen = ({ navigation }) => {
         if(errorCheck.email || errorCheck.dueDate || errorCheck.firstName || errorCheck.familyName || errorCheck.password || errorCheck.pregnancyStatus) {
           Alert.alert('Enter correct details.')
         } else {
-          createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
+           createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
           .then((res) => {
-            console.log(auth.currentUser)
+            sendEmailVerification(auth.currentUser).then(() => {
+                console.log("Email sent")
+              })
             navigation.navigate('Login')
             addToDb()
           })
