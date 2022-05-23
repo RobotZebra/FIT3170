@@ -1,16 +1,15 @@
-import { View } from "react-native";
 import { Text, View } from "react-native";
 import { DropDown } from "../components/DropDown";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function MotherPage() {
-  return 
-  <View
-  style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}
-  >
-  <DropDown
-  //symptoms
+  return (
+    <View
+      style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}
+    >
+      <DropDown
+        //symptoms
         header={"Signs and Symptoms"}
         subHeader={"What will I experience during pregnancy?"}
         information={<Text>Some info</Text>}
@@ -22,9 +21,9 @@ export default function MotherPage() {
             style={{ margin: 5 }}
           />
         }
-        />
-  <DropDown
-  //nutrition
+      />
+      <DropDown
+        //nutrition
         header={"Nutrition"}
         subHeader={"What should and shouldn't I eat during pregnancy?"}
         information={<Text>Some info</Text>}
@@ -36,9 +35,9 @@ export default function MotherPage() {
             style={{ margin: 5 }}
           />
         }
-        />
-  <DropDown
-  //mood
+      />
+      <DropDown
+        //mood
         header={"Mood"}
         // maybe it should be behavioural instead of psychological?
         subHeader={"What psychological changes might I expererience?"}
@@ -53,4 +52,5 @@ export default function MotherPage() {
         }
       />
     </View>
+  );
 }
