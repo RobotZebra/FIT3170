@@ -19,7 +19,7 @@ export default function BabyPage() {
           // change the icons here
           <MaterialCommunityIcons
             name="flask-outline"
-            size={24}
+            size={30}
             color="white"
             style={{ margin: 5 }}
           />
@@ -32,7 +32,7 @@ export default function BabyPage() {
         icon={
           <MaterialCommunityIcons
             name="hand"
-            size={24}
+            size={30}
             color="white"
             style={{ margin: 5 }}
           />
@@ -45,7 +45,7 @@ export default function BabyPage() {
         icon={
           <MaterialCommunityIcons
             name="human-pregnant"
-            size={24}
+            size={30}
             color="white"
             style={{ margin: 5 }}
           />
