@@ -69,9 +69,7 @@ const RegisterScreen = ({ navigation }) => {
         } else {
            createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
           .then((res) => {
-            sendEmailVerification(auth.currentUser).then(() => {
-                console.log("Email sent")
-              })
+            sendEmailVerification(auth.currentUser)
             navigation.navigate('Login')
             addToDb()
           })
