@@ -1,6 +1,7 @@
 import * as firebase from '@firebase/app';
-// import '@firebase/auth';
-// import '@firebase/firestore';
+import '@firebase/auth';
+import { getAuth } from '@firebase/auth';
+import '@firebase/firestore';
 // TODO: check https://firebase.google.com/docs/web/setup for using different firebase features.
 
 ////////////////
@@ -21,6 +22,7 @@ const firebaseWebConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseWebConfig);
 
+const auth = getAuth(firebaseApp);
 
-export default 
-  firebaseApp;
+export { auth };
+export default firebaseApp;

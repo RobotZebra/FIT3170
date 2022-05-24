@@ -1,30 +1,25 @@
 Arguments: 
-  /usr/local/Cellar/node/17.8.0/bin/node /usr/local/bin/yarn add native-stack
+  C:\Program Files\nodejs\node.exe C:\Users\adity\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/vishaljakhar/Downloads/google-cloud-sdk/bin
+  C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Java\jdk-16.0.2\bin;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs;C:\Users\adity\AppData\Roaming\npm;C:\Users\adity\AppData\Local\Programs\AdoptOpenJDK\jdk-11.0.11.9-hotspot\bin;C:\Users\adity\AppData\Local\Microsoft\WindowsApps;D:\VISUAL STUDIO CODE\Microsoft VS Code\bin;C:\Users\adity\AppData\Local\Microsoft\WindowsApps;C:\Users\adity\AppData\Local\gitkraken\bin
 
 Yarn version: 
-  1.22.10
+  1.22.18
 
 Node version: 
-  17.8.0
+  16.14.2
 
 Platform: 
-  darwin x64
+  win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/native-stack: Not found
-      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140662:22)
-      at Request.emit (node:events:527:28)
-      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141634:10)
-      at Request.emit (node:events:527:28)
-      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141556:12)
-      at Object.onceWrapper (node:events:641:28)
-      at IncomingMessage.emit (node:events:539:35)
-      at endReadableNT (node:internal/streams/readable:1345:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  SyntaxError: C:\Users\adity\FIT3170\package.json: Unexpected token < in JSON at position 282
+      at JSON.parse (<anonymous>)
+      at C:\Users\adity\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\adity\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\adity\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
 
 npm manifest: 
   {
@@ -39,21 +34,34 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
+  <<<<<<< HEAD
+      "@react-native-community/datetimepicker": "4.0.0",
+  =======
+      "@firebase/app": "^0.7.24",
+      "@firebase/auth": "^0.20.1",
+      "@firebase/firestore": "^3.4.9",
+  >>>>>>> origin/main
       "@react-navigation/bottom-tabs": "^6.3.1",
       "@react-navigation/material-top-tabs": "^6.2.1",
       "@react-navigation/native": "^6.0.10",
+      "@react-navigation/native-stack": "^6.6.2",
+      "@react-navigation/stack": "^6.2.1",
       "expo": "~44.0.0",
       "expo-blur": "^11.0.0",
       "expo-status-bar": "~1.2.0",
       "firebase": "^9.8.1",
       "react": "17.0.1",
       "react-dom": "17.0.1",
-      "react-native": "0.64.3",
+      "react-native": "^0.64.3",
+      "react-native-dropdown-picker": "^5.4.2",
+      "react-native-expo-viewport-units": "^0.0.8",
       "react-native-gesture-handler": "^2.4.2",
+      "react-native-modal-datetime-picker": "^13.1.2",
       "react-native-pager-view": "^5.4.15",
       "react-native-safe-area-context": "3.3.2",
       "react-native-screens": "~3.10.1",
       "react-native-tab-view": "^3.1.1",
+      "react-native-viewport-units": "^0.0.5",
       "react-native-web": "0.17.1",
       "react-navigation": "^4.4.4"
     },
@@ -1132,7 +1140,7 @@ Lockfile:
   
   "@egjs/hammerjs@^2.0.17":
     version "2.0.17"
-    resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
+    resolved "https://registry.npmjs.org/@egjs/hammerjs/-/hammerjs-2.0.17.tgz"
     integrity sha512-XQsZgjm2EcVUiZQf11UBJQfmZeEmOW8DpI1gsFeln6w0ae0ii4dMQEQ0kjl6DspdWX1aGY1/loyXnP0JS06e/A==
     dependencies:
       "@types/hammerjs" "^2.0.36"
@@ -1853,6 +1861,13 @@ Lockfile:
       sudo-prompt "^9.0.0"
       wcwidth "^1.0.1"
   
+  "@react-native-community/datetimepicker@4.0.0":
+    version "4.0.0"
+    resolved "https://registry.npmjs.org/@react-native-community/datetimepicker/-/datetimepicker-4.0.0.tgz"
+    integrity sha512-q3JfDHX5PI0AxFeMsB6jcHSXODloXAqBVsOfkIvm+YbAe1TUs/xZ3qGazsKVBk9EdFyHO4k+S1Q8tQkEnk2YrQ==
+    dependencies:
+      invariant "^2.2.4"
+  
   "@react-native/assets@1.0.0":
     version "1.0.0"
     resolved "https://registry.npmjs.org/@react-native/assets/-/assets-1.0.0.tgz"
@@ -1916,6 +1931,14 @@ Lockfile:
       color "^3.1.3"
       warn-once "^0.1.0"
   
+  "@react-navigation/native-stack@^6.6.2":
+    version "6.6.2"
+    resolved "https://registry.npmjs.org/@react-navigation/native-stack/-/native-stack-6.6.2.tgz"
+    integrity sha512-pFMuzhxbPml5MBvJVAzHWoaUkQaefAOKpuUnAs/AxNQuHQwwnxRmDit1PQLuIPo7g7DlfwFXagDHE1R0tbnS8Q==
+    dependencies:
+      "@react-navigation/elements" "^1.3.3"
+      warn-once "^0.1.0"
+  
   "@react-navigation/native@^3.8.4":
     version "3.8.4"
     resolved "https://registry.npmjs.org/@react-navigation/native/-/native-3.8.4.tgz"
@@ -1940,6 +1963,15 @@ Lockfile:
     integrity sha512-8xJL+djIzpFdRW/sGlKojQ06fWgFk1c5jER9501HYJ12LF5DIJFr/tqBI2TJ6bk+y+QFu0nbNyeRC80OjRlmkA==
     dependencies:
       nanoid "^3.1.23"
+  
+  "@react-navigation/stack@^6.2.1":
+    version "6.2.1"
+    resolved "https://registry.npmjs.org/@react-navigation/stack/-/stack-6.2.1.tgz"
+    integrity sha512-JI7boxtPAMCBXi4VJHVEq61jLVHFW5f3npvbndS+XfOsv7Gf0f91HOVJ28DS5c2Fn4+CO4AByjUozzlN296X+A==
+    dependencies:
+      "@react-navigation/elements" "^1.3.3"
+      color "^3.1.3"
+      warn-once "^0.1.0"
   
   "@sideway/address@^4.1.3":
     version "4.1.4"
@@ -1967,7 +1999,7 @@ Lockfile:
   
   "@types/hammerjs@^2.0.36":
     version "2.0.41"
-    resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.41.tgz#f6ecf57d1b12d2befcce00e928a6a097c22980aa"
+    resolved "https://registry.npmjs.org/@types/hammerjs/-/hammerjs-2.0.41.tgz"
     integrity sha512-ewXv/ceBaJprikMcxCmWU1FKyMAQ2X7a9Gtmzw8fcg2kIePI1crERDM818W+XYrxqdBBOdlf2rm137bU+BltCA==
   
   "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
@@ -5123,15 +5155,32 @@ Lockfile:
       jscodeshift "^0.11.0"
       nullthrows "^1.1.1"
   
+  react-native-dropdown-picker@^5.4.2:
+    version "5.4.2"
+    resolved "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.4.2.tgz"
+    integrity sha512-cZBPyN+k52jA9XguFnKoF5tLf31z6gjZ8GijO/pfVNSSEtPwZ14UTUrr87JiiOnMh5K/O2kRzZ/jZN8D0MmUMA==
+  
+  react-native-expo-viewport-units@^0.0.8:
+    version "0.0.8"
+    resolved "https://registry.npmjs.org/react-native-expo-viewport-units/-/react-native-expo-viewport-units-0.0.8.tgz"
+    integrity sha512-duAEaoVF41puhXhpI1BuDFc2AMBqfWT2S74EJqaQ5dnuZVhsP++AExJwVo7/2/lHmb6+gYWGyBZOxxPCMWe+Ew==
+  
   react-native-gesture-handler@^2.4.2:
     version "2.4.2"
-    resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.4.2.tgz#de93760b0bc251d94e8ae692f9850ec3ed2e4f27"
+    resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.4.2.tgz"
     integrity sha512-K3oMiQV7NOVB5RvNlxkyJxU1Gn6m1cYu53MoFA542FVDSTR491d1eQkWDdqy4lW52rfF7IK7eE1LCi+kTJx7jw==
     dependencies:
       "@egjs/hammerjs" "^2.0.17"
       hoist-non-react-statics "^3.3.0"
       invariant "^2.2.4"
       lodash "^4.17.21"
+      prop-types "^15.7.2"
+  
+  react-native-modal-datetime-picker@^13.1.2:
+    version "13.1.2"
+    resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-13.1.2.tgz#7c8bd3402acb4dcfbca49c926a7f18dd108c69c4"
+    integrity sha512-PZDkuY7HayRX1KE2X2dm29CvCLzwj/vn6B6QdPbjZea/GEKvHBMOLGdhFCcA9+gD64Y41+VqfytUh2fdvUvQ1g==
+    dependencies:
       prop-types "^15.7.2"
   
   react-native-pager-view@^5.4.15:
@@ -5164,6 +5213,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz"
     integrity sha512-M5pRN6utQfytKWoKlKVzg5NbkYu308qNoW1khGTtEOTs1k14p2dHJ/BWOJoJYHKbPVUyZldbG9MFT7gUl4YHnw==
   
+  react-native-viewport-units@^0.0.5:
+    version "0.0.5"
+    resolved "https://registry.npmjs.org/react-native-viewport-units/-/react-native-viewport-units-0.0.5.tgz"
+    integrity sha1-yGRIymSX5JqSVaSFifFgnWtz9QM=
+  
   react-native-web@0.17.1:
     version "0.17.1"
     resolved "https://registry.npmjs.org/react-native-web/-/react-native-web-0.17.1.tgz"
@@ -5177,7 +5231,7 @@ Lockfile:
       normalize-css-color "^1.0.2"
       prop-types "^15.6.0"
   
-  react-native@0.64.3:
+  react-native@^0.64.3:
     version "0.64.3"
     resolved "https://registry.npmjs.org/react-native/-/react-native-0.64.3.tgz"
     integrity sha512-2OEU74U0Ek1/WeBzPbg6XDsCfjF/9fhrNX/5TFgEiBKd5mNc9LOZ/OlMmkb7iues/ZZ/oc51SbEfLRQdcW0fVw==

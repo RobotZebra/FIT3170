@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { TouchableWithoutFeedback, Keyboard, TouchableOpacity, StyleSheet, Text, TextInput, View, Image } from 'react-native';
 import { colors } from "../styling/appTheme";
 import { vw, vh } from 'react-native-expo-viewport-units'; 
-
+import firebaseApp from '../../src/firebase/config';
+import { getAuth , signInWithEmailAndPassword } from '@firebase/auth';
 
 const LoginScreen = ({ navigation }) =>  {
 
@@ -14,6 +15,22 @@ const LoginScreen = ({ navigation }) =>  {
     // function to update user inputs
     const getUserInput = (text, inputField) => {
         setInput(prevState =>  ({...prevState, [inputField]: text }))
+    }
+
+    // Getting the authentication function
+    const auth = getAuth(); 
+
+    // Handling the login of the user
+    const handleSignIn = () => {
+        if(inputs.email === '' && inputs.password === '') {
+          Alert.alert('Enter correct details.')
+        } else {
+          signInWithEmailAndPassword(auth, inputs.email, inputs.password)
+          .then((user) => {
+            navigation.navigate('Dashboard')
+          })
+          .catch(error => this.setState({ errorMessage: error.message }))
+        }
     }
 
     return (
@@ -58,6 +75,7 @@ const LoginScreen = ({ navigation }) =>  {
                 <TouchableOpacity 
                     style={[styles.modalButton, styles.loginButton]} 
                     activeOpacity='0.5'
+                    onPress={() => handleSignIn()}
                 >
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>

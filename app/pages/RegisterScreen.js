@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { TouchableWithoutFeedback, TouchableOpacity, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, View, Image } from 'react-native';
+import { TouchableWithoutFeedback, TouchableOpacity, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, View, Image, Alert } from 'react-native';
 import { colors } from "../styling/appTheme";
 import { vw, vh } from 'react-native-expo-viewport-units';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { getAuth , createUserWithEmailAndPassword, updateProfile , sendEmailVerification} from '@firebase/auth';
+import { doc , setDoc, getFirestore} from '@firebase/firestore';
+import firebaseApp from '../../src/firebase/config';
+
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -54,6 +58,41 @@ const RegisterScreen = ({ navigation }) => {
         dueDate: false,
     });
 
+    // Getting the database and the authentication function
+    const auth = getAuth();
+    const db = getFirestore(firebaseApp);
+
+    // Handling the registration 
+    const handleUserSignUp  =  () => {
+        if(errorCheck.email || errorCheck.dueDate || errorCheck.firstName || errorCheck.familyName || errorCheck.password || errorCheck.pregnancyStatus) {
+          Alert.alert('Enter correct details.')
+        } else {
+           createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
+          .then((res) => {
+            sendEmailVerification(auth.currentUser)
+            navigation.navigate('Login')
+            addToDb()
+          })
+          .catch(error => {
+            if (error.code === 'auth/email-already-in-use') {
+                Alert.alert('That email address is already in use!');
+              }
+          })
+        }
+      }
+
+      // Adding the user details to the firestore database.  
+      const addToDb = async () => {
+          const userData  = {
+                firstName : inputs.firstName,
+                familyName : inputs.familyName,
+                dueDate : inputs.dueDate,
+                pregnancyStatus : inputs.pregnancyStatus, 
+                email : inputs.email,
+                }
+            await setDoc(doc(db, "user-collection", auth.currentUser.uid), userData)
+    }
+
     const onSubmit = () => {
         for (const field in inputs) {
             if (inputs[field] == '') {
@@ -63,9 +102,9 @@ const RegisterScreen = ({ navigation }) => {
                 if (field == 'firstName' || field == 'familyName') {
                     setErrorCheck(prevState => ({ ...prevState, [field]: !/^[a-zA-Z]+$/.test(inputs[field]) }));
                 } 
-                // check if password is greater than 5 characters
+                // check if password is greater than 6 characters
                 else if (field == 'password') {
-                    setErrorCheck(prevState => ({ ...prevState, [field]: inputs[field].length < 5 }));
+                    setErrorCheck(prevState => ({ ...prevState, [field]: inputs[field].length < 6 }));
                 } 
                 // check if email is correct 
                 else if (field == 'email') {
@@ -82,6 +121,7 @@ const RegisterScreen = ({ navigation }) => {
                 setErrorCheck(prevState => ({ ...prevState, ['dueDate']: false}))
             }
         }
+        handleUserSignUp();
     }
 
     return (
