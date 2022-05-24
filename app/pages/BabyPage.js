@@ -19,8 +19,8 @@ export default function BabyPage() {
       style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}
     >
       <DropDown
-        header={"Growth"}
-        subHeader={"What are the stages of my baby's development?"}
+        title={"Growth"}
+        subtitle={"What are the stages of my baby's development?"}
         information={<PlaceholderInformation />}
         icon={
           <MaterialCommunityIcons
@@ -32,8 +32,8 @@ export default function BabyPage() {
         }
       />
       <DropDown
-        header={"Movements"}
-        subHeader={"What should I feel as my baby moves about?     "}
+        title={"Movements"}
+        subtitle={"What should I feel as my baby moves about?     "}
         information={<PlaceholderInformation />}
         icon={
           <FontAwesome5
@@ -45,8 +45,8 @@ export default function BabyPage() {
         }
       />
       <DropDown
-        header={"Infancy"}
-        subHeader={"How can I help my newborn baby thrive?           "}
+        title={"Infancy"}
+        subtitle={"How can I help my newborn baby thrive?           "}
         information={<PlaceholderInformation />}
         icon={
           <FontAwesome5

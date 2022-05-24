@@ -10,8 +10,8 @@ export default function MotherPage() {
     >
       <DropDown
         //symptoms
-        header={"Signs and Symptoms"}
-        subHeader={"What will I experience during pregnancy?"}
+        title={"Signs and Symptoms"}
+        subtitle={"What will I experience during pregnancy?"}
         information={<Text>Some info</Text>}
         icon={
           <MaterialCommunityIcons
@@ -24,8 +24,8 @@ export default function MotherPage() {
       />
       <DropDown
         //nutrition
-        header={"Nutrition"}
-        subHeader={"What should and shouldn't I eat during pregnancy?"}
+        title={"Nutrition"}
+        subtitle={"What should and shouldn't I eat during pregnancy?"}
         information={<Text>Some info</Text>}
         icon={
           <MaterialCommunityIcons
@@ -38,9 +38,9 @@ export default function MotherPage() {
       />
       <DropDown
         //mood
-        header={"Mood"}
+        title={"Mood"}
         // maybe it should be behavioural instead of psychological?
-        subHeader={"What psychological changes might I expererience?"}
+        subtitle={"What psychological changes might I expererience?"}
         information={<Text>Some info</Text>}
         icon={
           <FontAwesome5
