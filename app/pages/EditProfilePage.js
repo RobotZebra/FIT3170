@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableWithoutFeedback, Keyboard, Text, View, Button, TouchableOpacity, TextInput } from "react-native";
 import { colors } from "../styling/appTheme";
 import { vh } from "react-native-expo-viewport-units";
+import firebaseApp from "../../src/firebase/config";
 
 export function EditProfilePage({ navigation }) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleOnSubmit = () => {
+    firebaseApp.signInWithEmailAndPassword();
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={{ position: "relative", display: "flex", alignItems: "center", width: "100%", height: "100%", paddingTop: 30 }}>
@@ -42,6 +51,7 @@ export function EditProfilePage({ navigation }) {
             }} 
             keyboardType='default' 
             textContentType='name' 
+            onChangeText={(fName) => setFirstName(fName)}
           />
           <TextInput 
             placeholder='Last Name' 
@@ -58,6 +68,7 @@ export function EditProfilePage({ navigation }) {
             }} 
             keyboardType='default' 
             textContentType='name' 
+            onChangeText={(lName) => setLastName(lName)}
           />
           <TextInput 
             placeholder='Email' 
@@ -75,8 +86,10 @@ export function EditProfilePage({ navigation }) {
             keyboardType='email-address' 
             autoCapitalize='none' 
             textContentType='emailAddress' 
+            onChangeText={(email) => setEmail(email)}
           />
           <TouchableOpacity activeOpacity='0.5'
+            onPress={() => handleOnSubmit()}
             style={{ width: "50%", backgroundColor: colors.tertiary, paddingTop: 10, paddingRight: 20, paddingBottom: 10, paddingLeft: 20, borderRadius: 10, margin: 20 }}
           >
             <Text style={{ color: "white", textAlign: "center" }}>Confirm</Text>
