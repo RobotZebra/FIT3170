@@ -10,7 +10,7 @@ export default function WikiTopBarNavigator() {
   return (
     <TopTab.Navigator
       initialRouteName="Baby"
-      tabBarOptions={{
+      screenOptions={{
         activeTintColor: "#91298D",
         labelStyle: { fontSize: 12 },
         style: { backgroundColor: "white" },
