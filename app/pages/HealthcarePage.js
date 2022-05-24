@@ -12,8 +12,8 @@ export default function BabyPage() {
         }}
       ></View>
       <DropDown
-        header={"Tests and Investigations"}
-        subHeader={"What will my doctor test me for during pregnancy?"}
+        title={"Tests and Investigations"}
+        subtitle={"What will my doctor test me for during pregnancy?"}
         information={<Text>put information component here!!!</Text>}
         icon={
           // change the icons here
@@ -26,8 +26,8 @@ export default function BabyPage() {
         }
       />
       <DropDown
-        header={"Support"}
-        subHeader={"What other help can Monash Health provide me?"}
+        title={"Support"}
+        subtitle={"What other help can Monash Health provide me?"}
         information={<Text>place holder!!!</Text>}
         icon={
           <MaterialCommunityIcons
@@ -39,8 +39,8 @@ export default function BabyPage() {
         }
       />
       <DropDown
-        header={"Labour"}
-        subHeader={"What are my options for giving birth?"}
+        title={"Labour"}
+        subtitle={"What are my options for giving birth?"}
         information={<Text>place holder!!!</Text>}
         icon={
           <MaterialCommunityIcons
