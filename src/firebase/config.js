@@ -2,6 +2,7 @@ import * as firebase from '@firebase/app';
 import '@firebase/auth';
 import { getAuth } from '@firebase/auth';
 import '@firebase/firestore';
+import { getStorage } from 'firebase/storage';
 // TODO: check https://firebase.google.com/docs/web/setup for using different firebase features.
 
 ////////////////
@@ -24,5 +25,10 @@ const firebaseApp = firebase.initializeApp(firebaseWebConfig);
 
 const auth = getAuth(firebaseApp);
 
-export { auth };
+const storage = getStorage();
+const storagePaths = {
+  profileImages: "profile-images/",
+};
+
+export { auth, storage, storagePaths };
 export default firebaseApp;
