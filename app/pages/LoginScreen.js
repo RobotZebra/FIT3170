@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
   Image,
+  Alert,
 } from "react-native";
 import { colors } from "../styling/appTheme";
 import { vw, vh } from "react-native-expo-viewport-units";
