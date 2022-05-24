@@ -1,7 +1,4 @@
 import React from "react";
-import { DropDown, DropDownView } from "../components/DropDown";
-import { AntDesign } from "@expo/vector-icons";
-import BabyPage from "./BabyPage";
 import {
   Text,
   View,

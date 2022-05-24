@@ -19,6 +19,7 @@ import {
 import AppLoading from "expo-app-loading";
 import LoginScreen from "./app/pages/LoginScreen";
 import RegisterScreen from "./app/pages/RegisterScreen";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
@@ -46,7 +47,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Dashboard" component={BottomTabNavigator} />
@@ -54,7 +55,6 @@ export default function App() {
       </NavigationContainer>
     </SafeAreaProvider>
   );
-  
 }
 
 const styles = StyleSheet.create({

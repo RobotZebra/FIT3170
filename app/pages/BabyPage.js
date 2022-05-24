@@ -2,8 +2,7 @@ import React from "react";
 import { DropDown } from "../components/DropDown";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { ScrollView, Animated, View, Text } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { Animated, View, Text } from "react-native";
 
 function PlaceholderInformation() {
   return (

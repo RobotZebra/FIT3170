@@ -1,9 +1,8 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
 import HospitalTopBarNavigator from "./HospitalTopBarNavigator";
-import { NavigationContainer } from "@react-navigation/native";
 import WikiTopBarNavigator from "./WikiTopBarNavigator";
 
 import { Entypo } from "@expo/vector-icons";
