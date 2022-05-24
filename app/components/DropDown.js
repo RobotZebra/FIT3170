@@ -20,7 +20,7 @@ export function DropDown(props) {
         {icon}
         <View style={{ flexDirection: "column", margin: 15, flex: 1 }}>
           <Text style={styles.headerText}>{title}</Text>
-          <Text style={styles.subHeaderText}>{subHeader}</Text>
+          <Text style={styles.subHeaderText}>{subtitle}</Text>
         </View>
         <Pressable
           onPress={() => setDroppedDown(!isDroppedDown)}
