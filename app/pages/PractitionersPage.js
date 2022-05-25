@@ -3,20 +3,10 @@ import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity,
   LayoutAnimation, UIManager, Platform, Button, Linking } from "react-native";
 import { Searchbar } from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FavouriteButton from "./../models/FavouriteButton"
 
 
 export function PractitionersPage() {
-    let maternityContactCardProps={
-        title: "Maternity Team",
-        subtitle: "Clayton",
-        favourite: false
-    };
-
-    let obstetricianContactCardProps={
-        title: "Obstetricians",
-        subtitle: "Clayton",
-        favourite: false
-    };
 
     const MATERNITY_KEY_CONTACTS = "Maternity Services Key Contacts"
     const MATERNITY_KEY_CONTACTS_TEXT = "Please fax initial referrals. For all subsequent queries about hospital\
@@ -24,12 +14,14 @@ export function PractitionersPage() {
     (for shared care patients) or midwife manager of clinic."
     const SPECIALIST_OBSTETRICIAN_CONTACTS = "Specialist Obstetrician Contacts"
     const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Please fax initial referrals. For all subsequent queries about hospital\
-    site allocation, please contact our maternity shared care coordinator\
-    (for shared care patients) or midwife manager of clinic."
+    site allocation, please contact our maternity shared care coordinator\    (for shared care patients) or midwife manager of clinic."
+    
 
-    const CONTENT = [
+
+    var CONTENT = [
         {
             isExpanded: false,
+            favourited: true,
             category_name: MATERNITY_KEY_CONTACTS,
             subcategory: [
                 {id: 1, val: 'Description', descriptionVal: MATERNITY_KEY_CONTACTS_TEXT},
@@ -40,6 +32,7 @@ export function PractitionersPage() {
         },
         {
             isExpanded: false,
+            favourited: false,
             category_name: SPECIALIST_OBSTETRICIAN_CONTACTS,
             subcategory: [
             {id: 1, val: 'Description', descriptionVal: SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT},
@@ -96,9 +89,9 @@ export function PractitionersPage() {
                         }]}>
                         <Text style={styles.itemText}>
                             {item.category_name}
-                        
                         </Text>
-                        <FavouriteButton></FavouriteButton>
+                    
+                    <FavouriteButton favourited={item.favourited}></FavouriteButton>
                     </View>
                 </TouchableOpacity>
                 <View
@@ -153,17 +146,40 @@ export function PractitionersPage() {
         );
     };
 
-    function FavouriteButton() {
-        return (
-            <TouchableOpacity activeOpacity={0.5} onPress={()=>{}}>
-                <View style={[{
-                            flexDirection: "row"
-                        }]}>
-                    <MaterialCommunityIcons name="heart" color="white" size={39} style={styles.headerIcon}/>
-                </View>
-            </TouchableOpacity>
-        );
+    function FavouriteButton(item) {
+        // Favourite button
+        if (item.favourited) {
+            return (
+                <TouchableOpacity activeOpacity={0.5} onPress={()=>{favouriteContact(item)}}>
+                    <View style={[{
+                                flexDirection: "row"
+                            }]}>
+                        <MaterialCommunityIcons name="heart" color="white" size={39} style={styles.headerIcon}/>
+                    </View>
+                </TouchableOpacity>
+            )
+        } else {
+            return (
+            <TouchableOpacity activeOpacity={0.5} onPress={()=>{favouriteContact(item)}}>
+                    <View style={[{
+                                flexDirection: "row"
+                            }]}>
+                        <MaterialCommunityIcons name="heart-outline" color="white" size={39} style={styles.headerIcon}/>
+                    </View>
+                </TouchableOpacity>
+            )
+        }
     }
+
+    function favouriteContact(contact) {
+        contact.favourited = true
+
+        return (
+            <FavouriteButton item ={contact}></FavouriteButton>
+        )
+    }
+
+
 
     function PhoneButton({number}) {
         return (
