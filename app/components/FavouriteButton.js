@@ -1,5 +1,3 @@
-'use strict';
-
 import React, {Component} from "react";
 import {TouchableOpacity, View, StyleSheet} from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -13,25 +11,34 @@ const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Please fax initial referrals. For
     site allocation, please contact our maternity shared care coordinator\    (for shared care patients) or midwife manager of clinic."
     
 
-class FavouriteButton extends Component {
+export default class FavouriteButton extends Component {
 
     state = {
         favourited: false
     }
 
+    componentDidMount() {
+        console.log('I was triggered during componentDidMount')
+      }
 
     constructor(isFavourited) {
+        f = isFavourited
         this.setState({favourited: isFavourited})
+        console.log('CONSTRUCTOR')
+
     }
 
-    favourite() {
-        this.setState({favourited: !this.state.favourited})
+    onPress = () => {
+        console.log(!this.state.favourited)
+        isFavourited = !this.state.favourited
+        this.setState({favourited: isFavourited})
         this.render()
     }
 
     render() {
+        console.log(this.state.favourited)
         return (
-            <TouchableOpacity activeOpacity={0.5} onPress={this.favourite()}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => {this.onPress}}>
                 <View style={[{
                             flexDirection: "row"
                         }]}>
@@ -48,6 +55,3 @@ const styles = StyleSheet.create({
         paddingLeft: 90
     }
 });
-
-
-export default FavouriteButton
