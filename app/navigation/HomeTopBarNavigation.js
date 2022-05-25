@@ -1,8 +1,5 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MyPregnancyPage } from "../pages/MyPregnancyPage";
 import { AppointmentsPage } from "../pages/AppointmentsPage";
 
@@ -15,7 +12,7 @@ function MyTopTabs() {
       initialRouteName="MyPregnancy"
       screenOptions={{
         activeTintColor: "#91298D",
-        tabBarIndicatorStyle: {backgroundColor: "#91298D"},
+        tabBarIndicatorStyle: { backgroundColor: "#91298D" },
         labelStyle: { fontSize: 12 },
         // style: { backgroundColor: "white", marginTop: insets.top },
         style: { backgroundColor: "white" },
