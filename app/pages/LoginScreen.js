@@ -101,6 +101,19 @@ const LoginScreen = ({ navigation }) =>  {
                     <Text style={styles.buttonText}> Register Now</Text> 
                 </TouchableOpacity>
             </View>
+
+            <View>
+                <Text style={styles.resetPasswordInfo}>
+                    Forgot your password?
+                </Text>
+                <TouchableOpacity 
+                    style={[styles.modalButton, styles.resetButton]} 
+                    onPress={() => { navigation.navigate('Reset'); }} 
+                    activeOpacity='0.5'
+                >
+                    <Text style={styles.buttonText}>Reset</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     </TouchableWithoutFeedback>
     )
@@ -185,14 +198,27 @@ const styles = StyleSheet.create({
     },
     newUserInfo: {
         right: vw(21),
-        top: vh(90),
+        top: vh(83.7),
         
         color: colors.secondary,
         fontWeight: 'bold',
     },
     registerButton: {
-        top: vh(88), 
+        top: vh(82), 
         left: vw(25),
+
+        paddingHorizontal: vw(6),
+    },
+    resetPasswordInfo: {
+        right: vw(21),
+        top: vh(89.5),
+
+        color: colors.secondary,
+        fontWeight: 'bold'
+    },
+    resetButton: {
+        top: vh(88), 
+        left: vw(32),
 
         paddingHorizontal: vw(6),
     },
