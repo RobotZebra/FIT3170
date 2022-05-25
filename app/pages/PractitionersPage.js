@@ -1,5 +1,5 @@
 import React, {useState, useEffect,Component} from "react";
-import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity,
+import { Text, TextInput, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity,
   LayoutAnimation, UIManager, Platform, Button, Linking } from "react-native";
 import { Searchbar } from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -25,20 +25,22 @@ export function PractitionersPage() {
     
 
 
-    var CONTENT = [
-        // {
-        //     isExpanded: false,
-        //     favourited: true,
-        //     category_name: MATERNITY_KEY_CONTACTS,
-        //     subcategory: [
-        //         {id: 1, val: 'Description', descriptionVal: MATERNITY_KEY_CONTACTS_TEXT},
-        //         {id: 2, val: 'Call'},
-        //         {id: 3, val: 'Email', email: "example@gmail.com"},
-        //         {id: 4, val: 'Fax'},
-        //     ]
-        // }
+    global.CONTENT = [
+        {
+            isExpanded: false,
+            favourited: true,
+            category_name: MATERNITY_KEY_CONTACTS,
+            subcategory: [
+                {id: 1, val: 'Description', descriptionVal: MATERNITY_KEY_CONTACTS_TEXT},
+                {id: 2, val: 'Call'},
+                {id: 3, val: 'Email', email: "example@gmail.com"},
+                {id: 4, val: 'Fax'},
+            ]
+        }
     ];
-    const [shopminders, setShopminders] = useState([]);
+
+    global.filteredPracititoners = global.CONTENT
+
     useEffect(async () => {
         
         const db = getFirestore(firebaseApp);
@@ -47,22 +49,19 @@ export function PractitionersPage() {
         const querySnapshot = await getDocs(q);
         
         querySnapshot.forEach((doc) => {
-            console.log(doc)
             data = doc.data()
-            console.log(data)
-            CONTENT.push({
+            global.CONTENT.push({
             isExapnded: false,
             favourited: false,
             category_name: data.name,
             subcategory: [
                 {id: 1, val: "Description", descriptionVal: data.description},
-                {id: 1, val: "Call", phone: data.phone},
-                {id: 1, val: "Email", email: data.email}
+                {id: 2, val: "Call", phone: data.phone},
+                {id: 3, val: "Email", email: data.email}
             ]
           });
         });
-        setShopminders(CONTENT);
-        console.log(CONTENT);
+        console.log(global.CONTENT);
     }, []);
 
     const openGmail = () => {
@@ -139,7 +138,8 @@ export function PractitionersPage() {
             </View>
         )
     }
-    const [listDataSource, setListDataSource] = useState(CONTENT);
+    const [listDataSource, setListDataSource] = useState(filteredPracititoners);
+
     const updateLayout = (index) => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         const array = [...listDataSource];
@@ -155,16 +155,17 @@ export function PractitionersPage() {
         UIManager.setLayoutAnimationEnabledExperimental(true);
     }
 
-    const SearchBar = () => {
-        const [searchQuery, setSearchQuery] = React.useState('');
-        const onChangeSearch = query => setSearchQuery(query);
+    global.searchQuery = ""
 
+    const SearchBar = () => {
         return (
-        <Searchbar
-            placeholder="Search"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-        />
+            <TextInput
+                placeholder="Search"
+                value={global.searchQuery}
+                style={styles.searchBar}
+                onChangeText={(text) => searchText(text)}
+
+            />
         );
     };
 
@@ -240,6 +241,28 @@ export function PractitionersPage() {
             </TouchableOpacity>
         );
     }
+
+    const searchText = (text) => {
+        // let text = global.searchQuery.toLowerCase()
+
+        if (text != "") {
+            let practitioners = global.CONTENT
+            const filteredPracititoners = practitioners.filter(
+                practitioner => {
+                    return (
+                        practitioner
+                        .category_name
+                        .toLowerCase()
+                        .includes(text)
+                    );
+                }
+            );
+            console.log(filteredPracititoners)
+            setListDataSource(filteredPracititoners)
+        }
+        
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -353,5 +376,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         textAlign: "center",
         alignContent: "center"
+    },
+    searchBar: {
+        fontSize: 20,
+        backgroundColor: 'white',
+        height: 40
     }
 });

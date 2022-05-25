@@ -13,7 +13,6 @@ const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Please fax initial referrals. For
 
 export default class FavouriteButton extends Component {
 
-    favourited = false
 
     // state = {
     //     favourited: false
