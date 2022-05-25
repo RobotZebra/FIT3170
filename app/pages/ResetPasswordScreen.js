@@ -24,11 +24,20 @@ const ResetPasswordScreen = ({ navigation }) => {
     // Handle sending password reset verification email
     const handlePasswordReset = () => {
         if(inputs.email === '') {
-            Alert.alert("Enter an email address")
+            Alert.alert("Enter an email address");
         } else {
             sendPasswordResetEmail(auth, inputs.email)
             .then(() => {
                 Alert.alert("Check your email for a verification code.")
+                navigation.navigate('Login')
+            })
+            .catch(error => {
+                if (error.code === "auth/invalid-email") {
+                    Alert.alert("Please enter a valid email address.")
+                }
+                else if (error.code === "auth/user-not-found") {
+                    Alert.alert("No user was found with that email address.")
+                }
             })
         }
     }
@@ -95,7 +104,6 @@ const ResetPasswordScreen = ({ navigation }) => {
         </TouchableWithoutFeedback>
     )
 }
-
 
 export default ResetPasswordScreen;
 
