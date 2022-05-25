@@ -38,8 +38,9 @@ export function PractitionersPage() {
         //     ]
         // }
     ];
-
+    const [shopminders, setShopminders] = useState([]);
     useEffect(async () => {
+        
         const db = getFirestore(firebaseApp);
         const q = query(collection(db, "practitioner-collection"));
     
@@ -60,6 +61,7 @@ export function PractitionersPage() {
             ]
           });
         });
+        setShopminders(CONTENT);
         console.log(CONTENT);
     }, []);
 

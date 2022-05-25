@@ -13,9 +13,11 @@ const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Please fax initial referrals. For
 
 export default class FavouriteButton extends Component {
 
-    state = {
-        favourited: false
-    }
+    favourited = false
+
+    // state = {
+    //     favourited: false
+    // }
 
     componentDidMount() {
         console.log('I was triggered during componentDidMount')
@@ -23,26 +25,24 @@ export default class FavouriteButton extends Component {
 
     constructor(isFavourited) {
         f = isFavourited
-        this.setState({favourited: isFavourited})
+        this.favourited = isFavourited
         console.log('CONSTRUCTOR')
-
     }
 
     onPress = () => {
-        console.log(!this.state.favourited)
-        isFavourited = !this.state.favourited
-        this.setState({favourited: isFavourited})
+        console.log(!this.favourited)
+        this.favourited = !this.favourited
         this.render()
     }
 
     render() {
-        console.log(this.state.favourited)
+        console.log(this.favourited)
         return (
             <TouchableOpacity activeOpacity={0.5} onPress={() => {this.onPress}}>
                 <View style={[{
                             flexDirection: "row"
                         }]}>
-                    {this.state.favourited ? <MaterialCommunityIcons name="heart" color="white" size={39} style={styles.headerIcon}/> : <MaterialCommunityIcons name="heart-outline" color="white" size={39} style={styles.headerIcon}/>}
+                    {this.favourited ? <MaterialCommunityIcons name="heart" color="white" size={39} style={styles.headerIcon}/> : <MaterialCommunityIcons name="heart-outline" color="white" size={39} style={styles.headerIcon}/>}
                 </View>
             </TouchableOpacity>
         ) 
