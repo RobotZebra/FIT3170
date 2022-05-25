@@ -158,13 +158,41 @@ export function PractitionersPage() {
     global.searchQuery = ""
 
     const SearchBar = () => {
-        return (
-            <TextInput
-                placeholder="Search"
-                value={global.searchQuery}
-                style={styles.searchBar}
-                onChangeText={(text) => searchText(text)}
+        const [searchQuery, setSearchQuery] = React.useState('');
 
+        const onChangeSearch = query => setSearchQuery(query);
+
+
+        const searchText = () => {
+            // let text = global.searchQuery.toLowerCase()
+            let text = searchQuery.toLowerCase()
+            if (text != "" && text != null) {
+                let practitioners = global.CONTENT
+                const filteredPracititoners = practitioners.filter(
+                    practitioner => {
+                        return (
+                            practitioner
+                            .category_name
+                            .toLowerCase()
+                            .includes(text)
+                        );
+                    }
+                );
+                console.log(filteredPracititoners)
+                setListDataSource(filteredPracititoners)
+            } else {
+                setListDataSource(global.CONTENT)
+            }
+            
+        }
+
+        return (
+            <Searchbar
+                placeholder="Search"
+                value={searchQuery}
+                style={styles.searchBar}
+                onChangeText={onChangeSearch}
+                onSubmitEditing={searchText}
             />
         );
     };
@@ -242,26 +270,7 @@ export function PractitionersPage() {
         );
     }
 
-    const searchText = (text) => {
-        // let text = global.searchQuery.toLowerCase()
-
-        if (text != "") {
-            let practitioners = global.CONTENT
-            const filteredPracititoners = practitioners.filter(
-                practitioner => {
-                    return (
-                        practitioner
-                        .category_name
-                        .toLowerCase()
-                        .includes(text)
-                    );
-                }
-            );
-            console.log(filteredPracititoners)
-            setListDataSource(filteredPracititoners)
-        }
-        
-    }
+    
 
 
     return (
@@ -380,6 +389,7 @@ const styles = StyleSheet.create({
     searchBar: {
         fontSize: 20,
         backgroundColor: 'white',
-        height: 40
+        height: 40,
+        paddingLeft: 20
     }
 });

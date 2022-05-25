@@ -17,15 +17,18 @@ export default class FavouriteButton extends Component {
     // state = {
     //     favourited: false
     // }
+    favourited = false
 
     componentDidMount() {
         console.log('I was triggered during componentDidMount')
-      }
+    }
+
 
     constructor(isFavourited) {
         f = isFavourited
         this.favourited = isFavourited
         console.log('CONSTRUCTOR')
+        
     }
 
     onPress = () => {
