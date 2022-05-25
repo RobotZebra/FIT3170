@@ -8,19 +8,22 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import LoginScreen from "./app/pages/LoginScreen";
 import RegisterScreen from "./app/pages/RegisterScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Dashboard" component={BottomTabNavigator} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <RootSiblingParent>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Dashboard" component={BottomTabNavigator} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </RootSiblingParent>
     </SafeAreaProvider>
   );
   

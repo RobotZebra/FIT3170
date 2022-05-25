@@ -43,7 +43,7 @@ function UserBanner({ profileImageUrl, username }) {
       borderBottomColor: "lightgrey",
       borderBottomWidth: 1,
     }}>
-      {(profileImageUrl && <Image source={profileImageUrl}/>) || <MaterialCommunityIcons name="account" size={30} />}
+      {(profileImageUrl && <Image source={{ uri: profileImageUrl }}/>) || <MaterialCommunityIcons name="account" size={30} />}
       <Text style={{ paddingLeft: 20 }}>{username}</Text>
     </View>
   )
@@ -101,27 +101,22 @@ class SettingsHomePageOperations {
   }
 
   isAccountSettingsAccessable() {
-    // return this.user === null;
-    return false;
+    return this.user === null;
   }
 
   isEditProfileAccessable() {
-    // return this.user !== null;
-    return true;
+    return this.user !== null;
   }
 
   isChangePasswordAccessable() {
-    // return this.user !== null;
-    return true;
+    return this.user !== null;
   }
 
   isLogoutActive() {
-    // return this.user !== null;
-    return true;
+    return this.user !== null;
   }
 
   isDeleteAccountActive () {
-    // return this.user !== null;
-    return true;
+    return this.user !== null;
   }
 }

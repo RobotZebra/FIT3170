@@ -28,9 +28,12 @@ export function EditProfilePage({ navigation }) {
         editProfilePageOperations.updateProfileImageUrl(),
         editProfilePageOperations.updateDisplayName(),
         editProfilePageOperations.updateEmail(),
-      ]);
+      ]); 
 
-      console.log(results); 
+      const isAllGood = results.reduce((output, current) => output && current, true);
+      isAllGood ?
+        Toast.show("Profile updated sucessfully.") :
+        Toast.show("Profile updated failed.")
     })()
   }
 
@@ -118,7 +121,7 @@ function TextBox({ placeholder, value, onChange }) {
       keyboardType='default' 
       textContentType='name' 
       value={value}
-      onChangeText={(fName) => onChange && onChange(fName)}
+      onChangeText={(value) => onChange && onChange(value)}
     />
   );
 }
@@ -141,16 +144,22 @@ const getProfileImageRef = () => {
 
 class EditProfilePageOperations {
   constructor(user, getProfileImageRef) {
+    this.user = user;
+
     this.getProfileImageRef = getProfileImageRef;
 
-    this.initialProfileImageUri = user?.photoURL;
-    [this.initialFName, this.initialLName] = user?.displayName?.split(" ", 1) ?? ["", ""];
-    this.initialEmail = user?.email ?? "";
+    this.setInitialData();
 
     this.profileImageUriState = useState(this.initialProfileImageUri);
     this.firstNameState = useState(this.initialFName);
     this.lastNameState = useState(this.initialLName);
     this.emailState = useState(this.initialEmail);
+  }
+
+  setInitialData() {
+    this.initialProfileImageUri = this.user?.photoURL;
+    [this.initialFName, this.initialLName] = this.user?.displayName?.split(" ", 1) ?? ["", ""];
+    this.initialEmail = this.user?.email ?? "";
   }
 
   async updateProfileImageUrl() {
