@@ -3,8 +3,15 @@ import { Text, View, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity,
   LayoutAnimation, UIManager, Platform, Button, Linking } from "react-native";
 import { Searchbar } from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import FavouriteButton from "./../models/FavouriteButton"
-
+import FavouriteButton from "../components/FavouriteButton"
+import firebaseApp from "../../src/firebase/config.js";
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs,
+  } from "firebase/firestore";
 
 export function PractitionersPage() {
 
@@ -19,29 +26,42 @@ export function PractitionersPage() {
 
 
     var CONTENT = [
-        {
-            isExpanded: false,
-            favourited: true,
-            category_name: MATERNITY_KEY_CONTACTS,
-            subcategory: [
-                {id: 1, val: 'Description', descriptionVal: MATERNITY_KEY_CONTACTS_TEXT},
-                {id: 2, val: 'Call'},
-                {id: 3, val: 'Email', email: "example@gmail.com"},
-                {id: 4, val: 'Fax'},
-            ]
-        },
-        {
-            isExpanded: false,
-            favourited: false,
-            category_name: SPECIALIST_OBSTETRICIAN_CONTACTS,
-            subcategory: [
-            {id: 1, val: 'Description', descriptionVal: SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT},
-            {id: 2, val: 'Call'},
-            {id: 3, val: 'Email', email: "example@gmail.com"},
-            {id: 4, val: 'Fax'},
-            ]
-        }
+        // {
+        //     isExpanded: false,
+        //     favourited: true,
+        //     category_name: MATERNITY_KEY_CONTACTS,
+        //     subcategory: [
+        //         {id: 1, val: 'Description', descriptionVal: MATERNITY_KEY_CONTACTS_TEXT},
+        //         {id: 2, val: 'Call'},
+        //         {id: 3, val: 'Email', email: "example@gmail.com"},
+        //         {id: 4, val: 'Fax'},
+        //     ]
+        // }
     ];
+
+    useEffect(async () => {
+        const db = getFirestore(firebaseApp);
+        const q = query(collection(db, "practitioner-collection"));
+    
+        const querySnapshot = await getDocs(q);
+        
+        querySnapshot.forEach((doc) => {
+            console.log(doc)
+            data = doc.data()
+            console.log(data)
+            CONTENT.push({
+            isExapnded: false,
+            favourited: false,
+            category_name: data.name,
+            subcategory: [
+                {id: 1, val: "Description", descriptionVal: data.description},
+                {id: 1, val: "Call", phone: data.phone},
+                {id: 1, val: "Email", email: data.email}
+            ]
+          });
+        });
+        console.log(CONTENT);
+    }, []);
 
     const openGmail = () => {
         Linking.openURL('mailto:support@example.com')
