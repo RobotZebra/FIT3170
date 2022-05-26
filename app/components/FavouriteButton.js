@@ -14,37 +14,30 @@ const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Please fax initial referrals. For
 export default class FavouriteButton extends Component {
 
 
-    // state = {
-    //     favourited: false
-    // }
-    favourited = false
-
-    componentDidMount() {
-        console.log('I was triggered during componentDidMount')
+    state = {
+        favourited: false
     }
 
-
     constructor(isFavourited) {
-        f = isFavourited
-        this.favourited = isFavourited
+        this.state.favourited = isFavourited
         console.log('CONSTRUCTOR')
         
     }
 
     onPress = () => {
-        console.log(!this.favourited)
-        this.favourited = !this.favourited
+        console.log(this.state.favourited)
+        this.state.favourited = !this.state.favourited
         this.render()
     }
 
     render() {
-        console.log(this.favourited)
+        console.log(this.state.favourited)
         return (
             <TouchableOpacity activeOpacity={0.5} onPress={() => {this.onPress}}>
                 <View style={[{
                             flexDirection: "row"
                         }]}>
-                    {this.favourited ? <MaterialCommunityIcons name="heart" color="white" size={39} style={styles.headerIcon}/> : <MaterialCommunityIcons name="heart-outline" color="white" size={39} style={styles.headerIcon}/>}
+                    {this.state.favourited ? <MaterialCommunityIcons name="heart" color="white" size={39} style={styles.headerIcon}/> : <MaterialCommunityIcons name="heart-outline" color="white" size={39} style={styles.headerIcon}/>}
                 </View>
             </TouchableOpacity>
         ) 

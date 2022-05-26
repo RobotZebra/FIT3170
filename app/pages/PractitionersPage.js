@@ -193,6 +193,7 @@ export function PractitionersPage() {
                 style={styles.searchBar}
                 onChangeText={onChangeSearch}
                 onSubmitEditing={searchText}
+                onBlur={searchText}
             />
         );
     };
