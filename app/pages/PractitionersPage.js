@@ -22,8 +22,6 @@ export function PractitionersPage() {
     const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Please fax initial referrals. For all subsequent queries about hospital\
     site allocation, please contact our maternity shared care coordinator\    (for shared care patients) or midwife manager of clinic."
     
-
-
     global.CONTENT = [
         {
             isExpanded: false,
