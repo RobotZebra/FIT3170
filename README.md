@@ -21,3 +21,6 @@ Kieran Moran
 Karan Luthra
 Jason Marshall
 Elysia Giannis
+
+# Important Notes
+Check https://firebase.google.com/docs/web/setup for using different firebase features.
