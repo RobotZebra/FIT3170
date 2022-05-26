@@ -72,6 +72,13 @@ const LoginScreen = ({ navigation }) =>  {
                     onChangeText={ (text) => { getUserInput(text, 'password'); }}
                 />
 
+                <Text 
+                    style={styles.resetPasswordInfo}
+                    onPress={() => { navigation.navigate('Reset');}}
+                >
+                    Forgot your password?
+                </Text>
+
                 <TouchableOpacity 
                     style={[styles.modalButton, styles.loginButton]} 
                     activeOpacity='0.5'
@@ -101,19 +108,6 @@ const LoginScreen = ({ navigation }) =>  {
                     <Text style={styles.buttonText}> Register Now</Text> 
                 </TouchableOpacity>
             </View>
-
-            <View>
-                <Text style={styles.resetPasswordInfo}>
-                    Forgot your password?
-                </Text>
-                <TouchableOpacity 
-                    style={[styles.modalButton, styles.resetButton]} 
-                    onPress={() => { navigation.navigate('Reset'); }} 
-                    activeOpacity='0.5'
-                >
-                    <Text style={styles.buttonText}>Reset</Text>
-                </TouchableOpacity>
-            </View>
         </View>
     </TouchableWithoutFeedback>
     )
@@ -141,7 +135,7 @@ const styles = StyleSheet.create({
     modalWindow: {
         position: 'absolute',
         alignItems: 'center',
-        height: vh(55),
+        height: vh(58),
         top: vh(25),
         width: "84%",
 
@@ -198,29 +192,24 @@ const styles = StyleSheet.create({
     },
     newUserInfo: {
         right: vw(21),
-        top: vh(83.7),
+        top: vh(90.5),
         
         color: colors.secondary,
         fontWeight: 'bold',
     },
     registerButton: {
-        top: vh(82), 
+        top: vh(89), 
         left: vw(25),
 
         paddingHorizontal: vw(6),
     },
     resetPasswordInfo: {
-        right: vw(21),
-        top: vh(89.5),
+        alignSelf: 'baseline',
+        left: vw(9),
+        top: vh(32.3),
 
         color: colors.secondary,
         fontWeight: 'bold'
-    },
-    resetButton: {
-        top: vh(88), 
-        left: vw(32),
-
-        paddingHorizontal: vw(6),
     },
 })
 
