@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import { colors } from "../styling/appTheme";
 import { vw, vh } from 'react-native-expo-viewport-units'; 
-import firebaseApp from '../../src/firebase/config';
 import { getAuth , signInWithEmailAndPassword } from '@firebase/auth';
 
 const LoginScreen = ({ navigation }) =>  {

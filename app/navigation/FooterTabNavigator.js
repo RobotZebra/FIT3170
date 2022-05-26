@@ -16,10 +16,6 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { NavigationContainer } from "@react-navigation/native";
-import firebaseApp from '../../src/firebase/config.js';
-import {useState, useEffect} from "react";
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 import SettingsStackNavigation from "./SettingsStackNavigation";
 
 const Tab = createBottomTabNavigator();
@@ -147,7 +143,7 @@ export default function MyTabs() {
 }
 //export default MyTabs;
 
-export default function BottomTabNavigator() {
+export function BottomTabNavigator() {
   return (
     // <NavigationContainer>
     <MyTabs />
