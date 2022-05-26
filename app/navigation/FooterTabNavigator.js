@@ -1,12 +1,10 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
-import HospitalTopBarNavigator from "./HospitalTopBarNavigator";
-import WikiTopBarNavigator from "./WikiTopBarNavigator";
-
-import { Entypo } from "@expo/vector-icons";
-
+import BodyTopBarNavigator from "./BodyTopBarNavigation";
+import HealthTopBarNavigator from "./HealthTopBarNavigation";
+import { NavigationContainer } from "@react-navigation/native";
 import firebaseApp from "../../src/firebase/config.js";
 import { useState, useEffect } from "react";
 import {
@@ -16,6 +14,8 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
+import SettingsStackNavigation from "./SettingsStackNavigation";
+
 const Tab = createBottomTabNavigator();
 
 function Settings() {
@@ -47,7 +47,7 @@ function Settings() {
   );
 }
 
-function MyHeader({ title, style }) {
+function DefaultHeader({ title, style }) {
   return (
     <View style={style}>
       <Text style={footerTabStyles.title}>{title}</Text>
@@ -55,7 +55,7 @@ function MyHeader({ title, style }) {
   );
 }
 
-function MyTabs() {
+export default function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -63,11 +63,12 @@ function MyTabs() {
         activeTintColor: "#91298D",
         tabBarIndicatorStyle: { backgroundColor: "#91298D" },
         tabBarActiveTintColor: "#91298D",
-        header: ({ route }) => {
+        tabBarHideOnKeyboard: true,
+        header: ({ navigation, route, options }) => {
           const title = route.name;
 
           return (
-            <MyHeader
+            <DefaultHeader
               title={title}
               style={{
                 fontFamily: "Roboto_400Regular",
@@ -124,11 +125,13 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsStackNavigation}
         options={{
           fontFamily: "Roboto_400Regular",
+          headerShown: false,
           tabBarLabel: "Settings",
-          tabBarIcon: ({ color }) => (
+          tabBarHideOnKeyboard: true,
+          tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
           ),
         }}
@@ -136,29 +139,3 @@ function MyTabs() {
     </Tab.Navigator>
   );
 }
-//export default MyTabs;
-
-export default function BottomTabNavigator() {
-  return (
-    // <NavigationContainer>
-    <MyTabs />
-    // </NavigationContainer>
-  );
-}
-
-const footerTabStyles = StyleSheet.create({
-  heading: {
-    alignItems: "center",
-    flex: 1,
-    height: 200,
-  },
-  title: {
-    color: "white",
-    fontSize: 25,
-    textAlign: "center",
-    fontFamily: "Roboto_500Medium",
-    fontWeight: "500",
-    fontSize: 25,
-    paddingTop: 30,
-  },
-});
