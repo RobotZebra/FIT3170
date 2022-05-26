@@ -3,7 +3,6 @@ import { Text, TextInput, View, StyleSheet, SafeAreaView, ScrollView, TouchableO
   LayoutAnimation, UIManager, Platform, Button, Linking } from "react-native";
 import { Searchbar } from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import FavouriteButton from "../components/FavouriteButton"
 import firebaseApp from "../../src/firebase/config.js";
 import {
     getFirestore,
@@ -112,7 +111,6 @@ export function PractitionersPage() {
                             {item.category_name}
                         </Text>
                     
-                    <FavouriteButton favourited={item.favourited}></FavouriteButton>
                     </View>
                 </TouchableOpacity>
                 <View
