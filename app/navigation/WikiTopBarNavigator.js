@@ -12,6 +12,7 @@ export default function WikiTopBarNavigator() {
       initialRouteName="Baby"
       screenOptions={{
         activeTintColor: "#91298D",
+        tabBarIndicatorStyle: { backgroundColor: "#91298D" },
         labelStyle: { fontSize: 12 },
         style: { backgroundColor: "white" },
         indicatorStyle: { backgroundColor: "#91298D" },
