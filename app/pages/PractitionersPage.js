@@ -5,6 +5,8 @@ import { Searchbar } from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FavouriteButton from "../components/FavouriteButton"
 import firebaseApp from "../../src/firebase/config.js";
+import { AppState } from 'react-native'
+
 import {
     getFirestore,
     collection,
@@ -25,13 +27,13 @@ export function PractitionersPage() {
     
 
 
-    global.CONTENT = [
+    const CONTENT = [
         {
             isExpanded: false,
             favourited: true,
-            category_name: MATERNITY_KEY_CONTACTS,
+            category_name: SPECIALIST_OBSTETRICIAN_CONTACTS,
             subcategory: [
-                {id: 1, val: 'Description', descriptionVal: MATERNITY_KEY_CONTACTS_TEXT},
+                {id: 1, val: 'Description', descriptionVal: SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT},
                 {id: 2, val: 'Call'},
                 {id: 3, val: 'Email', email: "example@gmail.com"},
                 {id: 4, val: 'Fax'},
@@ -39,7 +41,7 @@ export function PractitionersPage() {
         }
     ];
 
-    global.filteredPracititoners = global.CONTENT
+    var FILTERED_CONTENT = CONTENT
 
     useEffect(async () => {
         
@@ -50,7 +52,7 @@ export function PractitionersPage() {
         
         querySnapshot.forEach((doc) => {
             data = doc.data()
-            global.CONTENT.push({
+            CONTENT.push({
             isExapnded: false,
             favourited: false,
             category_name: data.name,
@@ -61,7 +63,6 @@ export function PractitionersPage() {
             ]
           });
         });
-        console.log(global.CONTENT);
     }, []);
 
     const openGmail = () => {
@@ -138,7 +139,7 @@ export function PractitionersPage() {
             </View>
         )
     }
-    const [listDataSource, setListDataSource] = useState(filteredPracititoners);
+    const [listDataSource, setListDataSource] = useState(FILTERED_CONTENT);
 
     const updateLayout = (index) => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -155,35 +156,41 @@ export function PractitionersPage() {
         UIManager.setLayoutAnimationEnabledExperimental(true);
     }
 
-    global.searchQuery = ""
+    const searchText = (query) => {
+        let text = query.toLowerCase()//global.searchQuery.toLowerCase()
+        var filteredPracititoners
+        if (text != "" && text != null) {
+
+            let practitioners = CONTENT
+            filteredPracititoners = practitioners.filter(
+                practitioner => {
+                    return (
+                        practitioner
+                        .category_name
+                        .toLowerCase()
+                        .includes(text)
+                    );
+                }
+            );
+            
+        } else {
+            filteredPracititoners = CONTENT
+        }
+        console.log(filteredPracititoners)
+        console.log("global" )
+        console.log(CONTENT)
+
+        setListDataSource(filteredPracititoners)
+    }
+
+    
 
     const SearchBar = () => {
         const [searchQuery, setSearchQuery] = React.useState('');
 
-        const onChangeSearch = query => setSearchQuery(query);
-
-
-        const searchText = () => {
-            // let text = global.searchQuery.toLowerCase()
-            let text = searchQuery.toLowerCase()
-            if (text != "" && text != null) {
-                let practitioners = global.CONTENT
-                const filteredPracititoners = practitioners.filter(
-                    practitioner => {
-                        return (
-                            practitioner
-                            .category_name
-                            .toLowerCase()
-                            .includes(text)
-                        );
-                    }
-                );
-                console.log(filteredPracititoners)
-                setListDataSource(filteredPracititoners)
-            } else {
-                setListDataSource(global.CONTENT)
-            }
-            
+        const onChangeSearch = (query) => {
+            setSearchQuery(query);
+            searchText(query)
         }
 
         return (
@@ -192,8 +199,6 @@ export function PractitionersPage() {
                 value={searchQuery}
                 style={styles.searchBar}
                 onChangeText={onChangeSearch}
-                onSubmitEditing={searchText}
-                onBlur={searchText}
             />
         );
     };
