@@ -21,7 +21,8 @@ import LoginScreen from "./app/pages/LoginScreen";
 import RegisterScreen from "./app/pages/RegisterScreen";
 import ResetPasswordScreen from "./app/pages/ResetPasswordScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RootSiblingParent } from 'react-native-root-siblings';
+import { RootSiblingParent } from "react-native-root-siblings";
+import { NavigationContainer } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,7 +50,7 @@ export default function App() {
     <SafeAreaProvider>
       <RootSiblingParent>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="Reset" component={ResetPasswordScreen} />

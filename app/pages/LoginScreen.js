@@ -44,111 +44,120 @@ const LoginScreen = ({ navigation }) => {
   return (
     // dismiss keyboard when clicked outside any input field
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.pageStyling}>
-        <View style={styles.upperPortion}></View>
+      <View>
+        <View style={styles.pageStyling}>
+          <View style={styles.upperPortion}></View>
 
-        {/* render the floating modal window containing the form for logging in */}
-        <View style={styles.modalWindow}>
-          <View style={styles.imageArea}>
-            <Image
-              style={{ width: "100%" }}
-              source={require("../../assets/monashlogo.png")}
-              resizeMode="contain"
+          {/* render the floating modal window containing the form for logging in */}
+          <View style={styles.modalWindow}>
+            <View style={styles.imageArea}>
+              <Image
+                style={{ width: "100%" }}
+                source={require("../../assets/monashlogo.png")}
+                resizeMode="contain"
+              />
+            </View>
+
+            {/*  render text fields for login pass with support for using saved passwords on the device */}
+            <TextInput
+              placeholder="Email"
+              placeholderTextColor="grey"
+              style={[styles.modalField, styles.emailField]}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              textContentType="emailAddress"
+              autoComplete="email"
+              onChangeText={(text) => {
+                getUserInput(text, "email");
+              }}
             />
+            <TextInput
+              placeholder="Password"
+              placeholderTextColor="grey"
+              style={[styles.modalField, styles.passwordField]}
+              autoCapitalize="none"
+              textContentType="password"
+              secureTextEntry
+              autoComplete="password"
+              onChangeText={(text) => {
+                getUserInput(text, "password");
+              }}
+            />
+
+            <TouchableOpacity
+              style={[styles.modalButton, styles.loginButton]}
+              activeOpacity="0.5"
+              onPress={() => handleSignIn()}
+            >
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+
+            {/*  render text fields for login pass with support for using saved passwords on the device */}
+            <TextInput
+              placeholder="Email"
+              placeholderTextColor="grey"
+              style={[styles.modalField, styles.emailField]}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              textContentType="emailAddress"
+              autoComplete="email"
+              onChangeText={(text) => {
+                getUserInput(text, "email");
+              }}
+            />
+            <TextInput
+              placeholder="Password"
+              placeholderTextColor="grey"
+              style={[styles.modalField, styles.passwordField]}
+              autoCapitalize="none"
+              textContentType="password"
+              secureTextEntry
+              autoComplete="password"
+              onChangeText={(text) => {
+                getUserInput(text, "password");
+              }}
+            />
+
+            <Text
+              style={styles.resetPasswordInfo}
+              onPress={() => {
+                navigation.navigate("Reset");
+              }}
+            >
+              Forgot your password?
+            </Text>
+
+            <TouchableOpacity
+              style={[styles.modalButton, styles.loginButton]}
+              activeOpacity="0.5"
+              onPress={() => handleSignIn()}
+            >
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.modalButton, styles.guestButton]}
+              onPress={() => {
+                navigation.navigate("Dashboard");
+              }}
+              activeOpacity="0.5"
+            >
+              <Text style={styles.buttonText}>Continue as Guest</Text>
+            </TouchableOpacity>
           </View>
 
-          {/*  render text fields for login pass with support for using saved passwords on the device */}
-          <TextInput
-            placeholder="Email"
-            placeholderTextColor="grey"
-            style={[styles.modalField, styles.emailField]}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            textContentType="emailAddress"
-            autoComplete="email"
-            onChangeText={(text) => {
-              getUserInput(text, "email");
-            }}
-          />
-          <TextInput
-            placeholder="Password"
-            placeholderTextColor="grey"
-            style={[styles.modalField, styles.passwordField]}
-            autoCapitalize="none"
-            textContentType="password"
-            secureTextEntry
-            autoComplete="password"
-            onChangeText={(text) => {
-              getUserInput(text, "password");
-            }}
-          />
-
-          <TouchableOpacity
-            style={[styles.modalButton, styles.loginButton]}
-            activeOpacity="0.5"
-            onPress={() => handleSignIn()}
-          >
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-
-                {/*  render text fields for login pass with support for using saved passwords on the device */}
-                <TextInput 
-                    placeholder='Email' 
-                    placeholderTextColor="grey" 
-                    style={[styles.modalField, styles.emailField]} 
-                    keyboardType='email-address' 
-                    autoCapitalize='none' 
-                    textContentType='emailAddress' 
-                    autoComplete='email'
-                    onChangeText={ (text) => { getUserInput(text, 'email'); }}
-                />
-                <TextInput 
-                    placeholder='Password' 
-                    placeholderTextColor="grey" 
-                    style={[styles.modalField, styles.passwordField]} 
-                    autoCapitalize='none' 
-                    textContentType='password' 
-                    secureTextEntry 
-                    autoComplete='password'
-                    onChangeText={ (text) => { getUserInput(text, 'password'); }}
-                />
-
-                <Text 
-                    style={styles.resetPasswordInfo}
-                    onPress={() => { navigation.navigate('Reset');}}
-                >
-                    Forgot your password?
-                </Text>
-
-                <TouchableOpacity 
-                    style={[styles.modalButton, styles.loginButton]} 
-                    activeOpacity='0.5'
-                    onPress={() => handleSignIn()}
-                >
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
-                    style={[styles.modalButton, styles.guestButton]} 
-                    onPress={() => { navigation.navigate('Dashboard'); }} 
-                    activeOpacity='0.5'
-                >
-                    <Text style={styles.buttonText}>Continue as Guest</Text>
-                </TouchableOpacity>
-            </View>
-
-            <View>
-                <Text style={styles.newUserInfo}>
-                    Don't have an account?
-                </Text>
-                <TouchableOpacity 
-                    style={[styles.modalButton, styles.registerButton]} 
-                    onPress={() => {  navigation.navigate('Register'); }} 
-                    activeOpacity='0.5'
-                >
-                    <Text style={styles.buttonText}> Register Now</Text> 
-                </TouchableOpacity>
-            </View>
+          <View>
+            <Text style={styles.newUserInfo}>Don't have an account?</Text>
+            <TouchableOpacity
+              style={[styles.modalButton, styles.registerButton]}
+              onPress={() => {
+                navigation.navigate("Register");
+              }}
+              activeOpacity="0.5"
+            >
+              <Text style={styles.buttonText}> Register Now</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View>
@@ -163,6 +172,7 @@ const LoginScreen = ({ navigation }) => {
             <Text style={styles.buttonText}> Register Now</Text>
           </TouchableOpacity>
         </View>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
@@ -182,16 +192,16 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
 
-        backgroundColor: colors.secondary,
-        borderBottomLeftRadius: 12,
-        borderBottomRightRadius: 12,
-    },
-    modalWindow: {
-        position: 'absolute',
-        alignItems: 'center',
-        height: vh(58),
-        top: vh(25),
-        width: "84%",
+    backgroundColor: colors.secondary,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+  },
+  modalWindow: {
+    position: "absolute",
+    alignItems: "center",
+    height: vh(58),
+    top: vh(25),
+    width: "84%",
 
     backgroundColor: "#D4BFE3",
     borderRadius: 16,
@@ -228,30 +238,30 @@ const styles = StyleSheet.create({
     position: "absolute",
     height: vh(6),
 
-        fontWeight: 'bold',
-    },
-    newUserInfo: {
-        right: vw(21),
-        top: vh(90.5),
-        
-        color: colors.secondary,
-        fontWeight: 'bold',
-    },
-    registerButton: {
-        top: vh(89), 
-        left: vw(25),
+    fontWeight: "bold",
+  },
+  newUserInfo: {
+    right: vw(21),
+    top: vh(90.5),
 
-        paddingHorizontal: vw(6),
-    },
-    resetPasswordInfo: {
-        alignSelf: 'baseline',
-        left: vw(9),
-        top: vh(32.3),
+    color: colors.secondary,
+    fontWeight: "bold",
+  },
+  registerButton: {
+    top: vh(89),
+    left: vw(25),
 
-        color: colors.secondary,
-        fontWeight: 'bold'
-    },
-})
+    paddingHorizontal: vw(6),
+  },
+  resetPasswordInfo: {
+    alignSelf: "baseline",
+    left: vw(9),
+    top: vh(32.3),
+
+    color: colors.secondary,
+    fontWeight: "bold",
+  },
+});
 
 //     color: colors.secondary,
 //     fontWeight: "bold",

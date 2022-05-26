@@ -2,9 +2,6 @@ import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
-import BodyTopBarNavigator from "./BodyTopBarNavigation";
-import HealthTopBarNavigator from "./HealthTopBarNavigation";
-import { NavigationContainer } from "@react-navigation/native";
 import firebaseApp from "../../src/firebase/config.js";
 import { useState, useEffect } from "react";
 import {
