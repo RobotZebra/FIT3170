@@ -7,7 +7,7 @@ import WikiTopBarNavigator from "./WikiTopBarNavigator";
 
 import { Entypo } from "@expo/vector-icons";
 
-import firebaseApp from "../../src/firebase/config.js";
+import firebaseApp from "../firebase/config";
 import { useState, useEffect } from "react";
 import {
   getFirestore,
@@ -68,7 +68,7 @@ export default function MyTabs() {
         tabBarHideOnKeyboard: true,
         header: ({ navigation, route, options }) => {
           const title = route.name;
-          
+
           return (
             <DefaultHeader
               title={title}
