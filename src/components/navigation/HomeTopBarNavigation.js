@@ -1,7 +1,7 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { MyPregnancyPage } from "../pages/MyPregnancyPage";
-import { AppointmentsPage } from "../pages/AppointmentsPage";
+import { MyPregnancyPage } from "../../pages/MyPregnancyPage";
+import { AppointmentsPage } from "../../pages/AppointmentsPage";
 
 const TopTab = createMaterialTopTabNavigator();
 

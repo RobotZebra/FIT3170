@@ -7,7 +7,7 @@ import WikiTopBarNavigator from "./WikiTopBarNavigator";
 
 import { Entypo } from "@expo/vector-icons";
 
-import firebaseApp from "../firebase/config";
+import firebaseApp from "../../firebase/config";
 import { useState, useEffect } from "react";
 import {
   getFirestore,
@@ -114,7 +114,7 @@ export default function MyTabs() {
           tabBarLabel: "Hospital",
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require("../../assets/MH-logo-grey.png")}
+              source={require("../../../assets/MH-logo-grey.png")}
               style={{
                 width: size,
                 height: size,

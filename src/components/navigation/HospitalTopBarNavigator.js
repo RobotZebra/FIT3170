@@ -1,7 +1,7 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { FacilitiesPage } from "../pages/FacilitiesPage";
-import { PractitionersPage } from "../pages/PractitionersPage";
+import { FacilitiesPage } from "../../pages/FacilitiesPage";
+import { PractitionersPage } from "../../pages/PractitionersPage";
 
 const TopTab = createMaterialTopTabNavigator();
 

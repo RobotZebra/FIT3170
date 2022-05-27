@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import BottomTabNavigator from "./src/navigation/FooterTabNavigator";
+import BottomTabNavigator from "./src/components/navigation/FooterTabNavigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   useFonts,
