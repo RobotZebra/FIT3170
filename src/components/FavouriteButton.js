@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+/**
+ * 
 const MATERNITY_KEY_CONTACTS = 'Maternity Services Key Contacts';
 const MATERNITY_KEY_CONTACTS_TEXT =
   'Please fax initial referrals. For all subsequent queries about hospital\
@@ -11,6 +13,7 @@ const SPECIALIST_OBSTETRICIAN_CONTACTS = 'Specialist Obstetrician Contacts';
 const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT =
   'Please fax initial referrals. For all subsequent queries about hospital\
     site allocation, please contact our maternity shared care coordinator    (for shared care patients) or midwife manager of clinic.';
+ */
 
 export default function FavouriteButton() {
   const [favourited, setFavourited] = useState(false);

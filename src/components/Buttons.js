@@ -1,6 +1,7 @@
+import React from 'react';
 import { View, Pressable, StyleSheet, Text } from 'react-native';
-import { PurpleContainer } from './Containers';
-import GlobalStyles from '../styles/GlobalStyles';
+import { PurpleContainer } from '~/components/Containers';
+import { GlobalStyles } from '~/styles/styles';
 
 export function PurpleButton(props) {
   const { onPress, title, width, height } = props;

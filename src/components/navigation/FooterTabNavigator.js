@@ -1,3 +1,4 @@
+import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -7,13 +8,19 @@ import WikiTopBarNavigator from './WikiTopBarNavigator';
 
 import { Entypo } from '@expo/vector-icons';
 
+/**
+ * 
 import firebaseApp from '../../firebase/config';
 import { useState, useEffect } from 'react';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
+ */
+
 import SettingsStackNavigation from './SettingsStackNavigation';
 
 const Tab = createBottomTabNavigator();
 
+/**
+ * 
 function Settings() {
   const [shopminders, setShopminders] = useState([]);
 
@@ -43,6 +50,8 @@ function Settings() {
   );
 }
 
+ */
+
 function DefaultHeader({ title, style }) {
   return (
     <View style={style}>
@@ -60,7 +69,7 @@ export default function MyTabs() {
         tabBarIndicatorStyle: { backgroundColor: '#91298D' },
         tabBarActiveTintColor: '#91298D',
         tabBarHideOnKeyboard: true,
-        header: ({ navigation, route, options }) => {
+        header: ({ route }) => {
           const title = route.name;
 
           return (
@@ -122,9 +131,7 @@ export default function MyTabs() {
           headerShown: false,
           tabBarLabel: 'Settings',
           tabBarHideOnKeyboard: true,
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="cog" color={color} size={30} />
-          ),
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="cog" color={color} size={30} />,
         }}
       />
     </Tab.Navigator>
@@ -152,7 +159,6 @@ const footerTabStyles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Roboto_500Medium',
     fontWeight: '500',
-    fontSize: 25,
     paddingTop: 30,
   },
 });

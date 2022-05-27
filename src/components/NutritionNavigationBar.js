@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-function NavigationBar(props) {
+function NavigationBar() {
   return (
     <View style={styles.buttonSection}>
       <View style={styles.buttonClicked}>
