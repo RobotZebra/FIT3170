@@ -15,7 +15,7 @@ export function SettingsHomePage({ navigation }) {
         <UserBanner profileImageUrl={auth.currentUser?.photoURL} username={settingsHomePageOperations.getUsername()} />
 
         <View style={{ display: "flex", justifyContent: "center", width: "100%", height: 140, paddingHorizontal: 20, borderBottomColor: "lightgrey", borderBottomWidth: 1, marginBottom: 20 }}>
-          <ChevronButton text="Account Settings" isDisabled={!settingsHomePageOperations.isAccountSettingsAccessable()} onPress={() => navigation.navigate('AccountSettings')} />
+          <ChevronButton text="Account Settings" isDisabled={!settingsHomePageOperations.isAccountSettingsAccessable()} /*onPress={() => navigation.navigate('AccountSettings')}*/ />
           <ChevronButton text="Edit Profile" isDisabled={!settingsHomePageOperations.isEditProfileAccessable()} onPress={() => navigation.navigate('EditProfile')} />
           <ChevronButton text="Change Password" isDisabled={!settingsHomePageOperations.isChangePasswordAccessable()} onPress={() => navigation.navigate('ChangePassword')} />
         </View>
