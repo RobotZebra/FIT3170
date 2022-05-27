@@ -1,10 +1,10 @@
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 export function VisualisationOfBaby() {
   // Hard-coded for now
-  const visualisationHeading = "Your baby is the size of";
-  const description = "A lime";
+  const visualisationHeading = 'Your baby is the size of';
+  const description = 'A lime';
   return (
     <View style={styles.container}>
       <View style={styles.visualisationContainer}>
@@ -12,7 +12,7 @@ export function VisualisationOfBaby() {
           <Text style={styles.title1}>{visualisationHeading}</Text>
         </View>
       </View>
-      <Image style={styles.logo} source={require("../../assets/lime.jpg")} />
+      <Image style={styles.logo} source={require('../../assets/lime.jpg')} />
       <View style={styles.visualisationContainer}>
         <View style={styles.information}>
           <Text style={styles.title2}>{description}</Text>
@@ -29,33 +29,33 @@ const styles = StyleSheet.create({
   visualisationContainer: {
     flex: 0.6,
     padding: 15,
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   information: {
     flex: 0.8,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   descriptionContainer: {
     flex: 1,
     padding: 15,
   },
   title1: {
-    color: "black",
-    textAlign: "center",
+    color: 'black',
+    textAlign: 'center',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   title2: {
-    color: "black",
-    textAlign: "center",
+    color: 'black',
+    textAlign: 'center',
     fontSize: 20,
   },
   logo: {
     width: 200,
     height: 200,
     borderRadius: 1000,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
 });
 

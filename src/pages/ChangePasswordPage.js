@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import React, { useState } from 'react';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   TouchableWithoutFeedback,
   Keyboard,
@@ -7,41 +7,38 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-} from "react-native";
-import { colors } from "../styles/styles";
-import { vh } from "react-native-expo-viewport-units";
-import { updatePassword, EmailAuthProvider } from "firebase/auth";
-import Toast from "react-native-root-toast";
+} from 'react-native';
+import { colors } from '../styles/styles';
+import { vh } from 'react-native-expo-viewport-units';
+import { updatePassword, EmailAuthProvider } from 'firebase/auth';
+import Toast from 'react-native-root-toast';
 
 export function ChangePasswordPageHeader(props) {
   return (
     <View
       style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
         paddingTop: 50,
         paddingLeft: 20,
         backgroundColor: colors.secondary,
-      }}
-    >
+      }}>
       <MaterialCommunityIcons
         name="chevron-left"
-        color={"white"}
+        color={'white'}
         size={30}
         style={{ marginRight: 20 }}
         onPress={() => props?.navigation?.goBack()}
       />
       <MaterialCommunityIcons
         name="account-key"
-        color={"white"}
+        color={'white'}
         size={30}
         style={{ marginRight: 20 }}
       />
-      <Text style={{ color: "white", fontSize: 22, fontWeight: "bold" }}>
-        Change Password
-      </Text>
+      <Text style={{ color: 'white', fontSize: 22, fontWeight: 'bold' }}>Change Password</Text>
     </View>
   );
 }
@@ -54,10 +51,10 @@ export function ChangePasswordPage({ navigation }) {
       const isSuccessful = await changePasswordPageOperations.updatePassword();
       isSuccessful
         ? (() => {
-            Toast.show("Password updated sucessfully.");
+            Toast.show('Password updated sucessfully.');
             changePasswordPageOperations.resetData();
           })()
-        : Toast.show("Password failed to update.");
+        : Toast.show('Password failed to update.');
     })();
   };
 
@@ -65,36 +62,29 @@ export function ChangePasswordPage({ navigation }) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View
         style={{
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          width: "100%",
-          height: "100%",
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          height: '100%',
           paddingTop: 30,
-        }}
-      >
+        }}>
         <PurpleBackdrop />
         <Card>
-          <View
-            style={{ display: "flex", alignItems: "center", width: "100%" }}
-          >
+          <View style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
             <PasswordTextBox
-              placeholder={"Enter Old Password"}
+              placeholder={'Enter Old Password'}
               value={changePasswordPageOperations.oldPwdState[0]}
-              onChange={(oldPwd) =>
-                changePasswordPageOperations.oldPwdState[1](oldPwd)
-              }
+              onChange={(oldPwd) => changePasswordPageOperations.oldPwdState[1](oldPwd)}
             />
             <PasswordTextBox
-              placeholder={"Enter New Password"}
+              placeholder={'Enter New Password'}
               value={changePasswordPageOperations.newPwdState[0]}
-              onChange={(newPwd) =>
-                changePasswordPageOperations.newPwdState[1](newPwd)
-              }
+              onChange={(newPwd) => changePasswordPageOperations.newPwdState[1](newPwd)}
             />
           </View>
           <PrimaryButton
-            text={"Confirm"}
+            text={'Confirm'}
             onPress={() => handleOnSubmit()}
             isDisabled={changePasswordPageOperations.isNewPwdInvalid()}
           />
@@ -108,11 +98,11 @@ function PurpleBackdrop() {
   return (
     <View
       style={{
-        position: "absolute",
+        position: 'absolute',
         top: 0,
         left: 0,
-        display: "flex",
-        width: "100%",
+        display: 'flex',
+        width: '100%',
         height: vh(35),
         backgroundColor: colors.secondary,
         paddingTop: 50,
@@ -127,21 +117,20 @@ function Card({ children }) {
   return (
     <View
       style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-evenly",
-        width: "90%",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        width: '90%',
         height: vh(45),
-        backgroundColor: "white",
+        backgroundColor: 'white',
         borderWidth: 0,
         borderRadius: 20,
         elevation: 2,
-        shadowColor: "black",
+        shadowColor: 'black',
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
         shadowRadius: 3,
-      }}
-    >
+      }}>
       {children}
     </View>
   );
@@ -153,12 +142,12 @@ function PasswordTextBox({ placeholder, value, onChange }) {
       placeholder={placeholder}
       placeholderTextColor="grey"
       style={{
-        width: "84%",
+        width: '84%',
         height: 50,
         backgroundColor: colors.primary,
         padding: 10,
         borderWidth: 1,
-        borderColor: "lightgrey",
+        borderColor: 'lightgrey',
         borderRadius: 2,
         margin: 5,
       }}
@@ -175,19 +164,18 @@ function PrimaryButton({ text, isDisabled, onPress }) {
   return (
     <TouchableOpacity
       activeOpacity="0.5"
-      {...(isDisabled ? { activeOpacity: "0.5", disabled: true } : {})}
+      {...(isDisabled ? { activeOpacity: '0.5', disabled: true } : {})}
       onPress={() => !isDisabled && onPress && onPress()}
       style={{
-        width: "60%",
-        backgroundColor: isDisabled ? "lightgrey" : colors.tertiary,
+        width: '60%',
+        backgroundColor: isDisabled ? 'lightgrey' : colors.tertiary,
         paddingTop: 10,
         paddingRight: 20,
         paddingBottom: 10,
         paddingLeft: 20,
         borderRadius: 10,
-      }}
-    >
-      <Text style={{ color: "white", textAlign: "center" }}>{text}</Text>
+      }}>
+      <Text style={{ color: 'white', textAlign: 'center' }}>{text}</Text>
     </TouchableOpacity>
   );
 }
@@ -196,23 +184,23 @@ class ChangePasswordPageOperations {
   constructor(user) {
     this.user = user;
 
-    this.oldPwdState = useState("");
-    this.newPwdState = useState("");
+    this.oldPwdState = useState('');
+    this.newPwdState = useState('');
   }
 
   isNewPwdInvalid() {
-    return this.newPwdState[0].replace(" ", "").length === 0;
+    return this.newPwdState[0].replace(' ', '').length === 0;
   }
 
   async resetData() {
-    this.oldPwdState[1]("");
-    this.newPwdState[1]("");
+    this.oldPwdState[1]('');
+    this.newPwdState[1]('');
   }
 
   async updatePassword() {
     if (!this.user) return false;
 
-    if (this.newPwdState[0].replace(" ", "").length === 0) return false;
+    if (this.newPwdState[0].replace(' ', '').length === 0) return false;
 
     try {
       await this.user.reauthenticateWithCredential(

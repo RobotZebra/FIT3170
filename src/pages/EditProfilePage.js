@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import React, { useState } from 'react';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   TouchableWithoutFeedback,
   Keyboard,
@@ -8,47 +8,42 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
-} from "react-native";
-import { colors } from "../styles/styles";
-import { vh } from "react-native-expo-viewport-units";
-import { auth, storage, storagePaths } from "../firebase/config";
-import {
-  updateProfile,
-  updateEmail,
-  sendEmailVerification,
-} from "firebase/auth";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
-import * as ImagePicker from "expo-image-picker";
-import uuid from "react-native-uuid";
+} from 'react-native';
+import { colors } from '../styles/styles';
+import { vh } from 'react-native-expo-viewport-units';
+import { auth, storage, storagePaths } from '../firebase/config';
+import { updateProfile, updateEmail, sendEmailVerification } from 'firebase/auth';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import * as ImagePicker from 'expo-image-picker';
+import uuid from 'react-native-uuid';
 
 export function EditProfilePageHeader(props) {
   return (
     <View
       style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
         paddingTop: 50,
         paddingLeft: 20,
         backgroundColor: colors.secondary,
-      }}
-    >
+      }}>
       <MaterialCommunityIcons
         name="chevron-left"
-        color={"white"}
+        color={'white'}
         size={30}
         style={{ marginRight: 20 }}
         onPress={() => props?.navigation?.goBack()}
       />
       <MaterialCommunityIcons
         name="account"
-        color={"white"}
+        color={'white'}
         size={30}
         style={{ marginRight: 20 }}
       />
-      <Text style={{ color: "white", fontSize: 22, fontWeight: "bold" }}>
-        {auth.currentUser?.displayName ?? "User"}
+      <Text style={{ color: 'white', fontSize: 22, fontWeight: 'bold' }}>
+        {auth.currentUser?.displayName ?? 'User'}
       </Text>
     </View>
   );
@@ -68,13 +63,10 @@ export function EditProfilePage({ navigation }) {
         editProfilePageOperations.updateEmail(),
       ]);
 
-      const isAllGood = results.reduce(
-        (output, current) => output && current,
-        true
-      );
+      const isAllGood = results.reduce((output, current) => output && current, true);
       isAllGood
-        ? Toast.show("Profile updated sucessfully.")
-        : Toast.show("Profile updated failed.");
+        ? Toast.show('Profile updated sucessfully.')
+        : Toast.show('Profile updated failed.');
     })();
   };
 
@@ -82,14 +74,13 @@ export function EditProfilePage({ navigation }) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View
         style={{
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          width: "100%",
-          height: "100%",
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          height: '100%',
           paddingTop: 30,
-        }}
-      >
+        }}>
         <PurpleBackdrop />
         <Card>
           <EditProfilePhotoSection
@@ -102,40 +93,27 @@ export function EditProfilePage({ navigation }) {
                 quality: 1,
               });
 
-              if (!result.cancelled)
-                editProfilePageOperations.profileImageUriState[1](result.uri);
+              if (!result.cancelled) editProfilePageOperations.profileImageUriState[1](result.uri);
             }}
           />
-          <View
-            style={{ display: "flex", alignItems: "center", width: "100%" }}
-          >
+          <View style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
             <TextBox
               placeholder="First Name"
               value={editProfilePageOperations.firstNameState[0]}
-              onChange={(fName) =>
-                editProfilePageOperations.firstNameState[1](fName)
-              }
+              onChange={(fName) => editProfilePageOperations.firstNameState[1](fName)}
             />
             <TextBox
               placeholder="Last Name"
               value={editProfilePageOperations.lastNameState[0]}
-              onChange={(lName) =>
-                editProfilePageOperations.lastNameState[1](lName)
-              }
+              onChange={(lName) => editProfilePageOperations.lastNameState[1](lName)}
             />
             <TextBox
               placeholder="Email"
               value={editProfilePageOperations.emailState[0]}
-              onChange={(email) =>
-                editProfilePageOperations.emailState[1](email)
-              }
+              onChange={(email) => editProfilePageOperations.emailState[1](email)}
             />
           </View>
-          <PrimaryButton
-            text={"Confirm"}
-            isDisabled={false}
-            onPress={() => handleOnSubmit()}
-          />
+          <PrimaryButton text={'Confirm'} isDisabled={false} onPress={() => handleOnSubmit()} />
         </Card>
       </View>
     </TouchableWithoutFeedback>
@@ -146,11 +124,11 @@ function PurpleBackdrop() {
   return (
     <View
       style={{
-        position: "absolute",
+        position: 'absolute',
         top: 0,
         left: 0,
-        display: "flex",
-        width: "100%",
+        display: 'flex',
+        width: '100%',
         height: vh(35),
         backgroundColor: colors.secondary,
         paddingTop: 50,
@@ -165,21 +143,20 @@ function Card({ children }) {
   return (
     <View
       style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-evenly",
-        width: "90%",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        width: '90%',
         minHeight: vh(65),
-        backgroundColor: "white",
+        backgroundColor: 'white',
         borderWidth: 0,
         borderRadius: 20,
         elevation: 2,
-        shadowColor: "black",
+        shadowColor: 'black',
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
         shadowRadius: 3,
-      }}
-    >
+      }}>
       {children}
     </View>
   );
@@ -189,19 +166,18 @@ function EditProfilePhotoSection({ uri, onPress }) {
   return (
     <View
       style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-      }}
-    >
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+      }}>
       {uri ? (
         <Image source={{ uri }} style={{ width: 50, height: 50 }} />
       ) : (
         <MaterialCommunityIcons
           name="account"
-          color={"black"}
+          color={'black'}
           size={50}
           style={{ marginRight: 20 }}
         />
@@ -217,9 +193,8 @@ function EditProfilePhotoSection({ uri, onPress }) {
           borderRadius: 10,
           marginLeft: 20,
         }}
-        onPress={() => onPress && onPress()}
-      >
-        <Text style={{ color: "white" }}>Edit Profile Photo</Text>
+        onPress={() => onPress && onPress()}>
+        <Text style={{ color: 'white' }}>Edit Profile Photo</Text>
       </TouchableOpacity>
     </View>
   );
@@ -231,12 +206,12 @@ function TextBox({ placeholder, value, onChange }) {
       placeholder={placeholder}
       placeholderTextColor="grey"
       style={{
-        width: "84%",
+        width: '84%',
         height: 50,
         backgroundColor: colors.primary,
         padding: 10,
         borderWidth: 1,
-        borderColor: "lightgrey",
+        borderColor: 'lightgrey',
         borderRadius: 2,
         margin: 5,
       }}
@@ -252,19 +227,18 @@ function PrimaryButton({ text, isDisabled, onPress }) {
   return (
     <TouchableOpacity
       activeOpacity="0.5"
-      {...(isDisabled ? { activeOpacity: "0.5", disabled: true } : {})}
+      {...(isDisabled ? { activeOpacity: '0.5', disabled: true } : {})}
       onPress={() => !isDisabled && onPress && onPress()}
       style={{
-        width: "60%",
-        backgroundColor: isDisabled ? "lightgrey" : colors.tertiary,
+        width: '60%',
+        backgroundColor: isDisabled ? 'lightgrey' : colors.tertiary,
         paddingTop: 10,
         paddingRight: 20,
         paddingBottom: 10,
         paddingLeft: 20,
         borderRadius: 10,
-      }}
-    >
-      <Text style={{ color: "white", textAlign: "center" }}>{text}</Text>
+      }}>
+      <Text style={{ color: 'white', textAlign: 'center' }}>{text}</Text>
     </TouchableOpacity>
   );
 }
@@ -289,16 +263,12 @@ class EditProfilePageOperations {
 
   setInitialData() {
     this.initialProfileImageUri = this.user?.photoURL;
-    [this.initialFName, this.initialLName] = this.user?.displayName?.split(
-      " ",
-      1
-    ) ?? ["", ""];
-    this.initialEmail = this.user?.email ?? "";
+    [this.initialFName, this.initialLName] = this.user?.displayName?.split(' ', 1) ?? ['', ''];
+    this.initialEmail = this.user?.email ?? '';
   }
 
   async updateProfileImageUrl() {
-    if (this.initialProfileImageUri === this.profileImageUriState[0])
-      return true;
+    if (this.initialProfileImageUri === this.profileImageUriState[0]) return true;
 
     const response = await fetch(this.profileImageUriState[0]);
     const blobImage = await response.blob();
@@ -312,10 +282,7 @@ class EditProfilePageOperations {
   }
 
   async updateDisplayName() {
-    if (
-      this.initialLName === this.firstNameState[0] &&
-      this.initialFName === this.lastNameState[0]
-    )
+    if (this.initialLName === this.firstNameState[0] && this.initialFName === this.lastNameState[0])
       return true;
 
     try {

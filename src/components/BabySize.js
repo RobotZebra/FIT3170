@@ -3,12 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 // import CircularProgress from 'react-native-circular-progress-indicator';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
-
 export function BabySize() {
   const [value, setValue] = useState(0);
   // Not sure how we are handling this yet:
   const pregnancyDayValue = 60;
-  const monthValue = Math.ceil(pregnancyDayValue / 30)
+  const monthValue = Math.ceil(pregnancyDayValue / 30);
   const averagePregnancyDuration = 280;
   const pregnancyRemainingTime = averagePregnancyDuration - pregnancyDayValue;
   const pregnancyProportion = (pregnancyDayValue / averagePregnancyDuration) * 100;
@@ -41,20 +40,16 @@ export function BabySize() {
         onAnimationComplete={() => console.log('onAnimationComplete')}
         backgroundColor="#563c5c"
         // style={{ borderColor: '#91298D', borderRadius: 500, backgroundColor: '#91298D' }}
-        rotation={0}
-      >
+        rotation={0}>
         {(fill) => (
           <View style={styles.innerCircle}>
-            <Text style={{ color: "#91298D", fontSize: 16 }}>
-              Month {monthValue}
-            </Text>
+            <Text style={{ color: '#91298D', fontSize: 16 }}>Month {monthValue}</Text>
 
-            <Text style={{ color: "#91298D", fontSize: 48, fontWeight: "bold"}}>
-              {Math.round(fill / pregnancyProportion * pregnancyRemainingTime)} Days Left
+            <Text style={{ color: '#91298D', fontSize: 48, fontWeight: 'bold' }}>
+              {Math.round((fill / pregnancyProportion) * pregnancyRemainingTime)} Days Left
             </Text>
           </View>
         )}
-
       </AnimatedCircularProgress>
     </View>
   );
@@ -74,5 +69,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-  }
+  },
 });

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Searchbar } from "react-native-paper";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import React, { useState, useEffect } from 'react';
+import { Searchbar } from 'react-native-paper';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
   Text,
@@ -14,46 +14,46 @@ import {
   Platform,
   Button,
   Linking,
-} from "react-native";
+} from 'react-native';
 
 export function FacilitiesPage() {
   const CONTENT = [
     {
       isExpanded: false,
-      category_name: "Monash Medical Center",
+      category_name: 'Monash Medical Center',
       subcategory: [
         {
           id: 1,
-          val: "Description",
+          val: 'Description',
           descriptionVal:
-            "Monash Medical Centre is a 640-bed teaching and research hospital of international standing providing a comprehensive range of specialist surgical, medical, allied health and mental health services to our community.",
+            'Monash Medical Centre is a 640-bed teaching and research hospital of international standing providing a comprehensive range of specialist surgical, medical, allied health and mental health services to our community.',
         },
         {
           id: 2,
-          val: "Directions",
-          lat: "-37.91428962054958",
-          long: "145.1319808081597",
-          label: "Monash",
+          val: 'Directions',
+          lat: '-37.91428962054958',
+          long: '145.1319808081597',
+          label: 'Monash',
         },
-        { id: 3, val: "Facility Map" },
-        { id: 4, val: "Call Hospital", number: "(03)95946666" },
-        { id: 5, val: "Feedback" },
+        { id: 3, val: 'Facility Map' },
+        { id: 4, val: 'Call Hospital', number: '(03)95946666' },
+        { id: 5, val: 'Feedback' },
       ],
     },
     {
       isExpanded: false,
-      category_name: "Monash Dandenong",
+      category_name: 'Monash Dandenong',
       subcategory: [
         {
           id: 1,
-          val: "Description",
+          val: 'Description',
           descriptionVal:
-            "Dandenong Hospital is a 520 bed acute hospital providing a wide range of health services to the people living and working in Dandenong and surrounding areas. ",
+            'Dandenong Hospital is a 520 bed acute hospital providing a wide range of health services to the people living and working in Dandenong and surrounding areas. ',
         },
-        { id: 2, val: "Directions" },
-        { id: 3, val: "Facility Map" },
-        { id: 4, val: "Call Hospital", number: "(03)95541000" },
-        { id: 5, val: "Feedback" },
+        { id: 2, val: 'Directions' },
+        { id: 3, val: 'Facility Map' },
+        { id: 4, val: 'Call Hospital', number: '(03)95541000' },
+        { id: 5, val: 'Feedback' },
       ],
     },
   ];
@@ -76,12 +76,11 @@ export function FacilitiesPage() {
         <View
           style={{
             height: layoutHeight,
-            overflow: "hidden",
-          }}
-        >
+            overflow: 'hidden',
+          }}>
           {item.subcategory.map((object, key) => (
             <View key={key} style={styles.content}>
-              <View style={{ paddingTop: 20, alignItems: "center" }}>
+              <View style={{ paddingTop: 20, alignItems: 'center' }}>
                 <FacilityComponents props={object} />
               </View>
 
@@ -98,17 +97,17 @@ export function FacilitiesPage() {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     const array = [...listDataSource];
     if (multiSelect) {
-      array[index]["isExpanded"] = !array[index]["isExpanded"];
+      array[index]['isExpanded'] = !array[index]['isExpanded'];
     } else {
       array.map((value, placeIndex) =>
         placeIndex === index
-          ? (array[placeIndex]["isExpanded"] = !array[placeIndex]["isExpanded"])
-          : (array[placeIndex]["isExpanded"] = false)
+          ? (array[placeIndex]['isExpanded'] = !array[placeIndex]['isExpanded'])
+          : (array[placeIndex]['isExpanded'] = false)
       );
     }
     setListDataSource(array);
   };
-  if (Platform.OS === "android") {
+  if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
 
@@ -116,8 +115,8 @@ export function FacilitiesPage() {
 
   const showInMapClicked = (props) => {
     const scheme = Platform.select({
-      ios: "maps:0,0?q=",
-      android: "geo:0,0?q=",
+      ios: 'maps:0,0?q=',
+      android: 'geo:0,0?q=',
     });
     const latLng = `${props.lat},${props.long}`;
     const label = props.label;
@@ -130,7 +129,7 @@ export function FacilitiesPage() {
   };
 
   const openGmail = () => {
-    Linking.openURL("mailto:support@example.com");
+    Linking.openURL('mailto:support@example.com');
   };
 
   const openPhone = (phoneNumber) => {
@@ -138,28 +137,26 @@ export function FacilitiesPage() {
   };
 
   const FacilityComponents = ({ props }) => {
-    if (props.val == "Description") {
+    if (props.val == 'Description') {
       var description = props.descriptionVal;
       return <Text style={styles.Text}>{description}</Text>;
     }
-    if (props.val == "Directions") {
+    if (props.val == 'Directions') {
       let valuesMaps = {
         lat: props.lat,
         long: props.long,
         label: props.label,
       };
-      return (
-        <ContactCardDirections mapVals={valuesMaps}></ContactCardDirections>
-      );
+      return <ContactCardDirections mapVals={valuesMaps}></ContactCardDirections>;
     }
-    if (props.val == "Call Hospital") {
+    if (props.val == 'Call Hospital') {
       return <ContactCardPhone number={props.number}></ContactCardPhone>;
     }
 
-    if (props.val == "Facility Map") {
+    if (props.val == 'Facility Map') {
       return <ContactFaciltyMap number={props.number}></ContactFaciltyMap>;
     }
-    if (props.val == "Feedback") {
+    if (props.val == 'Feedback') {
       return <ContactFeedback />;
     } else {
       return null;
@@ -172,9 +169,8 @@ export function FacilitiesPage() {
         activeOpacity={0.5}
         onPress={() => {
           showInMapClicked(mapVals);
-        }}
-      >
-        <View style={[{ flexDirection: "row" }]}>
+        }}>
+        <View style={[{ flexDirection: 'row' }]}>
           <Text style={styles.contactCardText}>Directions</Text>
 
           <View>
@@ -195,16 +191,14 @@ export function FacilitiesPage() {
         activeOpacity={0.5}
         onPress={() => {
           openPhone(number);
-        }}
-      >
+        }}>
         <View style={styles.contactCardLight}>
           <View
             style={[
               {
-                flexDirection: "row",
+                flexDirection: 'row',
               },
-            ]}
-          >
+            ]}>
             <Text style={styles.contactCardText}>Phone</Text>
 
             <View>
@@ -227,10 +221,9 @@ export function FacilitiesPage() {
         <View
           style={[
             {
-              flexDirection: "row",
+              flexDirection: 'row',
             },
-          ]}
-        >
+          ]}>
           <Text style={styles.contactCardText}>Facility Map</Text>
 
           <View>
@@ -251,7 +244,7 @@ export function FacilitiesPage() {
   // Function redirects user to the feedback form pf Monash Womens health
   async function openFeedbackURL() {
     const feedbackURL =
-      "https://forms.office.com/Pages/ResponsePage.aspx?id=Zs9y_YqG3U6PhI6Rphirf5jQsf3HpdFApCWZr5USPO1UMFJTVVExWFdMMk5NMVBZUEVCMUdHVzg2SS4u";
+      'https://forms.office.com/Pages/ResponsePage.aspx?id=Zs9y_YqG3U6PhI6Rphirf5jQsf3HpdFApCWZr5USPO1UMFJTVVExWFdMMk5NMVBZUEVCMUdHVzg2SS4u';
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(feedbackURL);
     if (supported) {
@@ -269,14 +262,10 @@ export function FacilitiesPage() {
         <View
           style={[
             {
-              flexDirection: "row",
+              flexDirection: 'row',
             },
-          ]}
-        >
-          <Text
-            style={styles.contactCardText}
-            onPress={() => openFeedbackURL()}
-          >
+          ]}>
+          <Text style={styles.contactCardText} onPress={() => openFeedbackURL()}>
             Give Feedback
           </Text>
 
@@ -296,16 +285,10 @@ export function FacilitiesPage() {
   }
 
   const SearchBar = () => {
-    const [searchQuery, setSearchQuery] = React.useState("");
+    const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = (query) => setSearchQuery(query);
 
-    return (
-      <Searchbar
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
-    );
+    return <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} />;
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -336,71 +319,71 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: "row",
+    flexDirection: 'row',
     padding: 10,
   },
   titleText: {
     flex: 1,
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   headerButton: {
-    textAlign: "center",
-    justifyContent: "center",
+    textAlign: 'center',
+    justifyContent: 'center',
     fontSize: 18,
   },
   item: {
-    backgroundColor: "purple",
+    backgroundColor: 'purple',
     padding: 20,
   },
   itemText: {
     fontSize: 16,
-    fontWeight: "500",
-    color: "white",
+    fontWeight: '500',
+    color: 'white',
   },
   content: {
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
   text: {
     fontSize: 13,
     padding: 20,
-    color: "black",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    textAlignVertical: "center",
+    color: 'black',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    textAlignVertical: 'center',
   },
   separator: {
     height: 0.5,
-    backgroundColor: "white",
-    width: "100%",
+    backgroundColor: 'white',
+    width: '100%',
   },
   contactCardLight: {
     width: 350,
     height: 60,
-    backgroundColor: "#91298D",
-    flexDirection: "column",
-    justifyContent: "space-around",
-    textAlign: "center",
-    textAlignVertical: "center",
+    backgroundColor: '#91298D',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    textAlign: 'center',
+    textAlignVertical: 'center',
     borderRadius: 25,
   },
 
   contactCardTextHeader: {
-    color: "white",
-    alignItems: "center",
-    justifyContent: "space-around",
+    color: 'white',
+    alignItems: 'center',
+    justifyContent: 'space-around',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 
   contactCardText: {
-    color: "white",
+    color: 'white',
     paddingTop: 8,
     paddingLeft: 51,
     flex: 1,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 16,
   },
   iconStyles: {

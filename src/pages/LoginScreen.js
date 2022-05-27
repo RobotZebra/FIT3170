@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   TouchableWithoutFeedback,
   Keyboard,
@@ -9,15 +9,15 @@ import {
   View,
   Image,
   Alert,
-} from "react-native";
-import { colors } from "../styles/styles";
-import { vw, vh } from "react-native-expo-viewport-units";
-import { getAuth, signInWithEmailAndPassword } from "@firebase/auth";
+} from 'react-native';
+import { colors } from '../styles/styles';
+import { vw, vh } from 'react-native-expo-viewport-units';
+import { getAuth, signInWithEmailAndPassword } from '@firebase/auth';
 
 const LoginScreen = ({ navigation }) => {
   const [inputs, setInput] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   // function to update user inputs
@@ -30,12 +30,12 @@ const LoginScreen = ({ navigation }) => {
 
   // Handling the login of the user
   const handleSignIn = () => {
-    if (inputs.email === "" && inputs.password === "") {
-      Alert.alert("Enter correct details.");
+    if (inputs.email === '' && inputs.password === '') {
+      Alert.alert('Enter correct details.');
     } else {
       signInWithEmailAndPassword(auth, inputs.email, inputs.password)
         .then((user) => {
-          navigation.navigate("Dashboard");
+          navigation.navigate('Dashboard');
         })
         .catch((error) => this.setState({ errorMessage: error.message }));
     }
@@ -51,8 +51,8 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.modalWindow}>
           <View style={styles.imageArea}>
             <Image
-              style={{ width: "100%" }}
-              source={require("../assets/monashlogo.png")}
+              style={{ width: '100%' }}
+              source={require('../assets/monashlogo.png')}
               resizeMode="contain"
             />
           </View>
@@ -67,7 +67,7 @@ const LoginScreen = ({ navigation }) => {
             textContentType="emailAddress"
             autoComplete="email"
             onChangeText={(text) => {
-              getUserInput(text, "email");
+              getUserInput(text, 'email');
             }}
           />
           <TextInput
@@ -79,34 +79,31 @@ const LoginScreen = ({ navigation }) => {
             secureTextEntry
             autoComplete="password"
             onChangeText={(text) => {
-              getUserInput(text, "password");
+              getUserInput(text, 'password');
             }}
           />
 
           <Text
             style={styles.resetPasswordInfo}
             onPress={() => {
-              navigation.navigate("Reset");
-            }}
-          >
+              navigation.navigate('Reset');
+            }}>
             Forgot your password?
           </Text>
 
           <TouchableOpacity
             style={[styles.modalButton, styles.loginButton]}
             activeOpacity="0.5"
-            onPress={() => handleSignIn()}
-          >
+            onPress={() => handleSignIn()}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[styles.modalButton, styles.guestButton]}
             onPress={() => {
-              navigation.navigate("Dashboard");
+              navigation.navigate('Dashboard');
             }}
-            activeOpacity="0.5"
-          >
+            activeOpacity="0.5">
             <Text style={styles.buttonText}>Continue as Guest</Text>
           </TouchableOpacity>
         </View>
@@ -116,10 +113,9 @@ const LoginScreen = ({ navigation }) => {
           <TouchableOpacity
             style={[styles.modalButton, styles.registerButton]}
             onPress={() => {
-              navigation.navigate("Register");
+              navigation.navigate('Register');
             }}
-            activeOpacity="0.5"
-          >
+            activeOpacity="0.5">
             <Text style={styles.buttonText}> Register Now</Text>
           </TouchableOpacity>
         </View>
@@ -133,11 +129,11 @@ export default LoginScreen;
 // stylesheet for the page
 const styles = StyleSheet.create({
   pageStyling: {
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1,
   },
   upperPortion: {
-    position: "absolute",
+    position: 'absolute',
     width: vw(100),
     height: vh(50),
     left: 0,
@@ -148,31 +144,31 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 12,
   },
   modalWindow: {
-    position: "absolute",
-    alignItems: "center",
+    position: 'absolute',
+    alignItems: 'center',
     height: vh(58),
     top: vh(25),
-    width: "84%",
+    width: '84%',
 
-    backgroundColor: "#D4BFE3",
+    backgroundColor: '#D4BFE3',
     borderRadius: 16,
 
     shadowOpacity: 0.1,
     shadowRadius: 16,
-    shadowColor: "#4B4B4B",
+    shadowColor: '#4B4B4B',
     shadowOffset: { width: 2, height: 2 },
   },
   imageArea: {
-    position: "absolute",
+    position: 'absolute',
 
     top: vh(4),
-    width: "84%",
+    width: '84%',
   },
   modalField: {
-    position: "absolute",
+    position: 'absolute',
     padding: vw(3),
     height: vh(6),
-    width: "84%",
+    width: '84%',
     backgroundColor: colors.primary,
     borderRadius: 2,
   },
@@ -183,34 +179,34 @@ const styles = StyleSheet.create({
     top: vh(25),
   },
   modalButton: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
 
-    position: "absolute",
+    position: 'absolute',
     height: vh(6),
 
     backgroundColor: colors.tertiary,
     borderRadius: vw(2),
   },
   loginButton: {
-    width: "50%",
+    width: '50%',
     bottom: vh(13),
   },
   guestButton: {
-    width: "60%",
+    width: '60%',
     bottom: vh(4),
   },
   buttonText: {
-    color: "white",
+    color: 'white',
 
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   newUserInfo: {
     right: vw(21),
     top: vh(90.5),
 
     color: colors.secondary,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   registerButton: {
     top: vh(89),
@@ -219,11 +215,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: vw(6),
   },
   resetPasswordInfo: {
-    alignSelf: "baseline",
+    alignSelf: 'baseline',
     left: vw(9),
     top: vh(32.3),
 
     color: colors.secondary,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });

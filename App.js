@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import BottomTabNavigator from "./src/components/navigation/FooterTabNavigator";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomTabNavigator from './src/components/navigation/FooterTabNavigator';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
   useFonts,
   Roboto_100Thin,
@@ -16,13 +16,13 @@ import {
   Roboto_700Bold_Italic,
   Roboto_900Black,
   Roboto_900Black_Italic,
-} from "@expo-google-fonts/roboto";
-import AppLoading from "expo-app-loading";
-import LoginScreen from "./src/pages/LoginScreen";
-import RegisterScreen from "./src/pages/RegisterScreen";
-import ResetPasswordScreen from "./src/pages/ResetPasswordScreen";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RootSiblingParent } from "react-native-root-siblings";
+} from '@expo-google-fonts/roboto';
+import AppLoading from 'expo-app-loading';
+import LoginScreen from './src/pages/LoginScreen';
+import RegisterScreen from './src/pages/RegisterScreen';
+import ResetPasswordScreen from './src/pages/ResetPasswordScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,8 +65,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

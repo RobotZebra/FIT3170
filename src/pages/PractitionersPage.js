@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -11,22 +11,22 @@ import {
   Platform,
   Button,
   Linking,
-} from "react-native";
-import { Searchbar } from "react-native-paper";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import firebaseApp from "../firebase/config.js";
-import { getFirestore, collection, query, getDocs } from "firebase/firestore";
+} from 'react-native';
+import { Searchbar } from 'react-native-paper';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import firebaseApp from '../firebase/config.js';
+import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
 
 export function PractitionersPage() {
-  const MATERNITY_KEY_CONTACTS = "Maternity Services Key Contacts";
+  const MATERNITY_KEY_CONTACTS = 'Maternity Services Key Contacts';
   const MATERNITY_KEY_CONTACTS_TEXT =
-    "Please fax initial referrals. For all subsequent queries about hospital\
+    'Please fax initial referrals. For all subsequent queries about hospital\
     site allocation, please contact our maternity shared care coordinator\
-    (for shared care patients) or midwife manager of clinic.";
-  const SPECIALIST_OBSTETRICIAN_CONTACTS = "Specialist Obstetrician Contacts";
+    (for shared care patients) or midwife manager of clinic.';
+  const SPECIALIST_OBSTETRICIAN_CONTACTS = 'Specialist Obstetrician Contacts';
   const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT =
-    "Please fax initial referrals. For all subsequent queries about hospital\
-    site allocation, please contact our maternity shared care coordinator    (for shared care patients) or midwife manager of clinic.";
+    'Please fax initial referrals. For all subsequent queries about hospital\
+    site allocation, please contact our maternity shared care coordinator    (for shared care patients) or midwife manager of clinic.';
 
   global.CONTENT = [
     {
@@ -36,18 +36,18 @@ export function PractitionersPage() {
       subcategory: [
         {
           id: 1,
-          val: "Description",
+          val: 'Description',
           descriptionVal: MATERNITY_KEY_CONTACTS_TEXT,
         },
-        { id: 2, val: "Call", phone: "0412345690" },
-        { id: 3, val: "Email", email: "example@gmail.com" },
+        { id: 2, val: 'Call', phone: '0412345690' },
+        { id: 3, val: 'Email', email: 'example@gmail.com' },
       ],
     },
   ];
 
   useEffect(async () => {
     const db = getFirestore(firebaseApp);
-    const q = query(collection(db, "practitioner-collection"));
+    const q = query(collection(db, 'practitioner-collection'));
 
     const querySnapshot = await getDocs(q);
 
@@ -58,16 +58,16 @@ export function PractitionersPage() {
         favourited: false,
         category_name: data.name,
         subcategory: [
-          { id: 1, val: "Description", descriptionVal: data.description },
-          { id: 2, val: "Call", phone: data.phone },
-          { id: 3, val: "Email", email: data.email },
+          { id: 1, val: 'Description', descriptionVal: data.description },
+          { id: 2, val: 'Call', phone: data.phone },
+          { id: 3, val: 'Email', email: data.email },
         ],
       });
     });
   }, []);
 
   const openGmail = () => {
-    Linking.openURL("mailto:support@example.com");
+    Linking.openURL('mailto:support@example.com');
   };
 
   const openPhone = (phoneNumber) => {
@@ -75,14 +75,12 @@ export function PractitionersPage() {
   };
 
   const PractitionerComponents = ({ props }) => {
-    if (props.val == "Description") {
+    if (props.val == 'Description') {
       var description = props.descriptionVal;
       return <Text style={styles.text}>{description}</Text>;
-    } else if (props.val == "Email") {
-      return (
-        <EmailButton style={styles.center} email={props.email}></EmailButton>
-      );
-    } else if (props.val == "Call") {
+    } else if (props.val == 'Email') {
+      return <EmailButton style={styles.center} email={props.email}></EmailButton>;
+    } else if (props.val == 'Call') {
       return <PhoneButton number={props.phone}></PhoneButton>;
     } else {
       return null;
@@ -106,10 +104,9 @@ export function PractitionersPage() {
           <View
             style={[
               {
-                flexDirection: "row",
+                flexDirection: 'row',
               },
-            ]}
-          >
+            ]}>
             <Text style={styles.itemText}>{item.category_name}</Text>
 
             {/* <FavouriteButton favourited={item.favourited}></FavouriteButton> */}
@@ -118,9 +115,8 @@ export function PractitionersPage() {
         <View
           style={{
             height: layoutHeight,
-            overflow: "hidden",
-          }}
-        >
+            overflow: 'hidden',
+          }}>
           {item.subcategory.map((object, key) => (
             <TouchableOpacity key={key} style={styles.content}>
               <PractitionerComponents props={object} />
@@ -138,27 +134,27 @@ export function PractitionersPage() {
     const array = [...listDataSource];
     array.map((value, placeIndex) =>
       placeIndex === index
-        ? (array[placeIndex]["isExpanded"] = !array[placeIndex]["isExpanded"])
-        : (array[placeIndex]["isExpanded"] = false)
+        ? (array[placeIndex]['isExpanded'] = !array[placeIndex]['isExpanded'])
+        : (array[placeIndex]['isExpanded'] = false)
     );
     setListDataSource(array);
   };
 
-  if (Platform.OS === "android") {
+  if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
 
-  global.searchQuery = "";
+  global.searchQuery = '';
 
   const SearchBar = () => {
-    const [searchQuery, setSearchQuery] = React.useState("");
+    const [searchQuery, setSearchQuery] = React.useState('');
 
     const onChangeSearch = (query) => setSearchQuery(query);
 
     const searchText = () => {
       // let text = global.searchQuery.toLowerCase()
       let text = searchQuery.toLowerCase();
-      if (text != "" && text != null) {
+      if (text != '' && text != null) {
         let practitioners = global.CONTENT;
         const filteredPracititoners = practitioners.filter((practitioner) => {
           return practitioner.category_name.toLowerCase().includes(text);
@@ -190,15 +186,13 @@ export function PractitionersPage() {
           activeOpacity={0.5}
           onPress={() => {
             favouriteContact(item);
-          }}
-        >
+          }}>
           <View
             style={[
               {
-                flexDirection: "row",
+                flexDirection: 'row',
               },
-            ]}
-          >
+            ]}>
             <MaterialCommunityIcons
               name="heart"
               color="white"
@@ -214,15 +208,13 @@ export function PractitionersPage() {
           activeOpacity={0.5}
           onPress={() => {
             favouriteContact(item);
-          }}
-        >
+          }}>
           <View
             style={[
               {
-                flexDirection: "row",
+                flexDirection: 'row',
               },
-            ]}
-          >
+            ]}>
             <MaterialCommunityIcons
               name="heart-outline"
               color="white"
@@ -247,16 +239,14 @@ export function PractitionersPage() {
         activeOpacity={0.5}
         onPress={() => {
           openPhone(number);
-        }}
-      >
+        }}>
         <View style={styles.button}>
           <View
             style={[
               {
-                flexDirection: "row",
+                flexDirection: 'row',
               },
-            ]}
-          >
+            ]}>
             <Text style={styles.contactCardText}>Phone</Text>
             <View>
               <MaterialCommunityIcons
@@ -278,16 +268,14 @@ export function PractitionersPage() {
         activeOpacity={0.5}
         onPress={() => {
           openGmail(email);
-        }}
-      >
+        }}>
         <View style={styles.button}>
           <View
             style={[
               {
-                flexDirection: "row",
+                flexDirection: 'row',
               },
-            ]}
-          >
+            ]}>
             <Text style={styles.contactCardText}>Email</Text>
 
             <MaterialCommunityIcons
@@ -327,58 +315,58 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   heading1: {
-    color: "#91298D",
-    fontFamily: "Roboto",
-    fontWeight: "bold",
+    color: '#91298D',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
     fontSize: 25,
     padding: 15,
   },
   header: {
-    flexDirection: "row",
+    flexDirection: 'row',
     padding: 10,
   },
   titleText: {
     flex: 1,
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   headerButton: {
-    textAlign: "center",
-    justifyContent: "center",
+    textAlign: 'center',
+    justifyContent: 'center',
     fontSize: 18,
   },
   item: {
-    backgroundColor: "purple",
+    backgroundColor: 'purple',
     padding: 20,
   },
   itemText: {
     fontSize: 16,
-    fontWeight: "500",
-    color: "white",
-    textAlignVertical: "center",
+    fontWeight: '500',
+    color: 'white',
+    textAlignVertical: 'center',
     paddingTop: 9,
   },
   content: {
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
   },
   text: {
     fontSize: 13,
     padding: 20,
-    color: "black",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    textAlignVertical: "center",
+    color: 'black',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    textAlignVertical: 'center',
   },
   separator: {
     height: 5,
-    backgroundColor: "white",
-    width: "100%",
+    backgroundColor: 'white',
+    width: '100%',
   },
   buttonIcon: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   headerIcon: {
     paddingLeft: 90,
@@ -386,37 +374,37 @@ const styles = StyleSheet.create({
   button: {
     width: 350,
     height: 60,
-    backgroundColor: "#91298D",
-    justifyContent: "space-around",
-    flexDirection: "column",
-    textAlign: "center",
-    textAlignVertical: "center",
+    backgroundColor: '#91298D',
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+    textAlign: 'center',
+    textAlignVertical: 'center',
     borderRadius: 25,
     padding: 10,
   },
   contactCardTextHeader: {
-    color: "white",
-    alignItems: "center",
-    justifyContent: "space-around",
+    color: 'white',
+    alignItems: 'center',
+    justifyContent: 'space-around',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   contactCardText: {
-    color: "white",
+    color: 'white',
     flex: 1,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 16,
     padding: 7,
     paddingLeft: 50,
   },
   center: {
-    alignItems: "center",
-    textAlign: "center",
-    alignContent: "center",
+    alignItems: 'center',
+    textAlign: 'center',
+    alignContent: 'center',
   },
   searchBar: {
     fontSize: 20,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     height: 40,
     paddingLeft: 20,
   },

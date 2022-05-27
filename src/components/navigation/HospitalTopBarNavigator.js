@@ -1,7 +1,7 @@
-import React from "react";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { FacilitiesPage } from "../../pages/FacilitiesPage";
-import { PractitionersPage } from "../../pages/PractitionersPage";
+import React from 'react';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { FacilitiesPage } from '../../pages/FacilitiesPage';
+import { PractitionersPage } from '../../pages/PractitionersPage';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -11,24 +11,23 @@ function MyTopTabs() {
     <TopTab.Navigator
       initialRouteName="Facilities"
       screenOptions={{
-        activeTintColor: "#91298D",
-        tabBarIndicatorStyle: { backgroundColor: "#91298D" },
+        activeTintColor: '#91298D',
+        tabBarIndicatorStyle: { backgroundColor: '#91298D' },
         labelStyle: { fontSize: 12 },
         // style: { backgroundColor: "white", marginTop: insets.top },
-        style: { backgroundColor: "white" },
-        indicatorStyle: { backgroundColor: "#91298D" },
-      }}
-    >
+        style: { backgroundColor: 'white' },
+        indicatorStyle: { backgroundColor: '#91298D' },
+      }}>
       <TopTab.Screen
         name="Facilities"
         component={FacilitiesPage}
-        options={{ tabBarLabel: "Facilities" }}
+        options={{ tabBarLabel: 'Facilities' }}
       />
 
       <TopTab.Screen
         name="Practitioners"
         component={PractitionersPage}
-        options={{ tabBarLabel: "Practitioners" }}
+        options={{ tabBarLabel: 'Practitioners' }}
       />
     </TopTab.Navigator>
   );
