@@ -62,7 +62,7 @@ const ResetPasswordScreen = ({ navigation }) => {
           <View style={styles.imageArea}>
             <Image
               style={{ width: "100%" }}
-              source={require("../../assets/monashlogo.png")}
+              source={require("../assets/monashlogo.png")}
               resizeMode="contain"
             />
           </View>

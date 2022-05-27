@@ -161,7 +161,7 @@ const RegisterScreen = ({ navigation }) => {
           <View style={styles.imageArea}>
             <Image
               style={{ width: "100%" }}
-              source={require("../../assets/monashlogo.png")}
+              source={require("../assets/monashlogo.png")}
               resizeMode="contain"
             />
           </View>
@@ -286,7 +286,7 @@ const RegisterScreen = ({ navigation }) => {
             )}
 
             <Image
-              source={require("../../assets/due_date_calendar_register_page.png")}
+              source={require("../assets/due_date_calendar_register_page.png")}
               style={{ width: 25, height: 25, flex: 0.2, marginLeft: vw(27) }}
               resizeMode="contain"
             />

@@ -114,7 +114,7 @@ export default function MyTabs() {
           tabBarLabel: "Hospital",
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require("../../../assets/MH-logo-grey.png")}
+              source={require("../../assets/MH-logo-grey.png")}
               style={{
                 width: size,
                 height: size,
