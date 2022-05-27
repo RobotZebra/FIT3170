@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import BottomTabNavigator from "./app/navigation/FooterTabNavigator";
+import BottomTabNavigator from "./src/navigation/FooterTabNavigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   useFonts,
@@ -18,9 +18,9 @@ import {
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
 import AppLoading from "expo-app-loading";
-import LoginScreen from "./app/pages/LoginScreen";
-import RegisterScreen from "./app/pages/RegisterScreen";
-import ResetPasswordScreen from "./app/pages/ResetPasswordScreen";
+import LoginScreen from "./src/pages/LoginScreen";
+import RegisterScreen from "./src/pages/RegisterScreen";
+import ResetPasswordScreen from "./src/pages/ResetPasswordScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootSiblingParent } from "react-native-root-siblings";
 
