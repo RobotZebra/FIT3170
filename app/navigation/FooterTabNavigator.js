@@ -16,6 +16,8 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
+import SettingsStackNavigation from "./SettingsStackNavigation";
+
 const Tab = createBottomTabNavigator();
 
 function Settings() {
@@ -47,7 +49,7 @@ function Settings() {
   );
 }
 
-function MyHeader({ title, style }) {
+function DefaultHeader({ title, style }) {
   return (
     <View style={style}>
       <Text style={footerTabStyles.title}>{title}</Text>
@@ -55,7 +57,7 @@ function MyHeader({ title, style }) {
   );
 }
 
-function MyTabs() {
+export default function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -63,11 +65,12 @@ function MyTabs() {
         activeTintColor: "#91298D",
         tabBarIndicatorStyle: { backgroundColor: "#91298D" },
         tabBarActiveTintColor: "#91298D",
-        header: ({ route }) => {
+        tabBarHideOnKeyboard: true,
+        header: ({ navigation, route, options }) => {
           const title = route.name;
-
+          
           return (
-            <MyHeader
+            <DefaultHeader
               title={title}
               style={{
                 fontFamily: "Roboto_400Regular",
@@ -124,11 +127,13 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsStackNavigation}
         options={{
           fontFamily: "Roboto_400Regular",
+          headerShown: false,
           tabBarLabel: "Settings",
-          tabBarIcon: ({ color }) => (
+          tabBarHideOnKeyboard: true,
+          tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
           ),
         }}
@@ -138,7 +143,7 @@ function MyTabs() {
 }
 //export default MyTabs;
 
-export default function BottomTabNavigator() {
+export function BottomTabNavigator() {
   return (
     // <NavigationContainer>
     <MyTabs />
