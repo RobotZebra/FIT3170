@@ -77,3 +77,6 @@ dist/
 # WebStorm files
 .idea/
 *.iml/
+
+# eslint
+.eslintcache
