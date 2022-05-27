@@ -7,7 +7,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint '**/*.js'"
+    "lint": "eslint '**/*.js' --fix"
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.2.2",
