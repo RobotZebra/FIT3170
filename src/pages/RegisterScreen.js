@@ -21,9 +21,7 @@ import {
 } from "@firebase/auth";
 import { doc, setDoc, getFirestore } from "@firebase/firestore";
 import firebaseApp from "../firebase/config";
-
-const emailRegex =
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+import { emailRegex } from "../constants/regex";
 
 const RegisterScreen = ({ navigation }) => {
   const [openPreg, setOpenPreg] = useState(false);
