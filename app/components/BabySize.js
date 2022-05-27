@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 // import CircularProgress from 'react-native-circular-progress-indicator';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
@@ -12,7 +12,7 @@ export function BabySize() {
   const averagePregnancyDuration = 280;
   const pregnancyRemainingTime = averagePregnancyDuration - pregnancyDayValue;
   const pregnancyProportion = (pregnancyDayValue / averagePregnancyDuration) * 100;
-  return (
+  return <>
     <View style={styles.container}>
       {/* <CircularProgress
         radius={120}
@@ -57,7 +57,15 @@ export function BabySize() {
 
       </AnimatedCircularProgress>
     </View>
-  );
+    <Image
+        style={styles.logo}
+        source={require('../../assets/purple-ruler.png')}
+    />
+    <Image
+         style={styles.logo}
+         source={require('../../assets/purple-scales.png')}
+    />
+  </>;
 }
 
 const styles = StyleSheet.create({
@@ -74,5 +82,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-  }
+  },
+  logo: {
+          width: 50,
+          height: 50,
+          borderRadius: 1000,
+          alignSelf: 'center',
+        }
 });
