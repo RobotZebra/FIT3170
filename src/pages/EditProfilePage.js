@@ -9,7 +9,7 @@ import {
   TextInput,
   Image,
 } from "react-native";
-import { colors } from "../styling/appTheme";
+import { colors } from "../styles/styles";
 import { vh } from "react-native-expo-viewport-units";
 import { auth, storage, storagePaths } from "../firebase/config";
 import {

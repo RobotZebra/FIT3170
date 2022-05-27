@@ -10,7 +10,7 @@ import {
   Image,
   Alert,
 } from "react-native";
-import { colors } from "../styling/appTheme";
+import { colors } from "../styles/styles";
 import { vw, vh } from "react-native-expo-viewport-units";
 import DropDownPicker from "react-native-dropdown-picker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";

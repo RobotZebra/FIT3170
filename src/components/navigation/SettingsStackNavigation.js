@@ -7,7 +7,7 @@ import {
   EditProfilePageHeader,
 } from "../../pages/EditProfilePage";
 import { View, Text } from "react-native";
-import { colors } from "../../styling/appTheme";
+import { colors } from "../../styles/styles";
 import {
   ChangePasswordPage,
   ChangePasswordPageHeader,
