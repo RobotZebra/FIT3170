@@ -9,7 +9,6 @@ import {
     getFirestore,
     collection,
     query,
-    where,
     getDocs,
   } from "firebase/firestore";
 
@@ -23,8 +22,6 @@ export function PractitionersPage() {
     const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT = "Please fax initial referrals. For all subsequent queries about hospital\
     site allocation, please contact our maternity shared care coordinator\    (for shared care patients) or midwife manager of clinic."
     
-
-
     global.CONTENT = [
         {
             isExpanded: false,
@@ -32,14 +29,11 @@ export function PractitionersPage() {
             category_name: MATERNITY_KEY_CONTACTS,
             subcategory: [
                 {id: 1, val: 'Description', descriptionVal: MATERNITY_KEY_CONTACTS_TEXT},
-                {id: 2, val: 'Call'},
-                {id: 3, val: 'Email', email: "example@gmail.com"},
-                {id: 4, val: 'Fax'},
+                {id: 2, val: 'Call', phone: '0412345690'},
+                {id: 3, val: 'Email', email: 'example@gmail.com'},
             ]
         }
     ];
-
-    global.filteredPracititoners = global.CONTENT
 
     useEffect(async () => {
         
@@ -61,7 +55,7 @@ export function PractitionersPage() {
             ]
           });
         });
-        console.log(global.CONTENT);
+        // console.log(global.CONTENT);
     }, []);
 
     const openGmail = () => {
@@ -78,11 +72,10 @@ export function PractitionersPage() {
             return(
                 <Text style={styles.text}>{description}</Text>
             )
-
         } else if (props.val == "Email") {
             return (<EmailButton style={styles.center} email = {props.email}></EmailButton>)
         } else if (props.val == "Call"){
-            return (<PhoneButton number = {props.number}></PhoneButton>)
+            return (<PhoneButton number = {props.phone}></PhoneButton>)
         } else {
             return null
         };
@@ -112,7 +105,7 @@ export function PractitionersPage() {
                             {item.category_name}
                         </Text>
                     
-                    <FavouriteButton favourited={item.favourited}></FavouriteButton>
+                    {/* <FavouriteButton favourited={item.favourited}></FavouriteButton> */}
                     </View>
                 </TouchableOpacity>
                 <View
@@ -127,9 +120,8 @@ export function PractitionersPage() {
                                 key = {key}
                                 style = {styles.content}
                                 >
-
-                                <PractitionerComponents props =  {object}/>
-                                <View style={styles.separator }/>
+                                <PractitionerComponents props={object}/>
+                                <View style={styles.separator}/>
 
                             </TouchableOpacity>
                         ))
@@ -138,7 +130,7 @@ export function PractitionersPage() {
             </View>
         )
     }
-    const [listDataSource, setListDataSource] = useState(filteredPracititoners);
+    const [listDataSource, setListDataSource] = useState(global.CONTENT);
 
     const updateLayout = (index) => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -273,6 +265,7 @@ export function PractitionersPage() {
 
     
 
+    console.log(global.CONTENT)
 
     return (
         <SafeAreaView style={styles.container}>
