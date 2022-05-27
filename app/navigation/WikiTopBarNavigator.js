@@ -15,6 +15,7 @@ export default function WikiTopBarNavigator() {
         labelStyle: { fontSize: 12 },
         style: { backgroundColor: "white" },
         indicatorStyle: { backgroundColor: "#91298D" },
+        tabBarIndicatorStyle: { backgroundColor: "#91298D" },
       }}
     >
       <TopTab.Screen
