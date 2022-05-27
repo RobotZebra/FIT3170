@@ -55,7 +55,6 @@ export function PractitionersPage() {
             ]
           });
         });
-        // console.log(global.CONTENT);
     }, []);
 
     const openGmail = () => {
