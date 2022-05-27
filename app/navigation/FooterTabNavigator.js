@@ -1,19 +1,28 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import NavigationBar from "../components/NutritionNavigationBar";
 import HomeTopBarNavigator from "./HomeTopBarNavigation";
-import BodyTopBarNavigator from "./BodyTopBarNavigation";
-import HealthTopBarNavigator from "./HealthTopBarNavigation";
-import { NavigationContainer } from "@react-navigation/native";
-import firebaseApp from '../../src/firebase/config.js';
-import {useState, useEffect} from "react";
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import HospitalTopBarNavigator from "./HospitalTopBarNavigator";
+import WikiTopBarNavigator from "./WikiTopBarNavigator";
+
+import { Entypo } from "@expo/vector-icons";
+
+import firebaseApp from "../../src/firebase/config.js";
+import { useState, useEffect } from "react";
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import SettingsStackNavigation from "./SettingsStackNavigation";
+
 const Tab = createBottomTabNavigator();
 
 function Settings() {
   const [shopminders, setShopminders] = useState([]);
-  
+
   useEffect(async () => {
     const db = getFirestore(firebaseApp);
     const q = query(collection(db, "test-collection"));
@@ -28,45 +37,47 @@ function Settings() {
     });
     setShopminders(objs);
     console.log(objs);
-  }, [])
-  return (<View>
-    {
-      shopminders.map((obj) => (
+  }, []);
+  return (
+    <View>
+      {shopminders.map((obj) => (
         <View key={obj.id}>
           <Text>{obj.name}</Text>
         </View>
-      ))
-    }
-  </View>);
-}
-
-function MyHeader({ title, style }) {
-  return (
-    <View style={style}>
-      <Text style={{ color: "white", fontSize: 25, textAlign: "center" }}>
-        {title}
-      </Text>
+      ))}
     </View>
   );
 }
 
-function MyTabs() {
+function DefaultHeader({ title, style }) {
+  return (
+    <View style={style}>
+      <Text style={footerTabStyles.title}>{title}</Text>
+    </View>
+  );
+}
+
+export default function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
+        activeTintColor: "#91298D",
+        tabBarIndicatorStyle: { backgroundColor: "#91298D" },
         tabBarActiveTintColor: "#91298D",
-        header: ({ route }) => {
+        tabBarHideOnKeyboard: true,
+        header: ({ navigation, route, options }) => {
           const title = route.name;
-
+          
           return (
-            <MyHeader
+            <DefaultHeader
               title={title}
               style={{
+                fontFamily: "Roboto_400Regular",
                 padding: 20,
                 backgroundColor: "#91298D",
                 color: "white",
-                height: 70,
+                height: 100,
               }}
             />
           );
@@ -77,6 +88,7 @@ function MyTabs() {
         name="Home"
         component={HomeTopBarNavigator}
         options={{
+          fontFamily: "Roboto_400Regular",
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={30} />
@@ -84,39 +96,44 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Body"
-        component={BodyTopBarNavigator}
+        name="Wiki"
+        component={WikiTopBarNavigator}
         options={{
-          tabBarLabel: "Body",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="weight-lifter"
-              color={color}
-              size={30}
-            />
+          fontFamily: "Roboto_400Regular",
+          tabBarLabel: "Wiki",
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="open-book" size={size} color={color} />
           ),
         }}
       />
       <Tab.Screen
-        name="Health"
-        component={HealthTopBarNavigator}
+        name="Hospital"
+        component={HospitalTopBarNavigator}
         options={{
-          tabBarLabel: "Health",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="hospital-box"
-              color={color}
-              size={30}
+          fontFamily: "Roboto_400Regular",
+          tabBarLabel: "Hospital",
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require("../../assets/MH-logo-grey.png")}
+              style={{
+                width: size,
+                height: size,
+                alignContent: "center",
+                tintColor: color,
+              }}
             />
           ),
         }}
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsStackNavigation}
         options={{
+          fontFamily: "Roboto_400Regular",
+          headerShown: false,
           tabBarLabel: "Settings",
-          tabBarIcon: ({ color }) => (
+          tabBarHideOnKeyboard: true,
+          tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="cog" color={color} size={30} />
           ),
         }}
@@ -126,10 +143,27 @@ function MyTabs() {
 }
 //export default MyTabs;
 
-export default function BottomTabNavigator() {
+export function BottomTabNavigator() {
   return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+    // <NavigationContainer>
+    <MyTabs />
+    // </NavigationContainer>
   );
 }
+
+const footerTabStyles = StyleSheet.create({
+  heading: {
+    alignItems: "center",
+    flex: 1,
+    height: 200,
+  },
+  title: {
+    color: "white",
+    fontSize: 25,
+    textAlign: "center",
+    fontFamily: "Roboto_500Medium",
+    fontWeight: "500",
+    fontSize: 25,
+    paddingTop: 30,
+  },
+});

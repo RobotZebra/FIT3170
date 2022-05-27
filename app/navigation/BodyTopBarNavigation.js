@@ -1,8 +1,5 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NutritionPage } from "../pages/NutritionPage";
 import { ComplicationsPage } from "../pages/ComplicationsPage";
 import { TestsPage } from "../pages/TestsPage";
@@ -14,8 +11,9 @@ function MyTopTabs() {
   return (
     <TopTab.Navigator
       initialRouteName="Nutrition"
-      tabBarOptions={{
+      screenOptions={{
         activeTintColor: "#91298D",
+        tabBarIndicatorStyle: { backgroundColor: "#91298D" },
         labelStyle: { fontSize: 12 },
         // style: { backgroundColor: "white", marginTop: insets.top },
         style: { backgroundColor: "white" },

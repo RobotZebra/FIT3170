@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "edu.monash.fit3170.monashhealthmobileapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +28,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "userInterfaceStyle": "automatic"
   }
 }
