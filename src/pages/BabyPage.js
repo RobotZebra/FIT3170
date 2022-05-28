@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropDown } from '../components/DropDown';
+import { DropDown } from '~/components/DropDown';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Animated, View, Text } from 'react-native';

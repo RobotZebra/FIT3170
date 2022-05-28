@@ -9,12 +9,11 @@ import {
   LayoutAnimation,
   UIManager,
   Platform,
-  Button,
   Linking,
 } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import firebaseApp from '../firebase/config.js';
+import firebaseApp from '~/firebase/config.js';
 import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
 
 export function PractitionersPage() {
@@ -23,10 +22,13 @@ export function PractitionersPage() {
     'Please fax initial referrals. For all subsequent queries about hospital\
     site allocation, please contact our maternity shared care coordinator\
     (for shared care patients) or midwife manager of clinic.';
+  /**
+     * 
   const SPECIALIST_OBSTETRICIAN_CONTACTS = 'Specialist Obstetrician Contacts';
   const SPECIALIST_OBSTETRICIAN_CONTACTS_TEXT =
     'Please fax initial referrals. For all subsequent queries about hospital\
     site allocation, please contact our maternity shared care coordinator    (for shared care patients) or midwife manager of clinic.';
+     */
 
   global.CONTENT = [
     {
@@ -52,7 +54,7 @@ export function PractitionersPage() {
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-      data = doc.data();
+      const data = doc.data();
       global.CONTENT.push({
         isExapnded: false,
         favourited: false,

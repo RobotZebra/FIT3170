@@ -9,13 +9,14 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-import { colors } from '../styles/styles';
+import { colors } from '~/styles/styles';
 import { vh } from 'react-native-expo-viewport-units';
 import { auth, storage, storagePaths } from '../firebase/config';
 import { updateProfile, updateEmail, sendEmailVerification } from 'firebase/auth';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { ref, uploadBytes } from 'firebase/storage';
 import * as ImagePicker from 'expo-image-picker';
 import uuid from 'react-native-uuid';
+import Toast from 'react-native-root-toast';
 
 export function EditProfilePageHeader(props) {
   return (
@@ -49,7 +50,7 @@ export function EditProfilePageHeader(props) {
   );
 }
 
-export function EditProfilePage({ navigation }) {
+export function EditProfilePage() {
   const editProfilePageOperations = new EditProfilePageOperations(
     auth.currentUser,
     getProfileImageRef

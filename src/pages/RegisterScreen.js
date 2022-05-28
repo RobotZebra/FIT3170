@@ -10,14 +10,14 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import { colors } from '../styles/styles';
+import { colors } from '~/styles/styles';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from '@firebase/auth';
 import { doc, setDoc, getFirestore } from '@firebase/firestore';
-import firebaseApp from '../firebase/config';
-import { emailRegex } from '../constants/regex';
+import firebaseApp from '~/firebase/config';
+import { emailRegex } from '~/constants/regex';
 
 const RegisterScreen = ({ navigation }) => {
   const [openPreg, setOpenPreg] = useState(false);
@@ -81,7 +81,7 @@ const RegisterScreen = ({ navigation }) => {
       Alert.alert('Enter correct details.');
     } else {
       createUserWithEmailAndPassword(auth, inputs.email, inputs.password)
-        .then((res) => {
+        .then(() => {
           sendEmailVerification(auth.currentUser);
           navigation.navigate('Login');
           addToDb();

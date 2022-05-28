@@ -1,9 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, Image } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { colors } from '../styles/styles';
+import { colors } from '~/styles/styles';
 import { vh } from 'react-native-expo-viewport-units';
-import { auth } from '../firebase/config';
+import { auth } from '~/firebase/config';
 
 export function SettingsHomePage({ navigation }) {
   const settingsHomePageOperations = new SettingsHomePageOperations(auth.currentUser);

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { colors } from '../styles/styles';
+import { colors } from '~styles/styles';
 import { vh } from 'react-native-expo-viewport-units';
 import { updatePassword, EmailAuthProvider } from 'firebase/auth';
 import Toast from 'react-native-root-toast';
@@ -43,7 +43,7 @@ export function ChangePasswordPageHeader(props) {
   );
 }
 
-export function ChangePasswordPage({ navigation }) {
+export function ChangePasswordPage() {
   const changePasswordPageOperations = new ChangePasswordPageOperations();
 
   const handleOnSubmit = () => {

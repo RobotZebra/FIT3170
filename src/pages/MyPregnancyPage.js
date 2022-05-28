@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, StyleSheet, SafeAreaView, ScrollView, Dimensions } from 'react-native';
-import { StageCarousel } from '../components/my-pregnancy/StageCarousel';
-import { VisualisationOfBaby } from '../components/my-pregnancy/VisualisationOfBaby';
-import { RecommendedAppointment } from '../components/my-pregnancy/RecommendedAppointment';
-import { BabySize } from '../components/BabySize';
+import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { StageCarousel } from '~/components/my-pregnancy/StageCarousel';
+import { VisualisationOfBaby } from '~/components/my-pregnancy/VisualisationOfBaby';
+import { RecommendedAppointment } from '~/components/my-pregnancy/RecommendedAppointment';
+import { BabySize } from '~/components/BabySize';
 
 export function MyPregnancyPage() {
   // just throwing the baby page in here to test, feel free to remove it

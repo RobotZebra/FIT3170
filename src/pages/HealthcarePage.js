@@ -1,5 +1,6 @@
+import React from 'react';
 import { ScrollView, View, Text } from 'react-native';
-import { DropDown } from '../components/DropDown';
+import { DropDown } from '~/components/DropDown';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function BabyPage() {

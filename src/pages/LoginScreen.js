@@ -10,7 +10,7 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import { colors } from '../styles/styles';
+import { colors } from '~/styles/styles';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import { getAuth, signInWithEmailAndPassword } from '@firebase/auth';
 
@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
       Alert.alert('Enter correct details.');
     } else {
       signInWithEmailAndPassword(auth, inputs.email, inputs.password)
-        .then((user) => {
+        .then(() => {
           navigation.navigate('Dashboard');
         })
         .catch((error) => this.setState({ errorMessage: error.message }));
@@ -109,7 +109,7 @@ const LoginScreen = ({ navigation }) => {
         </View>
 
         <View>
-          <Text style={styles.newUserInfo}>Don't have an account?</Text>
+          <Text style={styles.newUserInfo}>{`Don't have an account?`}</Text>
           <TouchableOpacity
             style={[styles.modalButton, styles.registerButton]}
             onPress={() => {
