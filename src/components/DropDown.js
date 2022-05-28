@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, Text, StyleSheet, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
 
 export function DropDownView(props) {
   const { children } = props;
