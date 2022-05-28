@@ -1,5 +1,5 @@
 import React from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SettingsHomePage } from '~/pages/SettingsHomePage';
 import { EditProfilePage, EditProfilePageHeader } from '~/pages/EditProfilePage';

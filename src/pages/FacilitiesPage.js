@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Searchbar } from 'react-native-paper';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {
   Text,
   View,
@@ -9,10 +8,10 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Alert,
   LayoutAnimation,
   UIManager,
   Platform,
-  Button,
   Linking,
 } from 'react-native';
 
@@ -91,7 +90,10 @@ export function FacilitiesPage() {
       </View>
     );
   };
-  const [multiSelect, setMultiSelect] = useState(false);
+
+  // commented out to satisfy the linter
+  // const [multiSelect, setMultiSelect] = useState(false);
+  const multiSelect = false;
   const [listDataSource, setListDataSource] = useState(CONTENT);
   const updateLayout = (index) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -128,9 +130,13 @@ export function FacilitiesPage() {
     Linking.openURL(url);
   };
 
+  /**
+   * 
+   * commented out to satisfy the linter
   const openGmail = () => {
     Linking.openURL('mailto:support@example.com');
   };
+   */
 
   const openPhone = (phoneNumber) => {
     Linking.openURL(`tel:${phoneNumber}`);
@@ -215,7 +221,9 @@ export function FacilitiesPage() {
     );
   }
 
-  function ContactFaciltyMap({ number }) {
+  // commentted out to satisfy the linter
+  //function ContactFaciltyMap({ number }) {
+  function ContactFaciltyMap() {
     return (
       <View style={styles.contactCardLight}>
         <View

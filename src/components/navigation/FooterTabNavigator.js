@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import HomeTopBarNavigator from '~/components/HomeTopBarNavigation';
-import HospitalTopBarNavigator from '~/components/HospitalTopBarNavigator';
-import WikiTopBarNavigator from '~/components/WikiTopBarNavigator';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import HomeTopBarNavigator from '~/components/navigation/HomeTopBarNavigation';
+import HospitalTopBarNavigator from '~/components/navigation/HospitalTopBarNavigator';
+import WikiTopBarNavigator from '~/components/navigation/WikiTopBarNavigator';
 
 import { Entypo } from '@expo/vector-icons';
 

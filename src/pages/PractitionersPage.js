@@ -12,7 +12,7 @@ import {
   Linking,
 } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import firebaseApp from '~/firebase/config.js';
 import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
 

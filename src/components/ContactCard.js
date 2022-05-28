@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 function ContactCard({ props }) {
   var title = props.title;
@@ -9,12 +9,7 @@ function ContactCard({ props }) {
   return (
     <View style={styles.contactCardLight}>
       <Text style={styles.contactCardTextHeader}>{title}</Text>
-      <View
-        style={[
-          {
-            flexDirection: 'row',
-          },
-        ]}>
+      <View style={{ flexDirection: 'row' }}>
         <View paddingRight={40}>
           <Text style={styles.contactCardText}>{subtitle}</Text>
         </View>
