@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-// import CircularProgress from 'react-native-circular-progress-indicator';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 export function BabySize() {
-  const [value, setValue] = useState(0);
+  //const [value, setValue] = useState(0);
+
   // Not sure how we are handling this yet:
   const pregnancyDayValue = 60;
   const monthValue = Math.ceil(pregnancyDayValue / 30);

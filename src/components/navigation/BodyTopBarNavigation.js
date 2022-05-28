@@ -1,8 +1,8 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { NutritionPage } from '../../pages/NutritionPage';
-import { ComplicationsPage } from '../../pages/ComplicationsPage';
-import { TestsPage } from '../../pages/TestsPage';
+import { NutritionPage } from '~/pages/NutritionPage';
+import { ComplicationsPage } from '~/pages/ComplicationsPage';
+import { TestsPage } from '~/pages/TestsPage';
 
 const TopTab = createMaterialTopTabNavigator();
 

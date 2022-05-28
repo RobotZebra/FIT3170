@@ -1,11 +1,11 @@
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SettingsHomePage } from '../../pages/SettingsHomePage';
-import { EditProfilePage, EditProfilePageHeader } from '../../pages/EditProfilePage';
+import { SettingsHomePage } from '~/pages/SettingsHomePage';
+import { EditProfilePage, EditProfilePageHeader } from '~/pages/EditProfilePage';
 import { View, Text } from 'react-native';
-import { colors } from '../../styles/styles';
-import { ChangePasswordPage, ChangePasswordPageHeader } from '../../pages/ChangePasswordPage';
+import { colors } from '~/styles/styles';
+import { ChangePasswordPage, ChangePasswordPageHeader } from '~/pages/ChangePasswordPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +35,7 @@ export default function SettingsStackNavigation() {
   );
 }
 
-export function DefaultHeader(props) {
+export function DefaultHeader() {
   return (
     <View
       style={{
