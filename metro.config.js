@@ -1,5 +1,5 @@
 // Learn more https://docs.expo.io/guides/customizing-metro
-const { getDefaultConfig } = require("expo/metro-config");
+const { getDefaultConfig } = require('expo/metro-config');
 
 module.exports = getDefaultConfig(__dirname);
 module.exports = {
@@ -12,6 +12,6 @@ module.exports = {
     }),
   },
   resolver: {
-    sourceExts: ["jsx", "js", "ts", "tsx", "cjs"], //add here
+    sourceExts: ['jsx', 'js', 'ts', 'tsx', 'cjs'], //add here
   },
 };

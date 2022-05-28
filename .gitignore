@@ -74,5 +74,9 @@ dist/
 
 # @end expo-cli
 
-# remove .idea
+# WebStorm files
 .idea/
+*.iml/
+
+# eslint
+.eslintcache
