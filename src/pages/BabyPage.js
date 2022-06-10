@@ -1,18 +1,17 @@
 import React from 'react';
+/**
+ * 
 import { DropDown } from '~/components/DropDown';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { Animated, View, Text } from 'react-native';
-
-function PlaceholderInformation() {
-  return (
-    <Animated.View>
-      <Text>Put some information here!</Text>
-    </Animated.View>
-  );
-}
+ */
+// import { Animated, View, Text } from 'react-native';
+import { useGetPractitionersQuery } from '~/services/api/firestore';
+import { View, Text } from 'react-native';
 
 export default function BabyPage() {
+  /**
+   * 
   return (
     <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
       <DropDown
@@ -40,6 +39,31 @@ export default function BabyPage() {
         information={<PlaceholderInformation />}
         icon={<FontAwesome5 name="baby" size={30} color="white" style={{ margin: 10 }} />}
       />
+    </View>
+  );
+   */
+
+  const { data, error, isLoading } = useGetPractitionersQuery();
+
+  if (isLoading) {
+    return (
+      <View>
+        <Text>splash screen...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View>
+        <Text>error</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View>
+      <Text>{JSON.stringify(data)}</Text>
     </View>
   );
 }

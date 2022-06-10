@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View, Image } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from '~/styles/styles';
 import { vh } from 'react-native-expo-viewport-units';
-import { auth } from '~/firebase/config';
+import { auth } from '~/services/firebase/config';
 
 export function SettingsHomePage({ navigation }) {
   const settingsHomePageOperations = new SettingsHomePageOperations(auth.currentUser);

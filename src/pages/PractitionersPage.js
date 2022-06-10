@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import firebaseApp from '~/firebase/config.js';
+import firebaseApp from '~/services/firebase/config';
 import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
 
 export function PractitionersPage() {

@@ -1,6 +1,6 @@
 import { getDocs, getFirestore, query, collection } from '@firebase/firestore';
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import firebaseApp from '~/firebase/config';
+import firebaseApp from '~/services/firebase/config';
 
 /* 
   This is an 'API Slice'. 
@@ -20,13 +20,20 @@ export const firestoreApi = createApi({
       queryFn: async () => {
         const db = getFirestore(firebaseApp);
         const q = query(collection(db, 'practitioner-collection'));
-        return await getDocs(q);
+        try {
+          const querySnapshot = await getDocs(q);
+          console.log(querySnapshot);
+          return {
+            data: querySnapshot,
+          };
+        } catch (err) {
+          return { error: err };
+        }
       },
       // you can edit the response before returning it with transformResponse
-      // obviously, this line doesn't do anything, I'm just showing you that it exists
       transformResponse: (response) => response,
       // using this function you can perform tasks before, during or after the query
-      // for example, save the response to AsyncStorage before returning it
+      // for example, save some stuff to AsyncStorage before returning response
       onQueryStarted: async () => {},
     }),
   }),
