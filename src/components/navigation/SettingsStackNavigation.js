@@ -1,11 +1,11 @@
 import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SettingsHomePage } from '~/pages/SettingsHomePage';
-import { EditProfilePage, EditProfilePageHeader } from '~/pages/EditProfilePage';
 import { View, Text } from 'react-native';
 import { colors } from '~/styles/styles';
-import { ChangePasswordPage, ChangePasswordPageHeader } from '~/pages/ChangePasswordPage';
+import SettingsHomeScreen from '~/screens/SettingsHomeScreen';
+import ChangePasswordScreen, { ChangePasswordPageHeader } from '~/screens/ChangePasswordScreen';
+import EditProfileScreen, { EditProfilePageHeader } from '~/screens/EditProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,17 +16,17 @@ export default function SettingsStackNavigation() {
       screenOptions={{
         header: (props) => <DefaultHeader {...props} />,
       }}>
-      <Stack.Screen name="Home" component={SettingsHomePage} />
+      <Stack.Screen name="Home" component={SettingsHomeScreen} />
       <Stack.Screen
         name="EditProfile"
-        component={EditProfilePage}
+        component={EditProfileScreen}
         options={{
           header: (props) => <EditProfilePageHeader {...props} />,
         }}
       />
       <Stack.Screen
         name="ChangePassword"
-        component={ChangePasswordPage}
+        component={ChangePasswordScreen}
         options={{
           header: (props) => <ChangePasswordPageHeader {...props} />,
         }}

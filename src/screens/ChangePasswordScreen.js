@@ -43,7 +43,7 @@ export function ChangePasswordPageHeader(props) {
   );
 }
 
-export function ChangePasswordPage() {
+export default function ChangePasswordScreen() {
   const changePasswordPageOperations = new ChangePasswordPageOperations();
 
   const handleOnSubmit = () => {

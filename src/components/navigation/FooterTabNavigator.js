@@ -5,7 +5,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeTopBarNavigator from '~/components/navigation/HomeTopBarNavigation';
 import HospitalTopBarNavigator from '~/components/navigation/HospitalTopBarNavigator';
 import WikiTopBarNavigator from '~/components/navigation/WikiTopBarNavigator';
-
 import { Entypo } from '@expo/vector-icons';
 
 /**

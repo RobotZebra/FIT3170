@@ -1,7 +1,7 @@
 import { getDocs, getFirestore, query, collection } from '@firebase/firestore';
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firebaseApp from '~/services/firebase/config';
+import firebaseApp from '~/firebase/config';
 
 /* 
   This is an 'API Slice'. 

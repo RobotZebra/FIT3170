@@ -13,15 +13,11 @@ import {
 } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import firebaseApp from '~/services/firebase/config';
+import firebaseApp from '~/firebase/config';
 import { getFirestore, collection, query, getDocs } from 'firebase/firestore';
+import { MATERNITY_KEY_CONTACTS, MATERNITY_KEY_CONTACTS_TEXT } from '~/constants/messages';
 
-export function PractitionersPage() {
-  const MATERNITY_KEY_CONTACTS = 'Maternity Services Key Contacts';
-  const MATERNITY_KEY_CONTACTS_TEXT =
-    'Please fax initial referrals. For all subsequent queries about hospital\
-    site allocation, please contact our maternity shared care coordinator\
-    (for shared care patients) or midwife manager of clinic.';
+export default function PractitionersScreen() {
   /**
      * 
   const SPECIALIST_OBSTETRICIAN_CONTACTS = 'Specialist Obstetrician Contacts';

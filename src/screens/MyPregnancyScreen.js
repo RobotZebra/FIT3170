@@ -5,7 +5,7 @@ import { VisualisationOfBaby } from '~/components/my-pregnancy/VisualisationOfBa
 import { RecommendedAppointment } from '~/components/my-pregnancy/RecommendedAppointment';
 import { BabySize } from '~/components/BabySize';
 
-export function MyPregnancyPage() {
+export default function MyPregnancyScreen() {
   // just throwing the baby page in here to test, feel free to remove it
   return (
     <SafeAreaView style={styles.container}>

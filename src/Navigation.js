@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from '~/pages/LoginScreen';
-import RegisterScreen from '~/pages/RegisterScreen';
-import ResetPasswordScreen from '~/pages/ResetPasswordScreen';
+import LoginScreen from '~/screens/LoginScreen';
+import RegisterScreen from '~/screens/RegisterScreen';
+import ResetPasswordScreen from '~/screens/ResetPasswordScreen';
 import BottomTabNavigator from '~/components/navigation/FooterTabNavigator';
 
 const Stack = createNativeStackNavigator();

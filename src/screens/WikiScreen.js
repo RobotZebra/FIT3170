@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { DropDown } from '~/components/DropDown';
 
-export default function WikiPage(props) {
+export default function WikiScreen(props) {
   const { dropDownList } = props;
 
   return (

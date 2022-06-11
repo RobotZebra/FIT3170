@@ -16,7 +16,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from '@firebase/auth';
 import { doc, setDoc, getFirestore } from '@firebase/firestore';
-import firebaseApp from '~/services/firebase/config';
+import firebaseApp from '~/firebase/config';
 import { emailRegex } from '~/constants/regex';
 
 const RegisterScreen = ({ navigation }) => {

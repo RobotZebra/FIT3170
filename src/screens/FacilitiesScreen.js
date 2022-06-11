@@ -15,7 +15,7 @@ import {
   Linking,
 } from 'react-native';
 
-export function FacilitiesPage() {
+export default function FacilitiesScreen() {
   const CONTENT = [
     {
       isExpanded: false,

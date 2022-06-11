@@ -6,10 +6,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
  */
 // import { Animated, View, Text } from 'react-native';
-import { useGetPractitionersQuery } from '~/services/api/firestore';
 import { View, Text } from 'react-native';
+import { useGetPractitionersQuery } from '~/api/firestoreApi';
 
-export default function BabyPage() {
+export default function BabyScreen() {
   /**
    * 
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { NutritionPage } from '~/pages/NutritionPage';
-import { ComplicationsPage } from '~/pages/ComplicationsPage';
-import { TestsPage } from '~/pages/TestsPage';
+import TestsScreen from '~/screens/TestsScreen';
+import NutritionScreen from '~/screens/NutritionScreen';
+import ComplicationsScreen from '~/screens/ComplicationsScreen';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -21,17 +21,17 @@ function MyTopTabs() {
       }}>
       <TopTab.Screen
         name="Nutrition"
-        component={NutritionPage}
+        component={NutritionScreen}
         options={{ tabBarLabel: 'Nutrition' }}
       />
 
       <TopTab.Screen
         name="Complications"
-        component={ComplicationsPage}
+        component={ComplicationsScreen}
         options={{ tabBarLabel: 'Complications' }}
       />
 
-      <TopTab.Screen name="Tests" component={TestsPage} options={{ tabBarLabel: 'Tests' }} />
+      <TopTab.Screen name="Tests" component={TestsScreen} options={{ tabBarLabel: 'Tests' }} />
     </TopTab.Navigator>
   );
 }

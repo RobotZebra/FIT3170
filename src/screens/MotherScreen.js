@@ -4,7 +4,7 @@ import { DropDown } from '~/components/DropDown';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function MotherPage() {
+export default function MotherScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
       <DropDown

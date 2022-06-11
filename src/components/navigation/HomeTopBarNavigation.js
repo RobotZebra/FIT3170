@@ -1,7 +1,7 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { MyPregnancyPage } from '~/pages/MyPregnancyPage';
-import { AppointmentsPage } from '~/pages/AppointmentsPage';
+import MyPregnancyScreen from '~/screens/MyPregnancyScreen';
+import AppointmentsScreen from '~/screens/AppointmentsScreen';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -20,13 +20,13 @@ function MyTopTabs() {
       }}>
       <TopTab.Screen
         name="MyPregnancy"
-        component={MyPregnancyPage}
+        component={MyPregnancyScreen}
         options={{ tabBarLabel: 'My Pregnancy' }}
       />
 
       <TopTab.Screen
         name="Appointments"
-        component={AppointmentsPage}
+        component={AppointmentsScreen}
         options={{ tabBarLabel: 'Appointments' }}
       />
     </TopTab.Navigator>

@@ -3,7 +3,7 @@ import { ScrollView, View, Text } from 'react-native';
 import { DropDown } from '~/components/DropDown';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function BabyPage() {
+export default function HealthcareScreen() {
   return (
     <ScrollView style={{ width: '100%' }}>
       <View
