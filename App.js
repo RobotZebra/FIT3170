@@ -1,24 +1,21 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-//import MyTabs from "./app/FooterTabNavigator.js";
-import { NavigationContainer } from "@react-navigation/native";
-import BodyTopBarNavigator from "./app/navigation/BodyTopBarNavigation.js";
-import BottomTabNavigator from "./app/navigation/FooterTabNavigator";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RootSiblingParent } from 'react-native-root-siblings';
+import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
+import { firestoreApi } from '~/api/firestoreApi';
+import Roboto from '~/components/fonts/Roboto';
+import Navigation from '~/Navigation';
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <BottomTabNavigator />
-    </SafeAreaProvider>
+    <ApiProvider api={firestoreApi}>
+      <SafeAreaProvider>
+        <RootSiblingParent>
+          <Roboto>
+            <Navigation />
+          </Roboto>
+        </RootSiblingParent>
+      </SafeAreaProvider>
+    </ApiProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
