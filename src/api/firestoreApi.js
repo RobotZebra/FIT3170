@@ -19,18 +19,19 @@ export const firestoreApi = createApi({
     getPractitioners: builder.query({
       // this is the function that performs the request
       queryFn: async () => {
-        const db = getFirestore(firebaseApp);
-        const q = query(collection(db, 'practitioner-collection'));
         try {
+          const db = getFirestore(firebaseApp);
+          const q = query(collection(db, 'practitioner-collection'));
           const querySnapshot = await getDocs(q);
-          console.log(querySnapshot);
-          // you must return a { data: object } if query is successful
           return {
-            data: querySnapshot,
+            // you must return a { data: object } if query is successful
+            data: querySnapshot.docs.map((doc) => doc.data()),
           };
         } catch (err) {
-          // you must return { error: object } if query is not successful
-          return { error: err };
+          return {
+            // you must return { error: object } if query is not successful
+            error: err,
+          };
         }
       },
       // you can edit the response before returning it with transformResponse
